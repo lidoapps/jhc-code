@@ -8,6 +8,7 @@ import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.events.ShellEvent;
 import org.eclipse.swt.events.ShellListener;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -26,7 +27,7 @@ public class NotPermanentShellPaint {
 	public static void main(String[] args) {
 		final Display display = new Display();
 		final Shell shell = new Shell(display);
-		shell.setSize(400, 400);
+		shell.setSize(600, 600);
 		shell.setLocation(200, 200);
 		shell.addPaintListener(new PaintListener() {
 			
@@ -81,13 +82,14 @@ public class NotPermanentShellPaint {
 
 	private static void drawSomething(final Shell shell) {
 		GC gc = new GC(shell);
-		System.out.println("in drawsomething :"+gc.getClipping());
+//		System.out.println("in drawsomething :"+gc.getClipping());
 		gc.setForeground(shell.getDisplay().getSystemColor(SWT.COLOR_BLACK));
-		gc.setLineWidth(5);
-		gc.drawLine(20, 20, 100, 100);
-		gc.setFont(shell.getDisplay().getSystemFont());
-		gc.drawString("Test String!",10,10,false);
-
+//		gc.setLineWidth(5);
+//		gc.drawLine(20, 20, 100, 100);
+		final Font font = new Font(shell.getDisplay(),"微软雅黑",24,SWT.BOLD);
+		gc.setFont(font);
+		gc.drawText("千古风流八咏楼\n江山留与后人愁\n水通南国三千里\n气压江城十四州",10,10,false);
+		font.dispose();
 		gc.dispose();
 	}
 
