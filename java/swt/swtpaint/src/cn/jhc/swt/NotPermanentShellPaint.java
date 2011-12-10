@@ -15,9 +15,11 @@ import org.eclipse.swt.widgets.Shell;
 
 /**
  * @author luyanfei
- * 演示非永久性的作图，重绘后图形消失。为了演示这种不持久的效果，需要注意事件及作图的先后次序，
- * 不调用display.readAndDispatch()，则无法显示shell，作图又必须在shell显示之后，由此，在
- * 作图前先flush event loop就成为演示成功的关键。
+ * 演示非永久性的作图，重绘后图形消失。为了演示这种不持久的效果，需要注意事件及作图的先后次序。
+ * 有两种解决方案，一是用while循环dispatch所有当前队列中的事件，如：
+ * 	      while(display.readAndDispatch()) ;
+ * 二是只dispatch drawing事件，用display.update()方法实现。
+ * 两种方法中以后者为上。
  */
 public class NotPermanentShellPaint {
 
@@ -72,7 +74,9 @@ public class NotPermanentShellPaint {
 
 		shell.open();
 		//flush event loop
-		while(display.readAndDispatch())	;
+		//while(display.readAndDispatch())	;
+		//flush drawing event
+		display.update();
 		drawSomething(shell);
 		while(!shell.isDisposed())
 			if(!display.readAndDispatch())
