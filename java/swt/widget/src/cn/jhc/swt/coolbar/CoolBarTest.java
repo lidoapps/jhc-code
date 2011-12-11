@@ -1,5 +1,5 @@
 /**
- * 本示例来自SWT: The Standard Widget Toolkit volumn1 第13.1节
+ * 示例来自SWT: The Standard Widget Toolkit volumn1 第13.1节
  */
 package cn.jhc.swt.coolbar;
 
