@@ -11,7 +11,7 @@ public class GameCanvas extends Canvas {
 		super(parent, style);
 		this.setSize(Config.CANVAS_WIDTH * Config.CELL_SIZE,
 				Config.CANVAS_HEIGHT * Config.CELL_SIZE);
-
+		
 	}
 
 }

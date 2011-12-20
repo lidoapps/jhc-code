@@ -1,0 +1,35 @@
+package cn.jhc.swt.tetris.main;
+
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
+
+import cn.jhc.swt.tetris.controller.Controller;
+import cn.jhc.swt.tetris.view.GameCanvas;
+
+/**
+ * 游戏主函数所在类。
+ * @author 吕焱飞
+ *
+ */
+public class TetrisMain {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		Display display = new Display();
+		Shell shell = new Shell();
+		shell.setLayout(new FillLayout());
+		GameCanvas canvas = new GameCanvas(shell, SWT.NONE);
+		Controller controller = new Controller(canvas);
+//		shell.pack();
+		shell.open();
+		while(!shell.isDisposed())
+			if(!display.readAndDispatch())
+				display.sleep();
+		display.dispose();
+	}
+
+}
