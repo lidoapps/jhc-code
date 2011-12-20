@@ -4,6 +4,7 @@
 package cn.jhc.swt;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.widgets.Display;
 
@@ -18,8 +19,9 @@ public class DisplayPaint {
 	 */
 	public static void main(String[] args) {
 		final Display display = new Display();
+				
 		GC gc = new GC(display);
-		gc.setForeground(display.getSystemColor(SWT.COLOR_BLACK));
+		gc.setForeground(display.getSystemColor(SWT.COLOR_RED));
 		gc.setLineWidth(10);
 		gc.drawLine(0, 0, 1000, 1000);
 		gc.drawRectangle(300, 300, 200, 200);
