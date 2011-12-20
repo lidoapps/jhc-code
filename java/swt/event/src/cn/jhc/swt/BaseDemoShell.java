@@ -1,4 +1,4 @@
-package cn.jhc.swt.mouse;
+package cn.jhc.swt;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;

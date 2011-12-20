@@ -13,6 +13,8 @@ import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Control;
 
+import cn.jhc.swt.BaseDemoShell;
+
 /**
  * @author luyanfei
  * 
