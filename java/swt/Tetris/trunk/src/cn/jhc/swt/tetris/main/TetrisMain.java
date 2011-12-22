@@ -21,10 +21,10 @@ public class TetrisMain {
 	public static void main(String[] args) {
 		Display display = new Display();
 		Shell shell = new Shell();
-		shell.setLayout(new FillLayout());
+//		shell.setLayout(new FillLayout(SWT.HORIZONTAL));
 		GameCanvas canvas = new GameCanvas(shell, SWT.NONE);
 		Controller controller = new Controller(canvas);
-//		shell.pack();
+		shell.pack();
 		shell.open();
 		while(!shell.isDisposed())
 			if(!display.readAndDispatch())

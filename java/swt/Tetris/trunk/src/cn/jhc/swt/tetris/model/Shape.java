@@ -3,7 +3,6 @@ package cn.jhc.swt.tetris.model;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
-import org.eclipse.swt.internal.opengl.glx.GLX;
 import org.eclipse.swt.widgets.Display;
 
 import cn.jhc.swt.tetris.util.Config;
@@ -39,18 +38,20 @@ public class Shape {
 	}
 	
 	public void moveLeft() {
-		
+		if(x>0)
+			x--;
 	}
 	
 	public void moveRight() {
-		
+		if(x<Config.CANVAS_WIDTH-3)
+			x++;
 	}
 	
 	public void rotate() {
 		
 	}
 	
-	public void drawMe(GC gc) {
+	public void draw(GC gc) {
 		gc.setBackground(color);
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
