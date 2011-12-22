@@ -31,6 +31,9 @@ public class Controller implements PaintListener{
 			case SWT.ARROW_RIGHT:
 				Controller.this.shape.moveRight();
 				break;
+			case SWT.ARROW_UP:
+				Controller.this.shape.rotate();
+				break;
 			}
 			((Canvas)e.widget).redraw();
 		}
