@@ -5,6 +5,7 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.widgets.Display;
 
+import cn.jhc.swt.tetris.listener.ShapeListener;
 import cn.jhc.swt.tetris.util.Config;
 
 /**
@@ -31,12 +32,14 @@ public class Shape {
 	/**
 	 * 方块左上角单元格在画布中的y坐标，以单元格为单位。
 	 */
-	private int y = 10;
+	private int y = 0;
 
 	/**
 	 * 方块的颜色。
 	 */
 	private Color color = Display.getDefault().getSystemColor(SWT.COLOR_CYAN);
+	
+	private ShapeListener shapeListener = null;
 
 	public Shape(int[][] body, int status) {
 		this.body = body;
@@ -45,6 +48,8 @@ public class Shape {
 
 	public void moveDown() {
 		y++;
+		if(shapeListener != null)
+			shapeListener.shapeMoveDown();
 	}
 
 	public void moveLeft() {
@@ -66,8 +71,10 @@ public class Shape {
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
 				if (isBlock(i, j))
-					gc.fillRectangle((x + j) * Config.CELL_SIZE, (y + i)
-							* Config.CELL_SIZE, Config.CELL_SIZE,
+					gc.fillRectangle(
+							(x + j) * Config.CELL_SIZE, 
+							(y + i) * Config.CELL_SIZE,
+							Config.CELL_SIZE,
 							Config.CELL_SIZE);
 			}
 		}
@@ -84,6 +91,10 @@ public class Shape {
 	 */
 	private boolean isBlock(int x, int y) {
 		return body[status][y * 4 + x] == 1;
+	}
+
+	public void addShapeListener(ShapeListener shapeListener) {
+		this.shapeListener = shapeListener;
 	}
 	
 

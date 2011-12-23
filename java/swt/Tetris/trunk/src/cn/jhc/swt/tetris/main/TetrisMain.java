@@ -24,6 +24,7 @@ public class TetrisMain {
 //		shell.setLayout(new FillLayout(SWT.HORIZONTAL));
 		GameCanvas canvas = new GameCanvas(shell, SWT.NONE);
 		Controller controller = new Controller(canvas);
+		controller.start();
 		shell.pack();
 		shell.open();
 		while(!shell.isDisposed())
