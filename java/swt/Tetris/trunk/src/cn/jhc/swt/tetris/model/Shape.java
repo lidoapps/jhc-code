@@ -8,10 +8,11 @@ import org.eclipse.swt.widgets.Display;
 import cn.jhc.swt.tetris.util.Config;
 
 /**
- * 代表俄罗斯方块，文档中以方块称呼，方块的格子称单元格。 需要注意的是，一个Shape对象并非是玩家看到的一个形状，而是一种形状，可能会包含多种变形。
+ * 代表俄罗斯方块，文档中以方块称呼，方块的格子称单元格。 
+ * 需要注意的是，一个Shape对象并非是玩家看到的一个形状，而是一种形状，可能会包含多种变形。
  * 玩家使用向上键即可在多种变形之间切换。
  * 
- * @author 吕焱飞
+ * @author luyanfei
  * 
  */
 public class Shape {
@@ -43,7 +44,7 @@ public class Shape {
 	}
 
 	public void moveDown() {
-
+		y++;
 	}
 
 	public void moveLeft() {
@@ -73,7 +74,7 @@ public class Shape {
 	}
 
 	/**
-	 * 该变形的（x，y）位置是否为1
+	 * 该变形的（x，y）位置是否为1。
 	 * 
 	 * @param x
 	 *            相对坐标x
@@ -84,4 +85,6 @@ public class Shape {
 	private boolean isBlock(int x, int y) {
 		return body[status][y * 4 + x] == 1;
 	}
+	
+
 }
