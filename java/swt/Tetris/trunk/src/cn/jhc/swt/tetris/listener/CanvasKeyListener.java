@@ -5,8 +5,9 @@ import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.widgets.Canvas;
 
-import cn.jhc.swt.tetris.controller.Controller;
+import cn.jhc.swt.tetris.model.Ground;
 import cn.jhc.swt.tetris.model.Shape;
+import cn.jhc.swt.tetris.util.Global;
 
 public class CanvasKeyListener implements KeyListener {
 
@@ -14,12 +15,15 @@ public class CanvasKeyListener implements KeyListener {
 	 * 
 	 */
 	private final Shape shape;
+	
+	private final Ground ground;
 
 	/**
 	 * @param shape
 	 */
-	public CanvasKeyListener(Shape shape) {
+	public CanvasKeyListener(Shape shape, Ground ground) {
 		this.shape = shape;
+		this.ground = ground;
 	}
 
 	/* (non-Javadoc)
@@ -29,13 +33,16 @@ public class CanvasKeyListener implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		switch(e.keyCode) {
 		case SWT.ARROW_LEFT:
-			shape.moveLeft();
+			if(ground.canPerformAction(shape, Global.ACTION_MOVE_LEFT))
+				shape.moveLeft();
 			break;
 		case SWT.ARROW_RIGHT:
-			shape.moveRight();
+			if(ground.canPerformAction(shape, Global.ACTION_MOVE_RIGHT))
+				shape.moveRight();
 			break;
 		case SWT.ARROW_UP:
-			shape.rotate();
+			if(ground.canPerformAction(shape, Global.ACTION_ROTATE))
+				shape.rotate();
 			break;
 		}
 		((Canvas)e.widget).redraw();

@@ -9,8 +9,7 @@ import cn.jhc.swt.tetris.listener.ShapeListener;
 import cn.jhc.swt.tetris.util.Config;
 
 /**
- * 代表俄罗斯方块，文档中以方块称呼，方块的格子称单元格。 
- * 需要注意的是，一个Shape对象并非是玩家看到的一个形状，而是一种形状，可能会包含多种变形。
+ * 代表俄罗斯方块，文档中以方块称呼，方块的格子称单元格。 需要注意的是，一个Shape对象并非是玩家看到的一个形状，而是一种形状，可能会包含多种变形。
  * 玩家使用向上键即可在多种变形之间切换。
  * 
  * @author luyanfei
@@ -28,17 +27,17 @@ public class Shape {
 	/**
 	 * 方块左上角单元格在画布中的x坐标，以单元格为单位。
 	 */
-	private int x = 10;
+	protected int x = 10;
 	/**
 	 * 方块左上角单元格在画布中的y坐标，以单元格为单位。
 	 */
-	private int y = 0;
+	protected int y = 0;
 
 	/**
 	 * 方块的颜色。
 	 */
 	private Color color = Display.getDefault().getSystemColor(SWT.COLOR_CYAN);
-	
+
 	private ShapeListener shapeListener = null;
 
 	public Shape(int[][] body, int status) {
@@ -48,17 +47,15 @@ public class Shape {
 
 	public void moveDown() {
 		y++;
-		if(shapeListener != null)
+		if (shapeListener != null)
 			shapeListener.shapeMoveDown();
 	}
 
 	public void moveLeft() {
-		if (x > 0)
 			x--;
 	}
 
 	public void moveRight() {
-		if (x < Config.CANVAS_WIDTH - 4)
 			x++;
 	}
 
@@ -66,15 +63,17 @@ public class Shape {
 		status = (status + 1) % body.length;
 	}
 
+	protected void rotateBack() {
+		status = status == 0 ? 3 : (status - 1) % body.length;
+	}
+
 	public void draw(GC gc) {
 		gc.setBackground(color);
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				if (isBlock(i, j))
-					gc.fillRectangle(
-							(x + j) * Config.CELL_SIZE, 
-							(y + i) * Config.CELL_SIZE,
-							Config.CELL_SIZE,
+				if (isBlock(j, i))
+					gc.fillRectangle((x + j) * Config.CELL_SIZE, (y + i)
+							* Config.CELL_SIZE, Config.CELL_SIZE,
 							Config.CELL_SIZE);
 			}
 		}
@@ -89,13 +88,12 @@ public class Shape {
 	 *            相对坐标y
 	 * @return 对应位置为1，返回true，否则返回false。
 	 */
-	private boolean isBlock(int x, int y) {
+	protected boolean isBlock(int x, int y) {
 		return body[status][y * 4 + x] == 1;
 	}
 
 	public void addShapeListener(ShapeListener shapeListener) {
 		this.shapeListener = shapeListener;
 	}
-	
 
 }

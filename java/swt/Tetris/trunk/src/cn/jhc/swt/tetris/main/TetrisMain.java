@@ -1,11 +1,11 @@
 package cn.jhc.swt.tetris.main;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
 import cn.jhc.swt.tetris.controller.Controller;
+import cn.jhc.swt.tetris.model.Ground;
 import cn.jhc.swt.tetris.view.GameCanvas;
 
 /**
@@ -23,7 +23,7 @@ public class TetrisMain {
 		Shell shell = new Shell();
 //		shell.setLayout(new FillLayout(SWT.HORIZONTAL));
 		GameCanvas canvas = new GameCanvas(shell, SWT.NONE);
-		Controller controller = new Controller(canvas);
+		Controller controller = new Controller(canvas, new Ground());
 		controller.start();
 		shell.pack();
 		shell.open();

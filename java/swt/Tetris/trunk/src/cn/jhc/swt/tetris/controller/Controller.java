@@ -6,8 +6,10 @@ import org.eclipse.swt.widgets.Display;
 
 import cn.jhc.swt.tetris.listener.CanvasKeyListener;
 import cn.jhc.swt.tetris.listener.ShapeListener;
+import cn.jhc.swt.tetris.model.Ground;
 import cn.jhc.swt.tetris.model.Shape;
 import cn.jhc.swt.tetris.model.ShapeFactory;
+import cn.jhc.swt.tetris.util.Global;
 import cn.jhc.swt.tetris.view.GameCanvas;
 
 /**
@@ -20,13 +22,15 @@ public class Controller implements PaintListener, ShapeListener {
 
 	private GameCanvas canvas = null;
 	private Shape shape = null;
+	private Ground ground = null;
 
-	public Controller(GameCanvas canvas) {
+	public Controller(GameCanvas canvas, Ground ground) {
 		super();
 		this.canvas = canvas;
+		this.ground = ground;
 		this.canvas.addPaintListener(this);
 		this.shape = ShapeFactory.getShape();
-		this.canvas.addKeyListener(new CanvasKeyListener(shape));
+		this.canvas.addKeyListener(new CanvasKeyListener(shape,ground));
 		this.shape.addShapeListener(this);
 	}
 
@@ -37,7 +41,8 @@ public class Controller implements PaintListener, ShapeListener {
 			public void run() {
 				while (!canvas.isDisposed()) {
 					if (shape != null) {
-						shape.moveDown();
+						if(ground.canPerformAction(shape, Global.ACTION_MOVE_DOWN))
+							shape.moveDown();
 						try {
 							Thread.sleep(500);
 						} catch (InterruptedException e) {

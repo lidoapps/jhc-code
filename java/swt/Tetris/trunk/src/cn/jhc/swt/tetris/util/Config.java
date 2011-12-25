@@ -13,4 +13,8 @@ public class Config {
 	 * 游戏画布的高度，单位是{@link CELL_SIZE}。
 	 */
 	public static final int CANVAS_HEIGHT = 20;
+	/**
+	 * 表示Shape所用的数组的大小，一般是4X4，但为演示一些额外的有趣情形，也在这里修改。
+	 */
+	public static final int SHAPE_SIZE = 4;
 }
