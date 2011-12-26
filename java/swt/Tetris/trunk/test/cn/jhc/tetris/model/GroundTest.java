@@ -4,12 +4,13 @@
 package cn.jhc.tetris.model;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import cn.jhc.swt.tetris.model.Ground;
+import cn.jhc.swt.tetris.model.Shape;
+import cn.jhc.swt.tetris.model.ShapeFactory;
 import cn.jhc.swt.tetris.util.Config;
 
 /**
@@ -18,6 +19,7 @@ import cn.jhc.swt.tetris.util.Config;
  */
 public class GroundTest {
 	Ground ground = null;
+	Shape shape = null;
 
 	/**
 	 * @throws java.lang.Exception
@@ -25,6 +27,7 @@ public class GroundTest {
 	@Before
 	public void setUp() throws Exception {
 		ground = new Ground();
+		shape = ShapeFactory.getShape();
 	}
 
 	@Test
@@ -35,6 +38,11 @@ public class GroundTest {
 				assertEquals(0, a[i][j]);
 			}
 		}
+	}
+	
+	@Test
+	public void testCanPut() {
+//		assertTrue("初始Shape对象不在画布之内。",ground.canPut(shape));
 	}
 
 }
