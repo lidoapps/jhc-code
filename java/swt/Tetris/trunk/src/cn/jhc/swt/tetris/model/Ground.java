@@ -1,5 +1,10 @@
 package cn.jhc.swt.tetris.model;
 
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.widgets.Display;
+
 import cn.jhc.swt.tetris.util.Config;
 import cn.jhc.swt.tetris.util.Global;
 
@@ -79,6 +84,18 @@ public class Ground {
 				body[shape.getX()+j][shape.getY()+i]=1;
 	}
 	
+	/**
+	 * 画出Ground的方法。
+	 * @param gc
+	 */
+	public void draw(GC gc) {
+		Color oldColor = gc.getBackground();
+		gc.setBackground(Display.getDefault().getSystemColor(SWT.COLOR_GRAY));
+		for(int i=0;i<Config.CANVAS_HEIGHT;i++)
+			for(int j=0;j<Config.CANVAS_WIDTH;j++)
+				gc.fillRectangle(j*Config.CELL_SIZE, i*Config.CELL_SIZE, Config.CELL_SIZE, Config.CELL_SIZE);
+		gc.setBackground(oldColor);
+	}
 
 	public int[][] getBody() {
 		return body;

@@ -33,7 +33,9 @@ public class Controller implements PaintListener, ShapeListener {
 		this.canvas.addKeyListener(new CanvasKeyListener(shape,ground));
 		this.shape.addShapeListener(this);
 	}
-
+	/**
+	 * 创建并启动令Shape自动下落的线程。
+	 */
 	public void start() {
 		Thread t = new Thread(new Runnable() {
 
@@ -43,6 +45,8 @@ public class Controller implements PaintListener, ShapeListener {
 					if (shape != null) {
 						if(ground.canPerformAction(shape, Global.ACTION_MOVE_DOWN))
 							shape.moveDown();
+						else
+							ground.accept(shape);
 						try {
 							Thread.sleep(500);
 						} catch (InterruptedException e) {
@@ -58,6 +62,7 @@ public class Controller implements PaintListener, ShapeListener {
 	@Override
 	public void paintControl(PaintEvent e) {
 		shape.draw(e.gc);
+		ground.draw(e.gc);
 	}
 
 	@Override
