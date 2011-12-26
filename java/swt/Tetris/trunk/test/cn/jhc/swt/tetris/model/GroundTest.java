@@ -16,7 +16,7 @@ import cn.jhc.swt.tetris.util.Config;
 
 /**
  * @author luyanfei
- *
+ * 
  */
 public class GroundTest {
 	Ground ground = null;
@@ -34,20 +34,30 @@ public class GroundTest {
 	@Test
 	public void test() {
 		int[][] a = ground.getBody();
-		for(int i=0;i<Config.CANVAS_HEIGHT;i++) {
-			for(int j=0;j<Config.CANVAS_WIDTH;j++) {
+		for (int i = 0; i < Config.CANVAS_HEIGHT; i++) {
+			for (int j = 0; j < Config.CANVAS_WIDTH; j++) {
 				assertEquals(0, a[i][j]);
 			}
 		}
 	}
-	
-	@Test
-	public void testCanPut() {
-		assertTrue("初始Shape对象不在画布之内。",ground.canPut(shape));
-	}
 
 	@Test
+	public void testCanPut() {
+		assertTrue("初始Shape对象不在画布之内。", ground.canPut(shape));
+	}
+
+	/**
+	 * 测试Ground的accept方法。
+	 */
+	@Test
 	public void testAccept() {
-		
+		ground.accept(shape);
+		for(int i=0;i<Config.SHAPE_SIZE;i++) {
+			for(int j=0;j<Config.SHAPE_SIZE;j++) {
+				if(shape.isBlock(j, i)) {
+					assertEquals(1, ground.getBody()[shape.getX()+j][shape.getY()+i]);
+				}
+			}
+		}
 	}
 }

@@ -137,4 +137,12 @@ public class Shape {
 		this.y = y;
 	}
 
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
 }

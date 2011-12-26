@@ -74,9 +74,12 @@ public class Ground {
 	 * @param shape 需要转换成障碍物的对象。
 	 */
 	public void accept(Shape shape) {
-		
+		for(int i=0;i<Config.SHAPE_SIZE;i++)
+			for(int j=0;j<Config.SHAPE_SIZE;j++)
+				body[shape.getX()+j][shape.getY()+i]=1;
 	}
 	
+
 	public int[][] getBody() {
 		return body;
 	}
