@@ -5,7 +5,6 @@ import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.widgets.Display;
 
 import cn.jhc.swt.tetris.listener.CanvasKeyListener;
-import cn.jhc.swt.tetris.listener.ShapeListener;
 import cn.jhc.swt.tetris.model.Ground;
 import cn.jhc.swt.tetris.model.Shape;
 import cn.jhc.swt.tetris.model.ShapeFactory;
@@ -14,11 +13,11 @@ import cn.jhc.swt.tetris.view.GameCanvas;
 
 /**
  * 控制器。
- * 
+ * 判断能否下落的功能应该在Controller中实现，汤阳光的版本却使用了监听器isShapeMoveDownable，与常理不合。
  * @author luyanfei
  * 
  */
-public class Controller implements PaintListener, ShapeListener {
+public class Controller implements PaintListener {
 
 	private GameCanvas canvas = null;
 	private Shape shape = null;
@@ -31,7 +30,6 @@ public class Controller implements PaintListener, ShapeListener {
 		this.canvas.addPaintListener(this);
 		this.shape = ShapeFactory.getShape();
 		this.canvas.addKeyListener(new CanvasKeyListener(shape,ground));
-		this.shape.addShapeListener(this);
 	}
 	/**
 	 * 创建并启动令Shape自动下落的线程。
@@ -47,6 +45,13 @@ public class Controller implements PaintListener, ShapeListener {
 							shape.moveDown();
 						else
 							ground.accept(shape);
+						Display.getDefault().asyncExec(new Runnable() {
+
+							@Override
+							public void run() {
+								Controller.this.canvas.redraw();
+							}
+						});
 						try {
 							Thread.sleep(500);
 						} catch (InterruptedException e) {
@@ -65,15 +70,4 @@ public class Controller implements PaintListener, ShapeListener {
 		ground.draw(e.gc);
 	}
 
-	@Override
-	public void shapeMoveDown() {
-		Display.getDefault().syncExec(new Runnable() {
-
-			@Override
-			public void run() {
-				Controller.this.canvas.redraw();
-			}
-		});
-
-	}
 }

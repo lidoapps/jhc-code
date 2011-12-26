@@ -5,7 +5,6 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.widgets.Display;
 
-import cn.jhc.swt.tetris.listener.ShapeListener;
 import cn.jhc.swt.tetris.util.Config;
 
 /**
@@ -38,8 +37,6 @@ public class Shape {
 	 */
 	private Color color = Display.getDefault().getSystemColor(SWT.COLOR_CYAN);
 
-	private ShapeListener shapeListener = null;
-
 	public Shape(int[][] body, int status) {
 		this.body = body;
 		this.status = status;
@@ -50,8 +47,6 @@ public class Shape {
 	 */
 	public void moveDown() {
 		y++;
-		if (shapeListener != null)
-			shapeListener.shapeMoveDown();
 	}
 
 	/**
@@ -107,10 +102,6 @@ public class Shape {
 	 */
 	protected boolean isBlock(int x, int y) {
 		return body[status][y * 4 + x] == 1;
-	}
-
-	public void addShapeListener(ShapeListener shapeListener) {
-		this.shapeListener = shapeListener;
 	}
 
 	public int[][] getBody() {
