@@ -54,7 +54,7 @@ public class Ground {
 	/**
 	 * canPerformAction内部调用的函数，测试该Shape能否在当前Ground范围之内放下。
 	 */
-	protected boolean canPut(Shape shape) {
+	boolean canPut(Shape shape) {
 		for (int i = 0; i < Config.SHAPE_SIZE; i++) {
 			for (int j = 0; j < Config.SHAPE_SIZE; j++) {
 				if(shape.isBlock(j, i)) {
