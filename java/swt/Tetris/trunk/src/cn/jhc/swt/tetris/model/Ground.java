@@ -81,7 +81,8 @@ public class Ground {
 	public void accept(Shape shape) {
 		for(int i=0;i<Config.SHAPE_SIZE;i++)
 			for(int j=0;j<Config.SHAPE_SIZE;j++)
-				body[shape.getX()+j][shape.getY()+i]=1;
+				if(shape.isBlock(j, i))
+					body[shape.getY()+i][shape.getX()+j]=1;
 	}
 	
 	/**
@@ -93,7 +94,8 @@ public class Ground {
 		gc.setBackground(Display.getDefault().getSystemColor(SWT.COLOR_GRAY));
 		for(int i=0;i<Config.CANVAS_HEIGHT;i++)
 			for(int j=0;j<Config.CANVAS_WIDTH;j++)
-				gc.fillRectangle(j*Config.CELL_SIZE, i*Config.CELL_SIZE, Config.CELL_SIZE, Config.CELL_SIZE);
+				if(body[i][j]==1)
+					gc.fillRectangle(j*Config.CELL_SIZE, i*Config.CELL_SIZE, Config.CELL_SIZE, Config.CELL_SIZE);
 		gc.setBackground(oldColor);
 	}
 

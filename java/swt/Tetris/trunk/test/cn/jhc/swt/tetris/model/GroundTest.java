@@ -55,7 +55,7 @@ public class GroundTest {
 		for(int i=0;i<Config.SHAPE_SIZE;i++) {
 			for(int j=0;j<Config.SHAPE_SIZE;j++) {
 				if(shape.isBlock(j, i)) {
-					assertEquals(1, ground.getBody()[shape.getX()+j][shape.getY()+i]);
+					assertEquals(1, ground.getBody()[shape.getY()+i][shape.getX()+j]);
 				}
 			}
 		}
