@@ -45,28 +45,47 @@ public class Shape {
 		this.status = status;
 	}
 
+	/**
+	 * 向下移。
+	 */
 	public void moveDown() {
 		y++;
 		if (shapeListener != null)
 			shapeListener.shapeMoveDown();
 	}
 
+	/**
+	 * 向左移。
+	 */
 	public void moveLeft() {
 			x--;
 	}
 
+	/**
+	 * 向右移。
+	 */
 	public void moveRight() {
 			x++;
 	}
 
+	/**
+	 * 顺时针旋转。
+	 */
 	public void rotate() {
 		status = (status + 1) % body.length;
 	}
 
+	/**
+	 * 逆时针旋转。
+	 */
 	protected void rotateBack() {
 		status = status == 0 ? 3 : (status - 1) % body.length;
 	}
 
+	/**
+	 * 通过传入的GC做图，画出方块。
+	 * @param gc 画图用的GC。
+	 */
 	public void draw(GC gc) {
 		gc.setBackground(color);
 		for (int i = 0; i < 4; i++) {
@@ -82,10 +101,8 @@ public class Shape {
 	/**
 	 * 该变形的（x，y）位置是否为1。
 	 * 
-	 * @param x
-	 *            相对坐标x
-	 * @param y
-	 *            相对坐标y
+	 * @param x 相对坐标x
+	 * @param y 相对坐标y
 	 * @return 对应位置为1，返回true，否则返回false。
 	 */
 	protected boolean isBlock(int x, int y) {
@@ -94,6 +111,30 @@ public class Shape {
 
 	public void addShapeListener(ShapeListener shapeListener) {
 		this.shapeListener = shapeListener;
+	}
+
+	public int[][] getBody() {
+		return body;
+	}
+
+	public void setBody(int[][] body) {
+		this.body = body;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public void setY(int y) {
+		this.y = y;
 	}
 
 }

@@ -69,6 +69,14 @@ public class Ground {
 		return true;
 	}
 
+	/**
+	 * 接受方块，将方块转换成障碍物。
+	 * @param shape 需要转换成障碍物的对象。
+	 */
+	public void accept(Shape shape) {
+		
+	}
+	
 	public int[][] getBody() {
 		return body;
 	}

@@ -4,6 +4,7 @@
 package cn.jhc.swt.tetris.model;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -42,7 +43,11 @@ public class GroundTest {
 	
 	@Test
 	public void testCanPut() {
-//		assertTrue("初始Shape对象不在画布之内。",ground.canPut(shape));
+		assertTrue("初始Shape对象不在画布之内。",ground.canPut(shape));
 	}
 
+	@Test
+	public void testAccept() {
+		
+	}
 }
