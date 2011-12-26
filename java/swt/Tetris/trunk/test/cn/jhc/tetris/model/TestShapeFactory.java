@@ -1,4 +1,4 @@
-package cn.jhc.tetris.model.test;
+package cn.jhc.tetris.model;
 
 import static org.junit.Assert.assertTrue;
 
