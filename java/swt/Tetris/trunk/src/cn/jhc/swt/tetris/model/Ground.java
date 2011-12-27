@@ -62,7 +62,26 @@ public class Ground {
 				if(shape.isBlock(j, i))
 					body[shape.getY()+i][shape.getX()+j]=1;
 	}
-	
+	/**
+	 * 移除所有布满了方块的行。
+	 */
+	public void removeAllFullLine() {
+		
+	}
+	/**
+	 * 删除一行，该行上方的行要往下移。
+	 * @param lineNum 要删除的行号。
+	 */
+	public void removeOneLine(int lineNum) {
+		int width = body[0].length;
+		for(int i=lineNum-1;i>=0;i--) {
+			//把第i行拷贝到第i+1行
+			System.arraycopy(body[i], 0, body[i+1], 0, width);
+		}
+		//第0行全部设为0
+		int[] t = new int[width];
+		System.arraycopy(t, 0, body[0], 0, width);
+	}
 	/**
 	 * 画出Ground的方法。
 	 * @param gc
@@ -79,6 +98,10 @@ public class Ground {
 
 	public int[][] getBody() {
 		return body;
+	}
+
+	public void setBody(int[][] body) {
+		this.body = body;
 	}
 
 }
