@@ -33,16 +33,19 @@ public class CanvasKeyListener implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		switch(e.keyCode) {
 		case SWT.ARROW_LEFT:
-			if(ground.canPerformAction(shape, Global.ACTION_MOVE_LEFT))
-				shape.moveLeft();
-			break;
-		case SWT.ARROW_RIGHT:
-			if(ground.canPerformAction(shape, Global.ACTION_MOVE_RIGHT))
+			shape.moveLeft();
+			if(!ground.canPut(shape))
 				shape.moveRight();
 			break;
+		case SWT.ARROW_RIGHT:
+			shape.moveRight();
+			if(!ground.canPut(shape))
+				shape.moveLeft();
+			break;
 		case SWT.ARROW_UP:
-			if(ground.canPerformAction(shape, Global.ACTION_ROTATE))
-				shape.rotate();
+			shape.rotate();
+			if(!ground.canPut(shape))
+				shape.rotateBack();
 			break;
 		}
 		((Canvas)e.widget).redraw();

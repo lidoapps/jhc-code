@@ -41,7 +41,7 @@ public class Controller implements PaintListener {
 			public void run() {
 				while (!canvas.isDisposed()) {
 					if (shape != null) {
-						if(ground.canPerformAction(shape, Global.ACTION_MOVE_DOWN))
+						if(ground.canMoveDown(shape))
 							shape.moveDown();
 						else
 							ground.accept(shape);

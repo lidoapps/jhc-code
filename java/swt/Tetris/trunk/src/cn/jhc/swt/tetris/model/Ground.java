@@ -20,46 +20,11 @@ public class Ground {
 	 */
 	private int[][] body = new int[Config.CANVAS_HEIGHT][Config.CANVAS_WIDTH];
 
-	/**
-	 * 是否允许该shape执行该动作。
-	 * 
-	 * @param shape
-	 * @param action
-	 * @return
-	 */
-	public boolean canPerformAction(Shape shape, int action) {
-		boolean flag = false;
-		switch(action) {
-		case Global.ACTION_MOVE_LEFT:
-			shape.x--;
-			flag = canPut(shape);
-			shape.x++;
-			break;
-		case Global.ACTION_MOVE_RIGHT:
-			shape.x++;
-			flag = canPut(shape);
-			shape.x--;
-			break;
-		case Global.ACTION_MOVE_DOWN:
-			shape.y++;
-			flag = canPut(shape);
-			shape.y--;
-			break;
-		case Global.ACTION_ROTATE:
-			shape.rotate();
-			flag = canPut(shape);
-			shape.rotateBack();
-			break;
-		default:
-			flag = false;
-		}
-		return flag;
-	}
 
 	/**
-	 * canPerformAction内部调用的函数，测试该Shape能否在当前Ground范围之内放下。
+	 * 测试该Shape能否在当前Ground范围之内放下。
 	 */
-	boolean canPut(Shape shape) {
+	public boolean canPut(Shape shape) {
 		for (int i = 0; i < Config.SHAPE_SIZE; i++) {
 			for (int j = 0; j < Config.SHAPE_SIZE; j++) {
 				if(shape.isBlock(j, i)) {
@@ -74,6 +39,19 @@ public class Ground {
 		return true;
 	}
 
+	/**
+	 * 能否往下移比较特殊，专门写出函数以方便使用。
+	 * @param shape
+	 * @return
+	 */
+	public boolean canMoveDown(Shape shape) {
+		boolean flag = false;
+		shape.moveDown();
+		if(canPut(shape))
+			flag = true;
+		shape.moveUp();
+		return flag;
+	}
 	/**
 	 * 接受方块，将方块转换成障碍物。
 	 * @param shape 需要转换成障碍物的对象。

@@ -48,6 +48,12 @@ public class Shape {
 	public void moveDown() {
 		y++;
 	}
+	/**
+	 * 向上移。
+	 */
+	public void moveUp() {
+		y--;
+	}
 
 	/**
 	 * 向左移。
@@ -73,7 +79,7 @@ public class Shape {
 	/**
 	 * 逆时针旋转。
 	 */
-	protected void rotateBack() {
+	public void rotateBack() {
 		status = status == 0 ? 3 : (status - 1) % body.length;
 	}
 
