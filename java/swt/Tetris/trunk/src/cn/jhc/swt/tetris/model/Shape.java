@@ -90,6 +90,7 @@ public class Shape {
 	 * @param gc 画图用的GC。
 	 */
 	public void draw(GC gc) {
+		Color oldColor = gc.getBackground();
 		gc.setBackground(color);
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
@@ -99,6 +100,7 @@ public class Shape {
 							Config.CELL_SIZE);
 			}
 		}
+		gc.setBackground(oldColor);
 	}
 
 	/**

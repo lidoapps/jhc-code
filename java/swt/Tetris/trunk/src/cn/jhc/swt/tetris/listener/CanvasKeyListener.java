@@ -32,7 +32,7 @@ public class CanvasKeyListener implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent e) {
 		//如果shape对象已经不能活动，直接返回。
-		if(!shape.isAlive())
+		if(shape == null || !shape.isAlive())
 			return;
 		//处理用户按键事件。
 		switch(e.keyCode) {

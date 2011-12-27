@@ -25,11 +25,13 @@ public class TetrisMain {
 		GameCanvas canvas = new GameCanvas(shell, SWT.NONE);
 		Controller controller = new Controller(canvas, new Ground());
 		controller.start();
+		shell.setText("俄罗斯方块");
 		shell.pack();
 		shell.open();
 		while(!shell.isDisposed())
 			if(!display.readAndDispatch())
 				display.sleep();
+		controller.dispose();
 		display.dispose();
 	}
 
