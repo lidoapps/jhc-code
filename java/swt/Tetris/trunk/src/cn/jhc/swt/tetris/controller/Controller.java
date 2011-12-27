@@ -59,6 +59,7 @@ public class Controller implements PaintListener {
 						else {
 							shape.setAlive(false);
 							ground.accept(shape);
+							ground.removeAllFullLine();
 						}
 						Display.getDefault().syncExec(new Runnable() {
 
@@ -68,7 +69,7 @@ public class Controller implements PaintListener {
 							}
 						});
 						try {
-							Thread.sleep(500);
+							Thread.sleep(200);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}

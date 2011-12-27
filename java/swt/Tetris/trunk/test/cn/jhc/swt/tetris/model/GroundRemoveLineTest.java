@@ -36,5 +36,26 @@ public class GroundRemoveLineTest {
 		};
 		assertArrayEquals("删除一行的测试不成功。",result, ground.getBody());
 	}
+	
+	@Test
+	public void testIsFullLine() {
+		assertFalse(ground.isFull(0));
+		assertTrue(ground.isFull(1));
+		assertFalse(ground.isFull(2));
+		assertTrue(ground.isFull(3));
+	}
 
+	@Test
+	public void testRemoveAllFullLine() {
+		ground.removeAllFullLine();
+		int[][] result = {
+				{0,0,0,0},
+				{0,0,0,0},
+				{0,0,0,0},
+				{1,1,0,0},
+				{0,0,1,0},
+				{0,1,1,0}
+		};
+		assertArrayEquals(result, ground.getBody());
+	}
 }

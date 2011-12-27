@@ -66,14 +66,34 @@ public class Ground {
 	 * 移除所有布满了方块的行。
 	 */
 	public void removeAllFullLine() {
-		
+		int height = body.length;
+		for(int i=height-1; i>=0; i--) {
+			while(isFull(i))
+				removeOneLine(i);
+		}
+	}
+	/**
+	 * 判断一行是否为布满方块的行。
+	 * @param lineNum 行号。
+	 * @return
+	 */
+	protected boolean isFull(int lineNum) {
+		boolean flag = true;
+		int len = body[0].length;
+		for(int i=0;i<len;i++) {
+			if(body[lineNum][i]==0) {
+				flag = false;
+				break;
+			}
+		}
+		return flag;
 	}
 	/**
 	 * 删除一行，该行上方的行要往下移。
 	 * @param lineNum 要删除的行号。
 	 */
 	public void removeOneLine(int lineNum) {
-		int width = body[0].length;
+		int width = body[0].length; 	//为测试方便，此处取第一行的长度为后面拷贝数组时的长度。
 		for(int i=lineNum-1;i>=0;i--) {
 			//把第i行拷贝到第i+1行
 			System.arraycopy(body[i], 0, body[i+1], 0, width);

@@ -51,6 +51,10 @@ public class CanvasKeyListener implements KeyListener {
 			if(!ground.canPut(shape))
 				shape.rotateBack();
 			break;
+		case SWT.ARROW_DOWN:
+			if(ground.canMoveDown(shape))
+				shape.moveDown();
+			break;
 		}
 		((Canvas)e.widget).redraw();
 	}
