@@ -22,6 +22,7 @@ public class Controller implements PaintListener {
 	private GameCanvas canvas = null;
 	private Shape shape = null;
 	private Ground ground = null;
+	private CanvasKeyListener listener = null;
 
 	public Controller(GameCanvas canvas, Ground ground) {
 		super();
@@ -29,7 +30,8 @@ public class Controller implements PaintListener {
 		this.ground = ground;
 		this.canvas.addPaintListener(this);
 		this.shape = ShapeFactory.getShape();
-		this.canvas.addKeyListener(new CanvasKeyListener(shape,ground));
+		this.listener = new CanvasKeyListener(shape, ground);
+		this.canvas.addKeyListener(listener);
 	}
 	/**
 	 * 创建并启动令Shape自动下落的线程。
@@ -40,12 +42,25 @@ public class Controller implements PaintListener {
 			@Override
 			public void run() {
 				while (!canvas.isDisposed()) {
-					if (shape != null) {
+					if (!shape.isAlive()) {  			//如果当前shape对象已经不能活动，则生成新的Shape对象。
+						Display.getDefault().syncExec(new Runnable() {
+							
+							@Override
+							public void run() {
+								shape = ShapeFactory.getShape();	
+								listener.setShape(shape);
+							}
+						});
+						
+					}
+					else{
 						if(ground.canMoveDown(shape))
 							shape.moveDown();
-						else
+						else {
+							shape.setAlive(false);
 							ground.accept(shape);
-						Display.getDefault().asyncExec(new Runnable() {
+						}
+						Display.getDefault().syncExec(new Runnable() {
 
 							@Override
 							public void run() {

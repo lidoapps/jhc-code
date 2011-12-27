@@ -1,9 +1,7 @@
 package cn.jhc.swt.tetris.model;
 
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
-import org.eclipse.swt.widgets.Display;
 
 import cn.jhc.swt.tetris.util.Config;
 
@@ -31,11 +29,15 @@ public class Shape {
 	 * 方块左上角单元格在画布中的y坐标，以单元格为单位。
 	 */
 	protected int y = 0;
+	/**
+	 * 标识Shape对象是否活动，不活动的对象被ground接受，不能再移动。
+	 */
+	private boolean alive = true;
 
 	/**
 	 * 方块的颜色。
 	 */
-	private Color color = Display.getDefault().getSystemColor(SWT.COLOR_CYAN);
+	private Color color = null;
 
 	public Shape(int[][] body, int status) {
 		this.body = body;
@@ -140,6 +142,22 @@ public class Shape {
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	public boolean isAlive() {
+		return alive;
+	}
+
+	public void setAlive(boolean alive) {
+		this.alive = alive;
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
 	}
 
 }

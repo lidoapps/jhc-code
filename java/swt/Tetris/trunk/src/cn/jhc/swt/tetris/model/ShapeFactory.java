@@ -2,6 +2,9 @@ package cn.jhc.swt.tetris.model;
 
 import java.util.Random;
 
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Display;
+
 public class ShapeFactory {
 	
 	/**
@@ -64,7 +67,8 @@ public class ShapeFactory {
 	
 	public static Shape getShape() {
 		int type = rand.nextInt(shapes.length);
-		return new Shape(shapes[type],rand.nextInt(shapes[type].length));
-		
+		Shape shape = new Shape(shapes[type],rand.nextInt(shapes[type].length));
+		shape.setColor(Display.getDefault().getSystemColor(SWT.COLOR_GREEN));
+		return shape;
 	}
 }

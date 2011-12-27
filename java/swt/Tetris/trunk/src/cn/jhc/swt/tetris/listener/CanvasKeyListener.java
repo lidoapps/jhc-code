@@ -14,7 +14,7 @@ public class CanvasKeyListener implements KeyListener {
 	/**
 	 * 
 	 */
-	private final Shape shape;
+	private Shape shape;
 	
 	private final Ground ground;
 
@@ -31,6 +31,10 @@ public class CanvasKeyListener implements KeyListener {
 	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
+		//如果shape对象已经不能活动，直接返回。
+		if(!shape.isAlive())
+			return;
+		//处理用户按键事件。
 		switch(e.keyCode) {
 		case SWT.ARROW_LEFT:
 			shape.moveLeft();
@@ -57,6 +61,10 @@ public class CanvasKeyListener implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent e) {
 
+	}
+
+	public void setShape(Shape shape) {
+		this.shape = shape;
 	}
 
 }
