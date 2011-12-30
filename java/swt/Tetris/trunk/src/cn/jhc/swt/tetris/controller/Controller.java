@@ -65,6 +65,7 @@ public class Controller implements PaintListener {
 							shape.setAlive(false);
 							ground.accept(shape);
 							redraw();
+							//消行时需要让玩家看到方块先变成障碍物，然后再消行。
 							try {
 								Thread.sleep(200);
 							} catch (InterruptedException e) {

@@ -82,7 +82,7 @@ public class Shape {
 	 * 逆时针旋转。
 	 */
 	public void rotateBack() {
-		status = status == 0 ? 3 : (status - 1) % body.length;
+		status = status == 0 ? body.length-1 : (status - 1) % body.length;
 	}
 
 	/**
