@@ -4,6 +4,7 @@ use 5.010001;
 use strict;
 use warnings;
 use Net::LDAP;
+use List::MoreUtils qw(any);
 use Carp;
 use Config::Simple;
 use Data::Dumper;
@@ -23,19 +24,11 @@ POSIX::Account::ManageLDAP - Perl extension for manager POSIX Account.
 
 =head1 DESCRIPTION
 
-POSIX::Account::ManageLDAP copied many code from POSIX::Account::LDAP, and customed some place for some particular usage. The LDAP architecture is different from POSIX::Account::LDAP.
+POSIX::Account::ManageLDAP copied some code from POSIX::Account::LDAP, and customed for particular usage. The LDAP architecture is different from POSIX::Account::LDAP.
 
 =cut
 
 our @ISA = qw(Exporter);
-
-# Items to export into callers namespace by default. Note: do not export
-# names by default without a very good reason. Use EXPORT_OK instead.
-# Do not simply export all your public functions/methods/constants.
-
-# This allows declaration	use POSIX::Account::ManageLDAP ':all';
-# If you do not need this, moving things directly into @EXPORT or @EXPORT_OK
-# will save memory.
 our %EXPORT_TAGS = ( 'all' => [ qw(
 	
 ) ] );
@@ -43,7 +36,7 @@ our %EXPORT_TAGS = ( 'all' => [ qw(
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 
 our @EXPORT = qw(
-	
+		  new
 );
 
 our $VERSION = '0.01';
@@ -54,17 +47,34 @@ our $VERSION = '0.01';
 
 new( config )
 Create a new ManageLDAP object.
-config => configuration file name
+configfile => configuration file name
 
 =cut
 
-new {
-  my ($class, $config) = @_;
-  $config = "default.cfg" if ! defined $config;
-  croak "Config file $config does not exists." unless -f $config;
+sub new {
+  my ($class, $configfile) = @_;
+  $configfile = "default.cfg" if ! defined $configfile;
+  croak "Config file $configfile does not exists." unless -f $configfile;
   my $self = {};
   bless $self,$class;
-  
+  my %conf;
+  Config::Simple->import_from($configfile,\%conf);
+  $self->{config} = \%conf;
+  #init logger
+  $self->{logger} = Log::Dispatch->new;
+  $self->{config}{logging.file} = "manageldap.log"
+    unless defined $self->{config}{logging.file};
+  $self->{config}{logging.level} = "info"
+    unless defined $self->{config}{logging.level};
+  $self->{logger}->add(
+    Log::Dispatch::File->new(
+      filename => $self->{config}{logging.file},
+      min_level => $self->{config}{logging.level},
+      mode => '>>',
+      newline => 1
+    )
+  );
+  $self;
 }
 
 
