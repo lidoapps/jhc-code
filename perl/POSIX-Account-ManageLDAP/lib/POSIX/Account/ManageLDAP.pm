@@ -62,14 +62,14 @@ sub new {
   $self->{config} = \%conf;
   #init logger
   $self->{logger} = Log::Dispatch->new;
-  $self->{config}{logging.file} = "manageldap.log"
-    unless defined $self->{config}{logging.file};
-  $self->{config}{logging.level} = "info"
-    unless defined $self->{config}{logging.level};
+  $self->{config}{"logging.file"} = "manageldap.log"
+    unless defined $self->{config}{"logging.file"};
+  $self->{config}{"logging.level"} = "info"
+    unless defined $self->{config}{"logging.level"};
   $self->{logger}->add(
     Log::Dispatch::File->new(
-      filename => $self->{config}{logging.file},
-      min_level => $self->{config}{logging.level},
+      filename => $self->{config}{"logging.file"},
+      min_level => $self->{config}{"logging.level"},
       mode => '>>',
       newline => 1
     )
@@ -77,7 +77,29 @@ sub new {
   $self;
 }
 
-
+sub ldapconnect{
+  my $self = shift;
+  my ($conf,$logger) = ($self->{"config"},$self->{"logger"});
+  croak "LDAP parameters are not defined or missed!"
+    if any { !defined($conf->{$_}) }
+	       qw/directory.managerdn directory.managerpw/;
+  $conf->{"directory.host"} = "localhost" unless defined $conf->{"directory.host"};
+  $conf->{"directory.port"} = 389 unless defined $conf->{"directory.port"};
+  #connect to ldap server
+  $self->{ldap} = Net::LDAP->new(
+    $conf->{"directory.host"}, port => $conf->{"directory.port"}
+  );
+  $logger->log(level=>"info",message=>"Connect to server $conf->{\"directory.host\"} at port $conf->{\"directory.port\"}.");
+  #bind with manager dn and password
+  my $message = $self->{ldap}->bind(
+    $conf->{"directory.managerdn"},
+    password => $conf->{"directory.managerpw"}
+  );
+  $message->code && die $message->error;
+  $logger->log(level=>"info",message=>"Successfully bind with server use $conf->{\"directory.managerdn\"}.");
+  #return ldap connect object for convenience
+  $self->{ldap};
+}
 1;
 __END__
 # Below is stub documentation for your module. You'd better edit it!

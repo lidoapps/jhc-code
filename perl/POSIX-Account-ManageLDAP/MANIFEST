@@ -1,6 +1,7 @@
 Changes
+lib/POSIX/Account/ManageLDAP.pm
 Makefile.PL
 MANIFEST
 README
+t/01-main.t
 t/POSIX-Account-ManageLDAP.t
-lib/POSIX/Account/ManageLDAP.pm
