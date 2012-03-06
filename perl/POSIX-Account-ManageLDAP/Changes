@@ -1,0 +1,6 @@
+Revision history for Perl extension POSIX::Account::ManageLDAP.
+
+0.01  Mon Mar  5 21:11:20 2012
+	- original version; created by h2xs 1.23 with options
+		-XAn POSIX::Account::ManageLDAP
+
