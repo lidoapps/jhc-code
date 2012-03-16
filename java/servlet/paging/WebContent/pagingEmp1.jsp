@@ -48,24 +48,7 @@
 			</tr>
 
 			<tr bgcolor=grey>
-				<td>
-					INDEX
-				</td>
-				<td>
-					EMPNO
-				</td>
-				<td>
-					ENAME
-				</td>
-				<td>
-					HIREDATE
-				</td>
-				<td>
-					JOB
-				</td>
-				<td>
-					SAL
-				</td>
+				<td>INDEX</td><td>EMPNO</td><td>ENAME</td><td>HIREDATE</td><td>JOB</td><td>SAL</td>
 			</tr>
 
 			<%

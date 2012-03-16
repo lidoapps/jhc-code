@@ -4,11 +4,9 @@ import java.io.Serializable;
 
 public class Page implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String pageno;
+	//flag用于标识本页是否为当前页
 	private int flag;
 	/**
 	 * @return the flag

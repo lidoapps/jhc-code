@@ -15,7 +15,7 @@
 	<head>
 		<base href="<%=basePath%>">
 
-		<title>My JSP 'pagingEmp1.jsp' starting page</title>
+		<title>My JSP 'pagingEmp2.jsp' starting page</title>
 
 		<meta http-equiv="pragma" content="no-cache">
 		<meta http-equiv="cache-control" content="no-cache">
@@ -34,7 +34,7 @@
 				EMP PAGING
 			</caption>
 			<%
-						int pagesize = ((Integer) request.getAttribute("pagesize"))
+				int pagesize = ((Integer) request.getAttribute("pagesize"))
 						.intValue();
 				int totalPageCounts = ((Integer) request
 						.getAttribute("totalPageCounts")).intValue();
@@ -51,24 +51,7 @@
 			</tr>
 
 			<tr bgcolor=grey>
-				<td>
-					INDEX
-				</td>
-				<td>
-					EMPNO
-				</td>
-				<td>
-					ENAME
-				</td>
-				<td>
-					HIREDATE
-				</td>
-				<td>
-					JOB
-				</td>
-				<td>
-					SAL
-				</td>
+				<td>INDEX</td><td>EMPNO</td><td>ENAME</td><td>HIREDATE</td><td>JOB</td><td>SAL</td>
 			</tr>
 
 			<%

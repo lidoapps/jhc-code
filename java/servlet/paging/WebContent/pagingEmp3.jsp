@@ -13,7 +13,7 @@
 	<head>
 		<base href="<%=basePath%>">
 
-		<title>My JSP 'pagingEmp1.jsp' starting page</title>
+		<title>My JSP 'pagingEmp3.jsp' starting page</title>
 
 		<meta http-equiv="pragma" content="no-cache">
 		<meta http-equiv="cache-control" content="no-cache">
@@ -37,24 +37,7 @@
 			</tr>
 
 			<tr bgcolor=grey>
-				<td>
-					INDEX
-				</td>
-				<td>
-					EMPNO
-				</td>
-				<td>
-					ENAME
-				</td>
-				<td>
-					HIREDATE
-				</td>
-				<td>
-					JOB
-				</td>
-				<td>
-					SAL
-				</td>
+				<td>INDEX</td><td>EMPNO</td><td>ENAME</td><td>HIREDATE</td><td>JOB</td><td>SAL</td>
 			</tr>
 
 			<c:forEach var="emp" items="${emps}" varStatus="s">
