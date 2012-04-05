@@ -1,7 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--Use maven to build heritrix.  Ant build no longer supported. 
+<project name="myheritrix" basedir="." default="jar">
+  <property name="src" location="src"/>
+  <property name="lib" location="lib"/>
+  <property name="dest" location="dest"/>
+  <property name="conf.dir" location="src/conf"/>
+  <property name="res.dir" location="src/resources"/>
 
-    (This is a placeholder build.xml. Without it, the maven build of src
-    will try to autogenerate an ant build file spewing an ugly exception
-    into the build).
- -->
+  <target name="clean">
+    <echo>Delete ${dest}...</echo>
+    <delete dir="${dest}"/>
+    <echo> Mkdir ${dest}...</echo>
+    <mkdir dir="${dest}"/>
+  </target>
+
+  <target name="compile" depends="clean">
+    <javac destdir="${dest}" srcdir="src" includes="**/*.java">
+      <classpath>
+	<fileset dir="${lib}">
+	  <include name="*.jar"/>
+	</fileset>
+      </classpath>
+    </javac>
+  </target>
+
+  <target name="copyfiles">
+    <copy todir="${dest}">
+      <fileset dir="${conf.dir}">
+	<include name="**/*"/>
+      </fileset>
+      <fileset dir="${res.dir}">
+	<include name="*.xsl"/>
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="jar" depends="compile,copyfiles">
+    <jar destfile="heritrix-1.14.4.jar" basedir="${dest}" includes="**/*">
+    </jar>
+  </target>
+</project>
