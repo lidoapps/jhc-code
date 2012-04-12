@@ -14,11 +14,11 @@
   </target>
 
   <target name="compile" depends="clean">
-    <javac destdir="${dest}" srcdir="src" includes="**/*.java">
+    <javac destdir="${dest}" srcdir="src" includes="java/cn/jhc/**/*.java">
       <classpath>
-	<fileset dir="${lib}">
-	  <include name="*.jar"/>
-	</fileset>
+		<fileset dir="${lib}">
+	  		<include name="*.jar"/>
+		</fileset>
       </classpath>
     </javac>
   </target>
@@ -26,16 +26,16 @@
   <target name="copyfiles">
     <copy todir="${dest}">
       <fileset dir="${conf.dir}">
-	<include name="**/*"/>
+		<include name="**/*"/>
       </fileset>
       <fileset dir="${res.dir}">
-	<include name="*.xsl"/>
+		<include name="*.xsl"/>
       </fileset>
     </copy>
   </target>
 
   <target name="jar" depends="compile,copyfiles">
-    <jar destfile="heritrix-1.14.4.jar" basedir="${dest}" includes="**/*">
+    <jar destfile="jdbcwriter.jar" basedir="${dest}" includes="**/*">
     </jar>
   </target>
 </project>
