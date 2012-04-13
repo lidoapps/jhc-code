@@ -3,9 +3,11 @@
   <property name="src" location="src"/>
   <property name="lib" location="lib"/>
   <property name="dest" location="dest"/>
-  <property name="conf.dir" location="src/conf"/>
+  <property name="conf.dir" location="conf"/>
+  <property name="target.dir" location="target"/>
   <property name="res.dir" location="src/resources"/>
-
+  <property name="heritrix.home" location="/opt/heritrix-1.14.4"/>
+	
   <target name="clean">
     <echo>Delete ${dest}...</echo>
     <delete dir="${dest}"/>
@@ -19,6 +21,8 @@
 		<fileset dir="${lib}">
 	  		<include name="*.jar"/>
 		</fileset>
+      	<dirset dir="${target.dir}">
+      	</dirset>
       </classpath>
     </javac>
   </target>
@@ -28,14 +32,15 @@
       <fileset dir="${conf.dir}">
 		<include name="**/*"/>
       </fileset>
-      <fileset dir="${res.dir}">
-		<include name="*.xsl"/>
-      </fileset>
     </copy>
   </target>
 
   <target name="jar" depends="compile,copyfiles">
     <jar destfile="jdbcwriter.jar" basedir="${dest}" includes="**/*">
     </jar>
+  </target>
+	
+  <target name="install" depends="jar">
+	<copy file="jdbcwriter.jar" todir="${heritrix.home}/lib"></copy>
   </target>
 </project>
