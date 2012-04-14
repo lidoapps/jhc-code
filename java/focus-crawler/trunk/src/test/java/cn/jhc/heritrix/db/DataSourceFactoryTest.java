@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import org.junit.Before;
 import org.junit.Test;
 
-public class MySQLDataSourceTest {
+public class DataSourceFactoryTest {
 
 	@Before
 	public void setUp() throws Exception {
