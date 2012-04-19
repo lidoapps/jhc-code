@@ -1,31 +1,32 @@
 package cn.jhc.heritrix.db.dao;
 
+import org.dbunit.Assertion;
+import org.dbunit.dataset.ITable;
+import org.dbunit.util.fileloader.DataFileLoader;
+import org.dbunit.util.fileloader.FlatXmlDataFileLoader;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import cn.jhc.heritrix.db.FocusDBTestCase;
 import cn.jhc.heritrix.db.bean.Site;
 
-public class SiteDAOTest {
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
+public class SiteDAOTest extends FocusDBTestCase {
 
 	@Test
-	public void testUpdate() {
-		Site site = new Site("天猫网","天猫网","http://www.tmall.com/");
-		try {
-			SiteDAO dao = DAOFactory.getSiteDAO();
-			dao.insert(site);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void testUpdate() throws Exception {
+		Site site = new Site("互动出版网", "互动出版网", "http://www.china-pub.com/");
+
+		SiteDAO dao = DAOFactory.getSiteDAO();
+		dao.insert(site);
+		
+		ITable actualTable = getConnection()
+				.createQueryTable("site", "select name,fullname,url from site");
+		
+		DataFileLoader loader = new FlatXmlDataFileLoader();
+		ITable expectedTable = loader.load("/site_dataset.xml").getTable("site_select");
+		Assertion.assertEquals(expectedTable, actualTable);
+		
 	}
 
 }

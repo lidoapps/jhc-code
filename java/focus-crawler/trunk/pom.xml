@@ -70,6 +70,14 @@
   				<username>${jdbc.user}</username>
   				<password>${jdbc.password}</password>
   				<dataTypeFactoryName>org.dbunit.ext.mysql.MySqlDataTypeFactory</dataTypeFactoryName>
+  				<metadataHandlerName>org.dbunit.ext.mysql.MySqlMetadataHandler</metadataHandlerName>
+  				<format>flat</format>
+  				<queries>
+  					<query>
+  						<name>site_select</name>
+  						<sql>select name,fullname,url from site</sql>
+  					</query>
+  				</queries>
   			</configuration>
   		</plugin>
   	</plugins>

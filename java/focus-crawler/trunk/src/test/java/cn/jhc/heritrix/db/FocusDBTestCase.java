@@ -34,7 +34,5 @@ public class FocusDBTestCase extends DBTestCase {
 		config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new MySqlDataTypeFactory());
 	}
 	
-	public void testNone() {
-		assertTrue(true);
-	}
+
 }
