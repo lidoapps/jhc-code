@@ -1,5 +1,7 @@
 package cn.jhc.heritrix.db.dao;
 
+import java.text.SimpleDateFormat;
+
 import org.dbunit.Assertion;
 import org.dbunit.dataset.ITable;
 import org.dbunit.util.fileloader.DataFileLoader;
@@ -27,6 +29,13 @@ public class SiteDAOTest extends FocusDBTestCase {
 		ITable expectedTable = loader.load("/site_dataset.xml").getTable("site_select");
 		Assertion.assertEquals(expectedTable, actualTable);
 		
+	}
+	
+	@Test
+	public void testFindSite() throws Exception{
+		Site site = DAOFactory.getSiteDAO().findSite("http://www.tmall.com/");
+		assertEquals("天猫网", site.getName());
+		System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(site.getDatetime()));
 	}
 
 }
