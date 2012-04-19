@@ -35,7 +35,9 @@ public class SiteDAOTest extends FocusDBTestCase {
 	public void testFindSite() throws Exception{
 		Site site = DAOFactory.getSiteDAO().findSite("http://www.tmall.com/");
 		assertEquals("天猫网", site.getName());
-		System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(site.getDatetime()));
+		String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(site.getDatetime());
+//		System.out.println(date.substring(date.indexOf(" ")+1));
+		assertNotSame("00:00:00", date.substring(date.indexOf(" ")+1));
 	}
 
 }
