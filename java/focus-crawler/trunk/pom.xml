@@ -5,6 +5,12 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>Focus Crawler</name>
   <description>Extract information in the page, and write to MySQL database.</description>
+  <properties>
+  	<jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+  	<jdbc.user>huser</jdbc.user>
+  	<jdbc.password>hpass</jdbc.password>
+  	<jdbc.url>jdbc:mysql://localhost/focus</jdbc.url>
+  </properties>
   <dependencies>
   	<dependency>
   		<groupId>org.springframework</groupId>
@@ -15,6 +21,7 @@
   		<groupId>junit</groupId>
   		<artifactId>junit</artifactId>
   		<version>4.10</version>
+  		<scope>test</scope>
   	</dependency>
   	<dependency>
   		<groupId>mysql</groupId>
@@ -26,5 +33,46 @@
   		<artifactId>jsoup</artifactId>
   		<version>1.6.1</version>
   	</dependency>
+  	<dependency>
+  		<groupId>org.dbunit</groupId>
+  		<artifactId>dbunit</artifactId>
+  		<version>2.4.8</version>
+  		<scope>test</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.slf4j</groupId>
+  		<artifactId>slf4j-simple</artifactId>
+  		<version>1.5.6</version>
+  		<scope>test</scope>
+  	</dependency>
   </dependencies>
+  <build>
+  	<plugins>
+  		<plugin>
+  			<groupId>org.codehaus.mojo</groupId>
+  			<artifactId>dbunit-maven-plugin</artifactId>
+  			<version>1.0-beta-3</version>
+  			<dependencies>
+  			  	<dependency>
+  					<groupId>mysql</groupId>
+  					<artifactId>mysql-connector-java</artifactId>
+  					<version>5.1.18</version>
+  				</dependency>
+  				<dependency>
+  					<groupId>org.dbunit</groupId>
+  					<artifactId>dbunit</artifactId>
+  					<version>2.4.8</version>
+  				</dependency>
+  			</dependencies>
+  			<configuration>
+  				<driver>${jdbc.driver}</driver>
+  				<url>${jdbc.url}</url>
+  				<username>${jdbc.user}</username>
+  				<password>${jdbc.password}</password>
+  				<dataTypeFactoryName>org.dbunit.ext.mysql.MySqlDataTypeFactory</dataTypeFactoryName>
+  			</configuration>
+  		</plugin>
+  	</plugins>
+  </build>
+
 </project>

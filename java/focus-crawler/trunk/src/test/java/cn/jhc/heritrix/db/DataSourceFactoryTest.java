@@ -1,28 +1,17 @@
 package cn.jhc.heritrix.db;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+import javax.sql.DataSource;
 
-import org.junit.Before;
 import org.junit.Test;
 
 public class DataSourceFactoryTest {
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
 	@Test
-	public void test() {
-		Connection con = null;
-		try {
-			con = DataSourceFactory.getConnection();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		assertNotNull("The connection is null.",con);
+	public void testGetDataSource() {
+		DataSource ds = DataSourceFactory.getDataSource();
+		assertNotNull("The connection is null.",ds);
 	}
 
 }
