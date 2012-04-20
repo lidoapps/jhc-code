@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <context_select path="1" instance_id="1" context_level="10"/>
+  <context_select path="2" instance_id="2" context_level="10"/>
+  <context_select path="3" instance_id="3" context_level="10"/>
+  <context_select path="4" instance_id="4" context_level="10"/>
+  <context_select path="5" instance_id="5" context_level="10"/>
+</dataset>

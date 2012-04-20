@@ -72,10 +72,11 @@
   				<dataTypeFactoryName>org.dbunit.ext.mysql.MySqlDataTypeFactory</dataTypeFactoryName>
   				<metadataHandlerName>org.dbunit.ext.mysql.MySqlMetadataHandler</metadataHandlerName>
   				<format>flat</format>
+  				<dest>${project.build.testResources[0].directory}/context_dataset.xml</dest>
   				<queries>
   					<query>
-  						<name>site_select</name>
-  						<sql>select name,fullname,url from site</sql>
+  						<name>context_select</name>
+  						<sql>select path,instance_id,context_level from context</sql>
   					</query>
   				</queries>
   			</configuration>
