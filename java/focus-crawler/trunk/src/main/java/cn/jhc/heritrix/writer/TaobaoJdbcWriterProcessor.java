@@ -1,9 +1,9 @@
 package cn.jhc.heritrix.writer;
 
-import java.io.InputStream;
 import java.util.regex.Pattern;
 
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
 import cn.jhc.heritrix.bean.CommodityInfo;
 import cn.jhc.heritrix.db.dao.DAOFactory;
@@ -37,8 +37,14 @@ public class TaobaoJdbcWriterProcessor extends JdbcWriterProcessor {
 	@Override
 	public CommodityInfo extract(Document doc) {
 		CommodityInfo cinfo = new CommodityInfo();
+		cinfo.setName(getCommodityName(doc));
 		
 		return cinfo;
 	}
 
+	protected String getCommodityName(Document doc) {
+		Element e = doc.select(".tb-detail-hd h3").first();
+		return e.ownText().trim();
+	}
+	
 }
