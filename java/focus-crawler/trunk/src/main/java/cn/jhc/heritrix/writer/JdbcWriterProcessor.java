@@ -11,7 +11,6 @@ import org.archive.io.RecordingInputStream;
 import org.archive.net.UURI;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 
 import cn.jhc.heritrix.bean.CommodityInfo;
 
@@ -67,12 +66,10 @@ public abstract class JdbcWriterProcessor extends Processor implements
 		try {
 			InputStream input = (InputStream) recis.getContentReplayInputStream();
 			Document doc = Jsoup.parse(input, null, curi.getBaseURI().toString());
-			// Element e = doc.select("#abroad").first();
-			// if(null == e) {
-			// logger.info("没有属性被记录下来。");
-			// }else {
-			// logger.info(e.text());
-			// }
+			CommodityInfo cinfo = extract(doc);
+			//当前网页的URL直接在这里设定，并不需要传递到extract方法中去。
+			cinfo.setURL(uri);
+	
 		} catch (IOException e) {
 			curi.addLocalizedError(this.getName(), e,
 					"IO Exception in JdbcWriterProcessor innerprocess.");
@@ -96,11 +93,11 @@ public abstract class JdbcWriterProcessor extends Processor implements
 	public abstract long getDefaultContextId();
 	/**
 	 * 子类必须实现此方法，从网页中抽取商品信息。
-	 * @param input
-	 * 		输入网页的InputStream对象。
+	 * @param doc
+	 * 		网页内容经jsoup处理后的Document对象。
 	 * @return
 	 * 		返回商品信息的封装对象。
 	 */
-	public abstract CommodityInfo extract(InputStream input);
+	public abstract CommodityInfo extract(Document doc);
 
 }
