@@ -13,56 +13,94 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
+import cn.jhc.heritrix.bean.CommodityInfo;
 
 public abstract class JdbcWriterProcessor extends Processor implements
 		CoreAttributeConstants {
 
 	private static final long serialVersionUID = -5415095894885011067L;
-	private static final Logger logger = Logger.getLogger(JdbcWriterProcessor.class.getName());
-	
+	private static final Logger logger = Logger
+			.getLogger(JdbcWriterProcessor.class.getName());
+
 	public JdbcWriterProcessor(String name) {
-		super(name,"A JDBC Writer Processor");
+		super(name, "A JDBC Writer Processor");
 
 	}
-	
+
 	@Override
 	protected void initialTasks() {
-		
+
 	}
 
 	@Override
 	protected void innerProcess(CrawlURI curi) throws InterruptedException {
-		if(!curi.isSuccess())
+		if (!curi.isSuccess())
 			return;
-        UURI uuri = curi.getUURI(); // Current URI.
-        // Only http and https schemes are supported.
-        String scheme = uuri.getScheme();
-        if (!"http".equalsIgnoreCase(scheme) && !"https".equalsIgnoreCase(scheme)) {
-            return;
-        }
+		UURI uuri = curi.getUURI(); // Current URI.
+		// Only http and https schemes are supported.
+		String scheme = uuri.getScheme();
+		if (!"http".equalsIgnoreCase(scheme)
+				&& !"https".equalsIgnoreCase(scheme)) {
+			return;
+		}
 
-        //Only text/html file will be parsed and store in database
-        String contenttype = curi.getContentType();
-        if (null == contenttype || !"text/html".equalsIgnoreCase(contenttype)) {
-            return;
-        }
+		String uri = uuri.toString();
+		logger.finest("UURI.toString() output is: " + uri);
+		// 用子类的方法再次确认URI符合提取要求。
+		if (!validateUri(uuri.toString())) {
+			logger.fine("validateUri returns false. This should not be happen. Please check Heritrix configuration. "
+					+ uri);
+			return;
+		}
 
-        RecordingInputStream recis = curi.getHttpRecorder().getRecordedInput();
-        if (0L == recis.getResponseContentLength()) {
-            return;
-        }
-        
-        try {
-			InputStream input = (InputStream)recis.getContentReplayInputStream();
+		// Only text/html file will be parsed and store in database
+		String contenttype = curi.getContentType();
+		if (null == contenttype || !"text/html".equalsIgnoreCase(contenttype)) {
+			return;
+		}
+
+		RecordingInputStream recis = curi.getHttpRecorder().getRecordedInput();
+		if (0L == recis.getResponseContentLength()) {
+			return;
+		}
+
+		try {
+			InputStream input = (InputStream) recis.getContentReplayInputStream();
 			Document doc = Jsoup.parse(input, null, curi.getBaseURI().toString());
-//			Element e = doc.select("#abroad").first();
-//			if(null == e) {
-//				logger.info("没有属性被记录下来。");
-//			}else {
-//			logger.info(e.text());
-//			}
+			// Element e = doc.select("#abroad").first();
+			// if(null == e) {
+			// logger.info("没有属性被记录下来。");
+			// }else {
+			// logger.info(e.text());
+			// }
 		} catch (IOException e) {
-			curi.addLocalizedError(this.getName(), e, "IO Exception in JdbcWriterProcessor innerprocess.");
+			curi.addLocalizedError(this.getName(), e,
+					"IO Exception in JdbcWriterProcessor innerprocess.");
 		}
 	}
+
+	/**
+	 * 每个子类都必须实现此方法，实现对需要分析的URI地址的再次确认。
+	 * 
+	 * @param uri
+	 *            当前URI地址字符串。
+	 * @return 如果符合抽取条件，则返回true，否则返回false。
+	 */
+	public abstract boolean validateUri(String uri);
+	/**
+	 * 每个子类都必须实现此方法，返回在该网站下的商品的默认的Context ID。
+	 * 在Heritirx中选择不同的JdbcWriterProcessor，相应的默认Context ID也就随之确定。
+	 * @return
+	 * 		该网站商品的默认Context ID。
+	 */
+	public abstract long getDefaultContextId();
+	/**
+	 * 子类必须实现此方法，从网页中抽取商品信息。
+	 * @param input
+	 * 		输入网页的InputStream对象。
+	 * @return
+	 * 		返回商品信息的封装对象。
+	 */
+	public abstract CommodityInfo extract(InputStream input);
+
 }
