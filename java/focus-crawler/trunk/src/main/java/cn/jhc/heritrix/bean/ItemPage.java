@@ -1,6 +1,5 @@
 package cn.jhc.heritrix.bean;
 
-import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 /**
@@ -24,18 +23,8 @@ public class ItemPage {
 	private String saledDesc;
 	//评价
 	private String assessment;
-	//URL
-	private String URL;
-	//店铺名称
-	private String shopName;
-	//店铺URL
-	private String shopURL;
-	//店铺评价
-	private String shopAssessment;
-	//店铺商品总数
-	private int shopAmount;
-	//店铺创建时间
-	private Date shopCreateDate;
+	//url
+	private String url;
 	//类别
 	private String category;
 	//各种属性
@@ -113,17 +102,11 @@ public class ItemPage {
 	public void setAssessment(String assessment) {
 		this.assessment = assessment;
 	}
-	public String getURL() {
-		return URL;
+	public String getUrl() {
+		return url;
 	}
-	public void setURL(String uRL) {
-		URL = uRL;
-	}
-	public String getShopName() {
-		return shopName;
-	}
-	public void setShopName(String shopName) {
-		this.shopName = shopName;
+	public void setUrl(String url) {
+		this.url = url;
 	}
 	public String getCategory() {
 		return category;

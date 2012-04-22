@@ -5,7 +5,7 @@ import java.util.Map;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
-public class TaobaoItemExtractor implements Extractor {
+public class TaobaoItemExtractor implements ItemExtractor {
 	
 	private Document doc;
 
@@ -44,11 +44,6 @@ public class TaobaoItemExtractor implements Extractor {
 	}
 
 	public String extractAssessment() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String extractShopName() {
 		// TODO Auto-generated method stub
 		return null;
 	}

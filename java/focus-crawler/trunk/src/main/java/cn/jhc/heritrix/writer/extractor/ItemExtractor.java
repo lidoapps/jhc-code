@@ -2,7 +2,7 @@ package cn.jhc.heritrix.writer.extractor;
 
 import java.util.Map;
 
-public interface Extractor {
+public interface ItemExtractor {
 
 	/**
 	 * 抽取商品的名称
@@ -17,7 +17,6 @@ public interface Extractor {
 	public String extractPromotionNote();
 	public String extractSaledDesc();
 	public String extractAssessment();
-	public String extractShopName();
 	public String extractCategory();
 	public Map<String,String> extractAttributes();
 }

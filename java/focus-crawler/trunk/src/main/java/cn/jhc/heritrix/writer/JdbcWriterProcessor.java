@@ -13,7 +13,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import cn.jhc.heritrix.bean.ItemPage;
-import cn.jhc.heritrix.writer.extractor.Extractor;
+import cn.jhc.heritrix.writer.extractor.ItemExtractor;
+import cn.jhc.heritrix.writer.extractor.ShopExtractor;
 
 public abstract class JdbcWriterProcessor extends Processor implements
 		CoreAttributeConstants {
@@ -69,7 +70,7 @@ public abstract class JdbcWriterProcessor extends Processor implements
 			Document doc = Jsoup.parse(input, null, curi.getBaseURI().toString());
 			ItemPage cinfo = extract(doc);
 			//当前网页的URL直接在这里设定，并不需要传递到extract方法中去。
-			cinfo.setURL(uri);
+			cinfo.setUrl(uri);
 	
 		} catch (IOException e) {
 			curi.addLocalizedError(this.getName(), e,
@@ -101,7 +102,7 @@ public abstract class JdbcWriterProcessor extends Processor implements
 	 */
 	public ItemPage extract(Document doc) {
 		ItemPage itemPage = new ItemPage();
-		Extractor extractor = createExtractor(doc);
+		ItemExtractor extractor = createItemExtractor(doc);
 		itemPage.setName(extractor.extractCommodityName());
 		
 		return itemPage;
@@ -112,7 +113,15 @@ public abstract class JdbcWriterProcessor extends Processor implements
 	 * @param doc
 	 * 		网页内容经jsoup处理后的Document对象。
 	 * @return
-	 * 		实现了Extractor接口的具体实例。
+	 * 		实现了ItemExtractor接口的具体实例。
 	 */
-	public abstract Extractor createExtractor(Document doc);
+	public abstract ItemExtractor createItemExtractor(Document doc);
+	/**
+	 * 每个子类都需实现此方法，提供具体的抽取店铺信息的Extractor。
+	 * @param doc
+	 * 		网页内容经jsoup处理后的Document对象。
+	 * @return
+	 * 		实现了ShopExtractor接口的具体实例。
+	 */
+	public abstract ShopExtractor createShoptExtractor(Document doc);
 }

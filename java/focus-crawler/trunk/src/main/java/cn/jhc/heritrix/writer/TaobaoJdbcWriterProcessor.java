@@ -7,7 +7,8 @@ import org.jsoup.nodes.Element;
 
 import cn.jhc.heritrix.bean.ItemPage;
 import cn.jhc.heritrix.db.dao.DAOFactory;
-import cn.jhc.heritrix.writer.extractor.Extractor;
+import cn.jhc.heritrix.writer.extractor.ItemExtractor;
+import cn.jhc.heritrix.writer.extractor.ShopExtractor;
 import cn.jhc.heritrix.writer.extractor.TaobaoItemExtractor;
 
 public class TaobaoJdbcWriterProcessor extends JdbcWriterProcessor {
@@ -37,8 +38,14 @@ public class TaobaoJdbcWriterProcessor extends JdbcWriterProcessor {
 	}
 
 	@Override
-	public Extractor createExtractor(Document doc) {
+	public ItemExtractor createItemExtractor(Document doc) {
 		return new TaobaoItemExtractor(doc);
+	}
+
+	@Override
+	public ShopExtractor createShoptExtractor(Document doc) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 
