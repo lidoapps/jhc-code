@@ -25,8 +25,8 @@ public class TaobaoItemExtractorTest {
 	}
 
 	@Test
-	public void testGetCommodityName() {
-		String name = extractor1.getCommodityName();
+	public void testExtractCommodityName() {
+		String name = extractor1.extractCommodityName();
 		assertEquals("Apple/苹果 iPhone 4S(有锁) iphon4S 32G 手机 全新原封大陆行货", name);
 	}
 

@@ -26,12 +26,12 @@ public class CommodityInfo {
 	private String assessment;
 	//URL
 	private String URL;
-	//店铺
+	//店铺名称
 	private String shop;
 	//类别
 	private String category;
 	//各种属性
-	private HashMap<String, String> attributes = new HashMap<String, String>();
+	private Map<String, String> attributes ;
 	
 	/**
 	 * 放入一个属性，对底层HashMap的put方法的封装。
@@ -122,6 +122,12 @@ public class CommodityInfo {
 	}
 	public void setCategory(String category) {
 		this.category = category;
+	}
+	public Map<String, String> getAttributes() {
+		return attributes;
+	}
+	public void setAttributes(Map<String, String> attributes) {
+		this.attributes = attributes;
 	}
 	
 }

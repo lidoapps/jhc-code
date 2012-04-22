@@ -26,7 +26,7 @@ public class FocusDBTestCase extends DBTestCase {
 	@Override
 	protected IDataSet getDataSet() throws Exception {
 		
-		return new FlatXmlDataSetBuilder().build(FocusDBTestCase.class.getResourceAsStream("/initial_dataset.xml"));
+		return new FlatXmlDataSetBuilder().build(FocusDBTestCase.class.getResourceAsStream("/dataset/initial_dataset.xml"));
 	}
 
 	@Override

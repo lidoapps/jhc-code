@@ -1,13 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-  <brand id="1" name="iPhone" datetime="2012-04-19 14:45:53.0"/>
-  <category/>
-  <commodity id="1" name="Apple/&#33529;&#26524; iPhone 4S &#12304;16G 32G 64 G &#27491;&#21697; &#22823;&#38470;&#34892;&#36135; &#24102;&#31080;&#12305;" brand_id="1" instance_id="iPhone 4S(&#26080;&#38145;)" is_unique="false" datetime="2012-04-19 14:45:53.0"/>
-  <commodity_alias/>
-  <context id="1" path="1" instance_id="1" context_level="10" datetime="2012-04-19 14:45:53.0"/>
-  <context id="2" path="2" instance_id="2" context_level="10" datetime="2012-04-19 14:45:53.0"/>
-  <context id="3" path="3" instance_id="3" context_level="10" datetime="2012-04-19 14:45:53.0"/>
-  <context id="4" path="4" instance_id="4" context_level="10" datetime="2012-04-19 14:45:53.0"/>
+  <brand id="1" name="iPhone" datetime="2012-04-22 14:01:29.0"/>
+  <commodity id="1" name="Apple/&#33529;&#26524; iPhone 4S &#12304;16G 32G 64 G &#27491;&#21697; &#22823;&#38470;&#34892;&#36135; &#24102;&#31080;&#12305;" brand_id="1" instance_id="iPhone 4S(&#26080;&#38145;)" is_unique="false" datetime="2012-04-22 14:01:29.0"/>
+  <context id="1" path="1" instance_id="1" context_level="10" datetime="2012-04-22 14:01:29.0"/>
+  <context id="2" path="2" instance_id="2" context_level="10" datetime="2012-04-22 14:01:29.0"/>
+  <context id="3" path="3" instance_id="3" context_level="10" datetime="2012-04-22 14:01:29.0"/>
+  <context id="4" path="4" instance_id="4" context_level="10" datetime="2012-04-22 14:01:29.0"/>
   <gather_meta id="1" gather_id="1" meta_key="&#20135;&#21697;&#21517;&#31216;" meta_value="Apple/&#33529;&#26524; iPhone 4S"/>
   <gather_meta id="2" gather_id="1" meta_key="&#25163;&#26426;&#20215;&#26684;&#21306;&#38388;" meta_value="4000&#20803;&#20197;&#19978;"/>
   <gather_meta id="3" gather_id="1" meta_key="&#19978;&#24066;&#26102;&#38388;" meta_value="2011&#24180;"/>
@@ -30,10 +28,9 @@
   <gather_meta id="20" gather_id="1" meta_key="&#38190;&#30424;&#31867;&#22411;" meta_value="&#34394;&#25311;&#35302;&#23631;&#38190;&#30424;"/>
   <gather_meta id="21" gather_id="1" meta_key="&#21402;&#24230;" meta_value="&#36229;&#34180;(&#23567;&#20110;9mm)"/>
   <gather_meta id="22" gather_id="1" meta_key="&#20027;&#23631;&#20998;&#36776;&#29575;" meta_value="960&#215;640&#20687;&#32032;"/>
-  <gathering id="1" commodity_id="1" context_id="1" market_price="4799.0" max_price="7899.0" promotion_price="0.0" promotion_note="NOT FOUND" saled_desc="&#26376;&#38144;&#37327;&#65306;1411&#20214;" assessment="4.8&#20998;(&#24050;&#26377;1654&#20154;&#35780;&#35770;)" url="http://detail.tmall.com/item.htm?id=15179732651" datetime="2012-04-19 14:45:53.0"/>
-  <shop/>
-  <site id="1" name="&#22825;&#29483;&#32593;" fullname="&#22825;&#29483;&#32593;" url="http://www.tmall.com/" datetime="2012-04-19 14:45:53.0"/>
-  <site id="2" name="&#24403;&#24403;&#32593;" fullname="&#24403;&#24403;&#32593;" url="http://www.dangdang.com/" datetime="2012-04-19 14:45:53.0"/>
-  <site id="3" name="&#28120;&#23453;&#32593;" fullname="&#28120;&#23453;&#32593;" url="http://www.taobao.com/" datetime="2012-04-19 14:45:53.0"/>
-  <site id="4" name="&#22826;&#24179;&#27915;&#30005;&#33041;&#32593;" fullname="&#22826;&#24179;&#27915;&#30005;&#33041;&#32593;" url="http://www.pconline.com.cn/" datetime="2012-04-19 14:45:53.0"/>
+  <gathering id="1" commodity_id="1" context_id="1" market_price="4799.0" max_price="7899.0" promotion_price="0.0" promotion_note="NOT FOUND" saled_desc="&#26376;&#38144;&#37327;&#65306;1411&#20214;" assessment="4.8&#20998;(&#24050;&#26377;1654&#20154;&#35780;&#35770;)" url="http://detail.tmall.com/item.htm?id=15179732651" datetime="2012-04-22 14:01:29.0"/>
+  <site id="1" name="&#22825;&#29483;&#32593;" fullname="&#22825;&#29483;&#32593;" url="http://www.tmall.com/" datetime="2012-04-22 14:01:29.0"/>
+  <site id="2" name="&#24403;&#24403;&#32593;" fullname="&#24403;&#24403;&#32593;" url="http://www.dangdang.com/" datetime="2012-04-22 14:01:29.0"/>
+  <site id="3" name="&#28120;&#23453;&#32593;" fullname="&#28120;&#23453;&#32593;" url="http://www.taobao.com/" datetime="2012-04-22 14:01:29.0"/>
+  <site id="4" name="&#22826;&#24179;&#27915;&#30005;&#33041;&#32593;" fullname="&#22826;&#24179;&#27915;&#30005;&#33041;&#32593;" url="http://www.pconline.com.cn/" datetime="2012-04-22 14:01:29.0"/>
 </dataset>

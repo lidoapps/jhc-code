@@ -26,7 +26,7 @@ public class SiteDAOTest extends FocusDBTestCase {
 				.createQueryTable("site", "select name,fullname,url from site");
 		
 		DataFileLoader loader = new FlatXmlDataFileLoader();
-		ITable expectedTable = loader.load("/site_dataset.xml").getTable("site_select");
+		ITable expectedTable = loader.load("/dataset/site_dataset.xml").getTable("site_select");
 		Assertion.assertEquals(expectedTable, actualTable);
 		
 	}

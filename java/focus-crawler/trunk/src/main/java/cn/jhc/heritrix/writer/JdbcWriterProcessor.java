@@ -102,7 +102,7 @@ public abstract class JdbcWriterProcessor extends Processor implements
 	public CommodityInfo extract(Document doc) {
 		CommodityInfo cinfo = new CommodityInfo();
 		Extractor extractor = createExtractor(doc);
-		cinfo.setName(extractor.getCommodityName());
+		cinfo.setName(extractor.extractCommodityName());
 		
 		return cinfo;
 	}

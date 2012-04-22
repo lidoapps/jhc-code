@@ -19,7 +19,7 @@ public class ContextDAOTest extends FocusDBTestCase {
 		ITable actualTable = getConnection().createQueryTable("context", 
 				"select path,instance_id,context_level from context");
 		DataFileLoader loader = new FlatXmlDataFileLoader();
-		ITable expectedTable = loader.load("/context_dataset.xml").getTable("context_select");
+		ITable expectedTable = loader.load("/dataset/context_dataset.xml").getTable("context_select");
 		Assertion.assertEquals(expectedTable, actualTable);
 	}
 	
