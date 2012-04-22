@@ -1,8 +1,10 @@
 package cn.jhc.heritrix.writer.extractor;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.InputStream;
+import java.util.Map;
+import java.util.Set;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -30,4 +32,13 @@ public class TaobaoItemExtractorTest {
 		assertEquals("Apple/苹果 iPhone 4S(有锁) iphon4S 32G 手机 全新原封大陆行货", name);
 	}
 
+	@Test
+	public void testExtractAttributes() {
+		Map<String,String> map = extractor1.extractAttributes();
+		Set<Map.Entry<String, String>> entries = map.entrySet();
+		for(Map.Entry<String, String> entry : entries) {
+			System.out.println(entry.getKey() + ":" + entry.getValue());
+		}
+			
+	}
 }
