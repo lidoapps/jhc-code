@@ -7,6 +7,8 @@ import org.jsoup.nodes.Element;
 
 import cn.jhc.heritrix.bean.CommodityInfo;
 import cn.jhc.heritrix.db.dao.DAOFactory;
+import cn.jhc.heritrix.writer.extractor.Extractor;
+import cn.jhc.heritrix.writer.extractor.TaobaoItemExtractor;
 
 public class TaobaoJdbcWriterProcessor extends JdbcWriterProcessor {
 
@@ -15,7 +17,7 @@ public class TaobaoJdbcWriterProcessor extends JdbcWriterProcessor {
 	private static final String URL_PATTERN = "^http://item\\.taobao\\.com/item\\.htm\\?id=\\d+";
 	private static final Pattern PATTERN = Pattern.compile(URL_PATTERN);
 	private static final String SITE_URL = "http://www.taobao.com/";
-	private static int default_context_id = 0;
+	private static long default_context_id = 0L;
 	
 	public TaobaoJdbcWriterProcessor(String name) {
 		super(name);
@@ -28,23 +30,17 @@ public class TaobaoJdbcWriterProcessor extends JdbcWriterProcessor {
 
 	@Override
 	public long getDefaultContextId() {
-		if(0 == default_context_id) {
+		if(0L == default_context_id) {
 			default_context_id = DAOFactory.getSiteDAO().findSite(SITE_URL).getId();
 		}
 		return default_context_id;
 	}
 
 	@Override
-	public CommodityInfo extract(Document doc) {
-		CommodityInfo cinfo = new CommodityInfo();
-		cinfo.setName(getCommodityName(doc));
-		
-		return cinfo;
+	public Extractor createExtractor(Document doc) {
+		return new TaobaoItemExtractor(doc);
 	}
+	
 
-	protected String getCommodityName(Document doc) {
-		Element e = doc.select(".tb-detail-hd h3").first();
-		return e.ownText().trim();
-	}
 	
 }

@@ -13,6 +13,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import cn.jhc.heritrix.bean.CommodityInfo;
+import cn.jhc.heritrix.writer.extractor.Extractor;
 
 public abstract class JdbcWriterProcessor extends Processor implements
 		CoreAttributeConstants {
@@ -92,12 +93,26 @@ public abstract class JdbcWriterProcessor extends Processor implements
 	 */
 	public abstract long getDefaultContextId();
 	/**
-	 * 子类必须实现此方法，从网页中抽取商品信息。
+	 * 从网页中抽取商品信息。
 	 * @param doc
 	 * 		网页内容经jsoup处理后的Document对象。
 	 * @return
 	 * 		返回商品信息的封装对象。
 	 */
-	public abstract CommodityInfo extract(Document doc);
+	public CommodityInfo extract(Document doc) {
+		CommodityInfo cinfo = new CommodityInfo();
+		Extractor extractor = createExtractor(doc);
+		cinfo.setName(extractor.getCommodityName());
+		
+		return cinfo;
+	}
 
+	/**
+	 * 每个子类都需实现此方法，提供具体的抽取商品信息的Extractor。
+	 * @param doc
+	 * 		网页内容经jsoup处理后的Document对象。
+	 * @return
+	 * 		实现了Extractor接口的具体实例。
+	 */
+	public abstract Extractor createExtractor(Document doc);
 }
