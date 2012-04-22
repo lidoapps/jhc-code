@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
-import cn.jhc.heritrix.bean.CommodityInfo;
+import cn.jhc.heritrix.bean.ItemPage;
 import cn.jhc.heritrix.db.dao.DAOFactory;
 import cn.jhc.heritrix.writer.extractor.Extractor;
 import cn.jhc.heritrix.writer.extractor.TaobaoItemExtractor;

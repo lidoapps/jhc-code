@@ -1,6 +1,6 @@
 package cn.jhc.heritrix.db.dao;
 
-import cn.jhc.heritrix.db.bean.Context;
+import cn.jhc.heritrix.bean.Context;
 
 public class ContextDAO extends FocusDaoSupport {
 

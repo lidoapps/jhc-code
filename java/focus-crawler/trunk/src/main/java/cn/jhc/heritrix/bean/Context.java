@@ -1,4 +1,4 @@
-package cn.jhc.heritrix.db.bean;
+package cn.jhc.heritrix.bean;
 
 import java.util.Date;
 

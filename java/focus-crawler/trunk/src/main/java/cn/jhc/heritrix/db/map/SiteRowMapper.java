@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import cn.jhc.heritrix.db.bean.Site;
+import cn.jhc.heritrix.bean.Site;
 
 public class SiteRowMapper implements RowMapper<Site> {
 

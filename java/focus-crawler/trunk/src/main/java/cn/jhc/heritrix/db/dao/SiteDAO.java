@@ -1,6 +1,6 @@
 package cn.jhc.heritrix.db.dao;
 
-import cn.jhc.heritrix.db.bean.Site;
+import cn.jhc.heritrix.bean.Site;
 import cn.jhc.heritrix.db.map.SiteRowMapper;
 
 public class SiteDAO extends FocusDaoSupport {

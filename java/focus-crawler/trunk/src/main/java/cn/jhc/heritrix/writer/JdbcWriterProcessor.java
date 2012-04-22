@@ -12,7 +12,7 @@ import org.archive.net.UURI;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
-import cn.jhc.heritrix.bean.CommodityInfo;
+import cn.jhc.heritrix.bean.ItemPage;
 import cn.jhc.heritrix.writer.extractor.Extractor;
 
 public abstract class JdbcWriterProcessor extends Processor implements
@@ -67,7 +67,7 @@ public abstract class JdbcWriterProcessor extends Processor implements
 		try {
 			InputStream input = (InputStream) recis.getContentReplayInputStream();
 			Document doc = Jsoup.parse(input, null, curi.getBaseURI().toString());
-			CommodityInfo cinfo = extract(doc);
+			ItemPage cinfo = extract(doc);
 			//当前网页的URL直接在这里设定，并不需要传递到extract方法中去。
 			cinfo.setURL(uri);
 	
@@ -99,12 +99,12 @@ public abstract class JdbcWriterProcessor extends Processor implements
 	 * @return
 	 * 		返回商品信息的封装对象。
 	 */
-	public CommodityInfo extract(Document doc) {
-		CommodityInfo cinfo = new CommodityInfo();
+	public ItemPage extract(Document doc) {
+		ItemPage itemPage = new ItemPage();
 		Extractor extractor = createExtractor(doc);
-		cinfo.setName(extractor.extractCommodityName());
+		itemPage.setName(extractor.extractCommodityName());
 		
-		return cinfo;
+		return itemPage;
 	}
 
 	/**

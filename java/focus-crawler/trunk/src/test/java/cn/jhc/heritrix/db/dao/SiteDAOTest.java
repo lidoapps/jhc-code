@@ -10,8 +10,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import cn.jhc.heritrix.bean.Site;
 import cn.jhc.heritrix.db.FocusDBTestCase;
-import cn.jhc.heritrix.db.bean.Site;
 
 public class SiteDAOTest extends FocusDBTestCase {
 

@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import cn.jhc.heritrix.db.bean.Context;
+import cn.jhc.heritrix.bean.Context;
 
 public class ContextRowMapper implements RowMapper<Context> {
 

@@ -1,14 +1,14 @@
 package cn.jhc.heritrix.bean;
 
-import java.util.HashMap;
+import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 /**
- * 用于存放从网页中抽取出来的商品的信息。
+ * 代表商品网页，用于存放从网页中抽取出来的信息。
  * @author luyanfei
  *
  */
-public class CommodityInfo {
+public class ItemPage {
 
 	//商品名称
 	private String name;
@@ -27,7 +27,15 @@ public class CommodityInfo {
 	//URL
 	private String URL;
 	//店铺名称
-	private String shop;
+	private String shopName;
+	//店铺URL
+	private String shopURL;
+	//店铺评价
+	private String shopAssessment;
+	//店铺商品总数
+	private int shopAmount;
+	//店铺创建时间
+	private Date shopCreateDate;
 	//类别
 	private String category;
 	//各种属性
@@ -111,11 +119,11 @@ public class CommodityInfo {
 	public void setURL(String uRL) {
 		URL = uRL;
 	}
-	public String getShop() {
-		return shop;
+	public String getShopName() {
+		return shopName;
 	}
-	public void setShop(String shop) {
-		this.shop = shop;
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
 	}
 	public String getCategory() {
 		return category;

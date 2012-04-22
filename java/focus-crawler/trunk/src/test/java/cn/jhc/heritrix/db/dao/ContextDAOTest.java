@@ -6,8 +6,8 @@ import org.dbunit.util.fileloader.DataFileLoader;
 import org.dbunit.util.fileloader.FlatXmlDataFileLoader;
 import org.junit.Test;
 
+import cn.jhc.heritrix.bean.Context;
 import cn.jhc.heritrix.db.FocusDBTestCase;
-import cn.jhc.heritrix.db.bean.Context;
 
 public class ContextDAOTest extends FocusDBTestCase {
 
