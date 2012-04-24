@@ -7,7 +7,11 @@ import java.util.Map;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
+/**
+ * 淘宝网商品信息网页的促销信息、顾客评价等信息在爬取时还未生成，页面使用的是Ajax请求。这些数据的获取留待将来解决。
+ * @author luyanfei
+ *
+ */
 public class TaobaoItemExtractor implements ItemExtractor {
 	
 	private Document doc;
@@ -39,22 +43,22 @@ public class TaobaoItemExtractor implements ItemExtractor {
 
 	public String extractPromotionNote() {
 		// TODO Auto-generated method stub
-		return "";
+		return "NOT FOUND";
 	}
 
 	public String extractSaledDesc() {
 		// TODO Auto-generated method stub
-		return "";
+		return "NOT FOUND";
 	}
 
 	public String extractAssessment() {
 		// TODO Auto-generated method stub
-		return "";
+		return "NOT FOUND";
 	}
 
 	public String extractCategory() {
 		// TODO Auto-generated method stub
-		return "";
+		return "NOT FOUND";
 	}
 
 	public Map<String, String> extractAttributes() {
