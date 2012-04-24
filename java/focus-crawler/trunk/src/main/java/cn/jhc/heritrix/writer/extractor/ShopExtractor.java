@@ -8,6 +8,6 @@ public interface ShopExtractor {
 	public String extractUrl();
 	public String extractAssessment();
 	public int extractAmount();
-	public Date extractCeateDate();
+	public Date extractCreateDate();
 	public static final Pattern SHOP_URL = Pattern.compile("^http://[^/]+/");
 }

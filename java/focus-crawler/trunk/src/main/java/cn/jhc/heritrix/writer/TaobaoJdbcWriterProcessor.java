@@ -3,13 +3,13 @@ package cn.jhc.heritrix.writer;
 import java.util.regex.Pattern;
 
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 
-import cn.jhc.heritrix.bean.ItemPage;
 import cn.jhc.heritrix.db.dao.DAOFactory;
-import cn.jhc.heritrix.writer.extractor.ItemExtractor;
+import cn.jhc.heritrix.writer.extractor.Extractor;
+import cn.jhc.heritrix.writer.extractor.ExtractorFacade;
 import cn.jhc.heritrix.writer.extractor.ShopExtractor;
 import cn.jhc.heritrix.writer.extractor.TaobaoItemExtractor;
+import cn.jhc.heritrix.writer.extractor.TaobaoShopExtractor;
 
 public class TaobaoJdbcWriterProcessor extends JdbcWriterProcessor {
 
@@ -38,16 +38,8 @@ public class TaobaoJdbcWriterProcessor extends JdbcWriterProcessor {
 	}
 
 	@Override
-	public ItemExtractor createItemExtractor(Document doc) {
-		return new TaobaoItemExtractor(doc);
+	public Extractor createExtractor(Document doc) {
+		return new ExtractorFacade(new TaobaoItemExtractor(doc), new TaobaoShopExtractor(doc));
 	}
 
-	@Override
-	public ShopExtractor createShoptExtractor(Document doc) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-
-	
 }

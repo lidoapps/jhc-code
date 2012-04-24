@@ -46,7 +46,7 @@ public class TaobaoShopExtractorTest {
 	@Test
 	public void testExtractCeateDate() {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		assertEquals("2010-10-17", df.format(extractor1.extractCeateDate()));
+		assertEquals("2010-10-17", df.format(extractor1.extractCreateDate()));
 	}
 
 }

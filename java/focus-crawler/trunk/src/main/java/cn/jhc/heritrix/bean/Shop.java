@@ -7,7 +7,7 @@ public class Shop {
 	private String url;
 	private String assessment;
 	private int amount;
-	private Date ceateDate;
+	private Date createDate;
 
 	public Shop() {
 	}
@@ -44,12 +44,12 @@ public class Shop {
 		this.amount = amount;
 	}
 
-	public Date getCeateDate() {
-		return ceateDate;
+	public Date getCreateDate() {
+		return createDate;
 	}
 
-	public void setCeateDate(Date ceateDate) {
-		this.ceateDate = ceateDate;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
 
 }

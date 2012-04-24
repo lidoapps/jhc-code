@@ -51,7 +51,7 @@ public class TaobaoShopExtractor implements ShopExtractor {
 	/**
 	 * 提取店铺的创建时间，如果不能成功抽取，则返回new java.util.Date(0)。在中国正好是"1970-01-01 08:00:00"。
 	 */
-	public Date extractCeateDate() {
+	public Date extractCreateDate() {
 		String setuptime = doc.select(".shop-details li.setuptime").first().ownText().trim();
 		Date date;
 		try {
