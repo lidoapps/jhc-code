@@ -73,6 +73,7 @@ public abstract class JdbcWriterProcessor extends Processor implements
 			ItemPage page = extractor.extractItem();
 			//当前网页的URL直接在这里设定，并未传递到extractItem方法中去。
 			page.setUrl(uri);
+			page.setContextId(getDefaultContextId());
 			Shop shop = extractor.extractShop();
 			
 	

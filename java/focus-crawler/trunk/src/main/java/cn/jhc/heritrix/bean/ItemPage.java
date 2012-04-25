@@ -25,6 +25,8 @@ public class ItemPage {
 	private String assessment;
 	//url
 	private String url;
+	//ContextId
+	private long contextId;
 	//类别
 	private String category;
 	//各种属性
@@ -119,6 +121,12 @@ public class ItemPage {
 	}
 	public void setAttributes(Map<String, String> attributes) {
 		this.attributes = attributes;
+	}
+	public long getContextId() {
+		return contextId;
+	}
+	public void setContextId(long contextId) {
+		this.contextId = contextId;
 	}
 	
 }
