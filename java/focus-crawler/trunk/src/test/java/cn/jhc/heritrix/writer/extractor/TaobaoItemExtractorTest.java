@@ -1,37 +1,47 @@
 package cn.jhc.heritrix.writer.extractor;
 
 import static org.junit.Assert.assertEquals;
-
-import java.io.InputStream;
+import org.hamcrest.collection.IsMapContaining;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.Before;
 import org.junit.Test;
 
-import cn.jhc.heritrix.writer.TaobaoJdbcWriterProcessorTest;
-
-public class TaobaoItemExtractorTest {
+public class TaobaoItemExtractorTest extends TaobaoTest {
 
 	
+	public TaobaoItemExtractorTest(Document doc, Properties properties) {
+		super(doc, properties);
+	}
+
 	private TaobaoItemExtractor extractor1 = null;
 	
 	@Before
 	public void setUp() throws Exception {
-		//iPhone 4S taobao网页
-		InputStream stream1 = TaobaoJdbcWriterProcessorTest.class.getResourceAsStream("/html/taobaoitem1.htm");
-		Document doc1 = Jsoup.parse(stream1, null, "http://item.taobao.com/");
-		extractor1 = new TaobaoItemExtractor(doc1);
+		extractor1 = new TaobaoItemExtractor(doc);
 	}
 
 	@Test
 	public void testExtractCommodityName() {
 		String name = extractor1.extractCommodityName();
-		assertEquals("Apple/苹果 iPhone 4S(有锁) iphon4S 32G 手机 全新原封大陆行货", name);
+		assertEquals(props.getProperty("item.name"), name);
 	}
 
+	@Test
+	public void testExtractMarketPrice() {
+		float actual = extractor1.extractMarketPrice();
+		float expected = Float.valueOf(props.getProperty("item.marketprice"));
+		assertEquals(expected, actual, Double.MIN_VALUE);
+	}
+	@Test
+	public void testExtractMaxPrice() {
+		float actual = extractor1.extractMaxPrice();
+		float expected = Float.valueOf(props.getProperty("item.maxprice"));
+		assertEquals(expected, actual, Double.MIN_VALUE);
+	}
 	@Test
 	public void testExtractAttributes() {
 		Map<String,String> map = extractor1.extractAttributes();

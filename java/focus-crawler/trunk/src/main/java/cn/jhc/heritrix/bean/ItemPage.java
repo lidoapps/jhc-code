@@ -33,6 +33,20 @@ public class ItemPage {
 	private Map<String, String> attributes ;
 	
 	/**
+	 * 提取属性中含有指定字符串的属性的值。如果有e多个，只返回第一个。指定字符串可以是“品牌”，“ISBN”，“ISRC”等。
+	 * @param s
+	 * 		在属性名中包含的字符串。
+	 * @return
+	 * 		含有指定字符串的属性的值，如果无法找到类似的属性，则返回null。
+	 */
+	public String getSpecialValue(String s) {
+		for(String key : attributes.keySet())
+			if(key.toLowerCase().contains(s.toLowerCase()))
+				return attributes.get(key);
+		return null;
+	}
+	
+	/**
 	 * 放入一个属性，对底层HashMap的put方法的封装。
 	 * @param name
 	 * 		属性的名字。
