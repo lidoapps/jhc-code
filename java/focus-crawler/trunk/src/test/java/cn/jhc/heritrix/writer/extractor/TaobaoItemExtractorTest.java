@@ -1,7 +1,7 @@
 package cn.jhc.heritrix.writer.extractor;
 
 import static org.junit.Assert.assertEquals;
-import org.hamcrest.collection.IsMapContaining;
+
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -42,12 +42,16 @@ public class TaobaoItemExtractorTest extends TaobaoTest {
 		float expected = Float.valueOf(props.getProperty("item.maxprice"));
 		assertEquals(expected, actual, Double.MIN_VALUE);
 	}
+	
+	/**
+	 * 测试抽取出来的Map的每个值对是否能在props文件中找到相同的值对。
+	 */
 	@Test
 	public void testExtractAttributes() {
 		Map<String,String> map = extractor1.extractAttributes();
 		Set<Map.Entry<String, String>> entries = map.entrySet();
 		for(Map.Entry<String, String> entry : entries) {
-			System.out.println(entry.getKey() + ":" + entry.getValue());
+			assertEquals(props.getProperty(entry.getKey()), entry.getValue()); 
 		}
 			
 	}
