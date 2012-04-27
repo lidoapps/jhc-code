@@ -49,7 +49,14 @@ public class ItemPage {
 				return attributes.get(key);
 		return null;
 	}
-	
+	/**
+	 * 提取商品的instance_id，其算法如下：
+	 * 如果有ISBN或ISRC属性，则instance_id即是ISBN或ISRC。
+	 * 否则提取"品牌::型号"。
+	 * 如果上面的属性都没有，返回null。
+	 * @return
+	 * 		商品的instance_id。
+	 */
 	public String getInstanceId() {
 		String instanceId = null;
 		for(String key : attributes.keySet()) {
@@ -61,7 +68,13 @@ public class ItemPage {
 				instanceId = attributes.get(key);
 				break;
 			}
-			
+			if(key.contains("型号") || key.contains("货号")) {
+				String brand = getBrandName();
+				if(brand != null) {
+					instanceId = brand + "::" + attributes.get(key);
+					break;
+				}
+			}
 		}
 		return instanceId;
 	}
