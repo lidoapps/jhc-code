@@ -26,20 +26,16 @@ select id from context where instance_id=@dangdang_id into @dangdang_ctx_id;
 select id from context where instance_id=@taobao_id into @taobao_ctx_id;
 select id from context where instance_id=@pconline_id into @pconline_ctx_id;
 
--- 添加iPhone品牌
-insert into brand(name,datetime) values('iPhone',now());
-select id from brand where name='iPhone' into @iphone_brand_id;
-
 -- 添加iPhone4S
 -- tmall网址http://detail.tmall.com/item.htm?id=15179732651
-insert into commodity(name,brand_id,instance_id,is_unique,datetime)
-values('Apple/苹果 iPhone 4S 【16G 32G 64 G 正品 大陆行货 带票】',@iphone_brand_id,'iPhone 4S(无锁)',0,now());
+insert into commodity(name,instance_id,datetime)
+values('Apple/苹果 iPhone 4S 【16G 32G 64 G 正品 大陆行货 带票】','iPhone 4S(无锁)',now());
 select id from commodity 
 where name='Apple/苹果 iPhone 4S 【16G 32G 64 G 正品 大陆行货 带票】'
 into @iphone4s_tmall_id;
 -- 添加采集信息
 insert into gathering(commodity_id,context_id,market_price,max_price,saled_desc,assessment,url,datetime)
-values(@iphone4s_tmall_id,@tmall_ctx_id,4799,7899,'月销量：1411件','4.8分(已有1654人评论)','http://detail.tmall.com/item.htm?id=15179732651',now());
+values(@iphone4s_tmall_id,@tmall_ctx_id,4799,7899,'NOT FOUND','NOT FOUND','http://detail.tmall.com/item.htm?id=15179732651',now());
 -- 保存本次gather的id
 select max(id) from gathering into @gather_id;
 -- 添加本次采集的属性

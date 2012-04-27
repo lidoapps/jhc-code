@@ -8,6 +8,10 @@ import java.util.Set;
  *
  */
 public class ItemPage {
+	/**
+	 * 对于“品牌+型号（或货号）”的表示方法，用下面变量指定的字符进行分隔。
+	 */
+	public static final String delimitor = "::";
 
 	//商品名称
 	private String name;
@@ -39,13 +43,32 @@ public class ItemPage {
 	 * @return
 	 * 		含有指定字符串的属性的值，如果无法找到类似的属性，则返回null。
 	 */
-	public String getSpecialValue(String s) {
+	public String containsSpecialValue(String s) {
 		for(String key : attributes.keySet())
 			if(key.toLowerCase().contains(s.toLowerCase()))
 				return attributes.get(key);
 		return null;
 	}
 	
+	public String getInstanceId() {
+		String instanceId = null;
+		for(String key : attributes.keySet()) {
+			if(key.toLowerCase().contains("isbn")) {
+				instanceId = attributes.get(key);
+				break;
+			}
+			if(key.toLowerCase().contains("isrc")) {
+				instanceId = attributes.get(key);
+				break;
+			}
+			
+		}
+		return instanceId;
+	}
+	
+	public String getBrandName() {
+		return containsSpecialValue("品牌");
+	}
 	/**
 	 * 放入一个属性，对底层HashMap的put方法的封装。
 	 * @param name

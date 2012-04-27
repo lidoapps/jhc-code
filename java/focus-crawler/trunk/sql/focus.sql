@@ -13,11 +13,8 @@ drop table if exists commodity;
 create table commodity(
 id bigint unsigned auto_increment primary key,
 name varchar(255) not null,
-brand_id bigint unsigned,
 instance_id varchar(50) not null,
-is_unique bool not null default 0,
 datetime datetime not null default '1900-01-01 00:00:00',
-index(brand_id),
 index(instance_id)
 )engine=innodb;
 
@@ -35,18 +32,6 @@ index(commodity_id)
 )engine=innodb;
 
 -- 3.
--- Table structure for table Brand
---
-
-drop table if exists brand;
-create table brand(
-id bigint unsigned auto_increment primary key,
-name varchar(255) not null,
-datetime datetime not null default '1900-01-01 00:00:00',
-index(name)
-)engine=innodb;
-
--- 4.
 -- Table structure for table Gathering
 --
 -- ORDER BY: id
@@ -67,7 +52,7 @@ datetime datetime not null default '1900-01-01 00:00:00',
 index(commodity_id)
 )engine=innodb;
 
--- 5.
+-- 4.
 -- Table structure for table GatherMeta
 --
 -- ORDER BY: id
@@ -81,7 +66,7 @@ meta_value varchar(255) not null default 'NOVALUE',
 index(gather_id)
 )engine=innodb;
 
--- 6.
+-- 5.
 -- Table structure for table Context
 --
 -- ORDER BY: id
@@ -95,7 +80,7 @@ context_level int not null default 10,
 datetime datetime not null default '1900-01-01 00:00:00'
 )engine=innodb;
 
--- 7.
+-- 6.
 -- Table structure for table Site
 --
 -- ORDER BY: id
@@ -110,7 +95,7 @@ datetime datetime not null default '1900-01-01 00:00:00',
 index(url)
 )engine=innodb;
 
--- 8.
+-- 7.
 -- Table structure for table Shop
 --
 
@@ -130,7 +115,7 @@ datetime datetime not null default '1900-01-01 00:00:00',
 index(name),index(url)
 )engine=innodb;
 
--- 9.
+-- 8.
 -- Table structure for table Category
 --
 

@@ -15,8 +15,7 @@ public class FocusWriter {
 			itemPage.setContextId(contextId);
 		}
 		
-		long brandId = checkBrand(itemPage);
-		Commodity commodity = createCommodity(itemPage, brandId);
+		Commodity commodity = createCommodity(itemPage);
 		long commodityId = checkCommodity(commodity);
 		writeGathering(itemPage,commodityId);
 	}
@@ -42,10 +41,9 @@ public class FocusWriter {
 		return 0;
 	}
 
-	private static Commodity createCommodity(ItemPage itemPage, long brandId) {
+	private static Commodity createCommodity(ItemPage itemPage) {
 		Commodity commodity = new Commodity();
 		commodity.setName(itemPage.getName());
-		commodity.setBrandId(brandId);
 		//TODO unique,instance_id
 		return commodity;
 	}
@@ -72,14 +70,4 @@ public class FocusWriter {
 		return 0;
 	}
 
-	/**
-	 * 检查提取出来的商品信息中有没有品牌信息，如果有，再检查Brand表是否已经有了该Brand，则写入Brand表，并返回该Brand的ID。
-	 * @param itemPage
-	 * @return
-	 * 		返回该品牌的ID，如果没有品牌，返回0。
-	 */
-	private static long checkBrand(ItemPage itemPage) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 }
