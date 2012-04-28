@@ -16,7 +16,7 @@ public class ContextRowMapper implements RowMapper<Context> {
 		ctx.setInstanceID(rs.getLong("instance_id"));
 		ctx.setContextLevel(rs.getInt("context_level"));
 		ctx.setDatetime(new java.util.Date(rs.getTimestamp("datetime").getTime()));
-		return null;
+		return ctx;
 	}
 
 }

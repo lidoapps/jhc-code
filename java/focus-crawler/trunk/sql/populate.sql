@@ -29,7 +29,7 @@ select id from context where instance_id=@pconline_id into @pconline_ctx_id;
 -- 添加iPhone4S
 -- tmall网址http://detail.tmall.com/item.htm?id=15179732651
 insert into commodity(name,instance_id,datetime)
-values('Apple/苹果 iPhone 4S 【16G 32G 64 G 正品 大陆行货 带票】','iPhone 4S(无锁)',now());
+values('Apple/苹果 iPhone 4S 【16G 32G 64 G 正品 大陆行货 带票】', null,now());
 select id from commodity 
 where name='Apple/苹果 iPhone 4S 【16G 32G 64 G 正品 大陆行货 带票】'
 into @iphone4s_tmall_id;

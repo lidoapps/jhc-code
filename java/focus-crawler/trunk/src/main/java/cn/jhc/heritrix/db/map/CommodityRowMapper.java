@@ -15,7 +15,7 @@ public class CommodityRowMapper implements RowMapper<Commodity> {
 		commodity.setName(rs.getString("name"));
 		commodity.setInstanceId(rs.getString("instance_id"));
 		commodity.setDateTime(new java.util.Date(rs.getTimestamp("datetime").getTime()));
-		return null;
+		return commodity;
 	}
 
 }

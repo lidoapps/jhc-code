@@ -11,6 +11,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
 import cn.jhc.heritrix.bean.Commodity;
+import cn.jhc.heritrix.db.map.CommodityRowMapper;
 
 public class CommodityDAO extends FocusDaoSupport {
 
@@ -22,8 +23,10 @@ public class CommodityDAO extends FocusDaoSupport {
 	 * 		找到的商品的id，若不能找到，则返回0。
 	 */
 	public List<Commodity> findByName(String name) {
-		
-		return null;
+		if(name == null)
+			return null;
+		String sql = "select id,name,instance_id,datetime from commodity where name=?";
+		return getJdbcTemplate().query(sql, new CommodityRowMapper(), name);
 	}
 	/**
 	 * 通过商品的instance_id来查找商品。
@@ -32,8 +35,10 @@ public class CommodityDAO extends FocusDaoSupport {
 	 * 		找到的商品的id，若不能找到，则返回null。
 	 */
 	public Commodity findByInstanceId(String instanceId) {
-		
-		return null;
+		if(instanceId == null)
+			return null;
+		String sql = "select id,name,instance_id,datetime from commodity where instance_id=?";
+		return getJdbcTemplate().queryForObject(sql, new CommodityRowMapper(), instanceId);
 	}
 	/**
 	 * 根据商品的主键查找商品。
@@ -43,7 +48,8 @@ public class CommodityDAO extends FocusDaoSupport {
 	 * 		Commodity对象。
 	 */
 	public Commodity findById(long id) {
-		return null;
+		String sql = "select id,name,instance_id,datetime from commodity where id=?";
+		return getJdbcTemplate().queryForObject(sql, new CommodityRowMapper(), id);
 	}
 	/**
 	 * 插入Commodity记录。

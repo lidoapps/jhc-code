@@ -15,7 +15,7 @@ id bigint unsigned auto_increment primary key,
 name varchar(255) not null,
 instance_id varchar(50) default null,
 datetime datetime not null default '1900-01-01 00:00:00',
-index(instance_id)
+unique key(instance_id)
 )engine=innodb;
 
 -- 2.
