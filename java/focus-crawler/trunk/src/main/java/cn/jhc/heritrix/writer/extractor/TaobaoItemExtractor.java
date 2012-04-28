@@ -76,7 +76,7 @@ public class TaobaoItemExtractor implements ItemExtractor {
 			//如果分割不对，忽略该组数据。以后考虑处理各种意外情况。
 			if(s.length != 2)
 				continue;
-			map.put(s[0].trim(), s[1].trim());
+			map.put(s[0].replaceAll(" ", ""), s[1].trim());
 		}
 		return map;
 	}

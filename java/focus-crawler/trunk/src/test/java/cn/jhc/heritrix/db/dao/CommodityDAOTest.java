@@ -1,15 +1,14 @@
 package cn.jhc.heritrix.db.dao;
 
-import static org.junit.Assert.fail;
-
 import java.sql.SQLException;
+import java.util.List;
 
 import org.dbunit.Assertion;
 import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.ITable;
+import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.util.fileloader.DataFileLoader;
 import org.dbunit.util.fileloader.FlatXmlDataFileLoader;
-import org.junit.Before;
 import org.junit.Test;
 
 import cn.jhc.heritrix.bean.Commodity;
@@ -19,17 +18,25 @@ public class CommodityDAOTest extends FocusDBTestCase {
 
 	@Test
 	public void testFindByName() {
-		fail("Not yet implemented");
+		String name = "Apple/苹果 iPhone 4S 【16G 32G 64 G 正品 大陆行货 带票】";
+		List<Commodity> list = DAOFactory.getCommodityDAO().findByName(name);
+		assertEquals(1, list.size());
+		assertNull(list.get(0).getInstanceId());
+		assertEquals("Apple/苹果 iPhone 4S 【16G 32G 64 G 正品 大陆行货 带票】", list.get(0).getName());
 	}
 
 	@Test
 	public void testFindByInstanceId() {
-		fail("Not yet implemented");
+		Commodity c = DAOFactory.getCommodityDAO().findByInstanceId(null);
+		assertNull(c);
 	}
 
 	@Test
 	public void testFindById() {
-		fail("Not yet implemented");
+		Commodity c = DAOFactory.getCommodityDAO().findById(1);
+		assertEquals("Apple/苹果 iPhone 4S 【16G 32G 64 G 正品 大陆行货 带票】", c.getName());
+		assertNull(c.getInstanceId());
+		assertEquals(1, c.getId());
 	}
 
 	@Test
@@ -40,7 +47,10 @@ public class CommodityDAOTest extends FocusDBTestCase {
 		long r = DAOFactory.getCommodityDAO().insert(commodity);
 		ITable actualTable = getConnection().createQueryTable("commodity",
 				"select name,instance_id from commodity");
-		DataFileLoader loader = new FlatXmlDataFileLoader();
+		FlatXmlDataSetBuilder builder = new FlatXmlDataSetBuilder();
+		//instance_id可能为null，需要仔细处理
+		builder.setColumnSensing(true);
+		DataFileLoader loader = new FlatXmlDataFileLoader(builder);
 		ITable expectedTable = loader.load("/dataset/commodity_dataset.xml").getTable("commodity_select");
 		Assertion.assertEquals(expectedTable, actualTable);
 	}
