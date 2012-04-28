@@ -55,4 +55,13 @@ public class CommodityDAOTest extends FocusDBTestCase {
 		Assertion.assertEquals(expectedTable, actualTable);
 	}
 
+	@Test
+	public void testInsertAlias() throws DataSetException, SQLException, Exception {
+		DAOFactory.getCommodityDAO().insertAlias(1, "iPhone 4S");
+		ITable actualTable = getConnection().createQueryTable("alias",
+				"select alias,commodity_id from commodity_alias");
+		DataFileLoader loader = new FlatXmlDataFileLoader();
+		ITable expectedTable = loader.load("/dataset/alias_dataset.xml").getTable("alias_select");
+		Assertion.assertEquals(expectedTable, actualTable);
+	}
 }

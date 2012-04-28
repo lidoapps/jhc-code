@@ -3,6 +3,8 @@ package cn.jhc.heritrix.db;
 import cn.jhc.heritrix.bean.Commodity;
 import cn.jhc.heritrix.bean.ItemPage;
 import cn.jhc.heritrix.bean.Shop;
+import cn.jhc.heritrix.db.dao.CommodityDAO;
+import cn.jhc.heritrix.db.dao.DAOFactory;
 
 public class FocusWriter {
 
@@ -37,8 +39,21 @@ public class FocusWriter {
 	 * 		该商品的ID。
 	 */
 	protected static long checkCommodity(Commodity commodity) {
-		// TODO Auto-generated method stub
-		return 0;
+		long id = 0;
+		CommodityDAO dao = DAOFactory.getCommodityDAO();
+		if(null == commodity.getInstanceId()) {
+			return dao.insert(commodity);
+		}
+		Commodity c2 = dao.findByInstanceId(commodity.getInstanceId());
+		//如果找到相同的instance_id记录已经存在，则添加CommodityAlias
+		if(null != c2) {
+			dao.insertAlias(c2.getId(), commodity.getName());
+			return c2.getId();
+		}
+		else {
+			return dao.insert(commodity);
+		}
+
 	}
 
 	protected static Commodity createCommodity(ItemPage itemPage) {

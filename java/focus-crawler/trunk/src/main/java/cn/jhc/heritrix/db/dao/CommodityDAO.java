@@ -74,4 +74,14 @@ public class CommodityDAO extends FocusDaoSupport {
 		}, holder);
 		return holder.getKey().longValue();
 	}
+	
+	/**
+	 * 当新加商品的instance_id在数据库中已经存在时，需要添加CommodityAlias记录。
+	 * @param commodityId
+	 * @param alias
+	 */
+	public void insertAlias(long commodityId, String alias) {
+		String sql = "insert into commodity_alias(alias,commodity_id,datetime) values(?,?,?)";
+		getJdbcTemplate().update(sql, alias,commodityId,getCurrentDate());
+	}
 }
