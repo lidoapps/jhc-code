@@ -14,6 +14,10 @@ public class DAOFactory {
 		return (ContextDAO) createDAO(ContextDAO.class);
 	}
 	
+	public static CommodityDAO getCommodityDAO() {
+		return (CommodityDAO) createDAO(CommodityDAO.class);
+	}
+	
 	private static Object createDAO(Class classObj) {
 		Object obj;
 		try {

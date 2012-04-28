@@ -25,7 +25,7 @@ public class FocusWriter {
 	 * @param itemPage
 	 * @param commodityId
 	 */
-	private static void writeGathering(ItemPage itemPage, long commodityId) {
+	protected static void writeGathering(ItemPage itemPage, long commodityId) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -36,15 +36,15 @@ public class FocusWriter {
 	 * @return
 	 * 		该商品的ID。
 	 */
-	private static long checkCommodity(Commodity commodity) {
+	protected static long checkCommodity(Commodity commodity) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	private static Commodity createCommodity(ItemPage itemPage) {
+	protected static Commodity createCommodity(ItemPage itemPage) {
 		Commodity commodity = new Commodity();
 		commodity.setName(itemPage.getName());
-		//TODO unique,instance_id
+		commodity.setInstanceId(itemPage.getInstanceId());
 		return commodity;
 	}
 
@@ -54,7 +54,7 @@ public class FocusWriter {
 	 * @return
 	 * 		contex记录的ID。
 	 */
-	private static long getShopContextId(long shopId) {
+	protected static long getShopContextId(long shopId) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -65,7 +65,7 @@ public class FocusWriter {
 	 * @return
 	 * 		shop在表中的ID。
 	 */
-	private static long checkShop(Shop shop) {
+	protected static long checkShop(Shop shop) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
