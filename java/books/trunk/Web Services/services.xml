@@ -1,0 +1,12 @@
+<beans xmlns="http://xfire.codehaus.org/config/1.0">
+	<service>
+		<name>CreditCard</name>
+		<namespace>www.jbaptech.com.cn/CreditCard</namespace>  
+		<serviceClass>
+			cn.jhc.ch09.IProcessCredit
+		</serviceClass>
+		<implementationClass>
+			cn.jhc.ch09.ProcessCreditCard
+		</implementationClass>
+	</service>
+</beans>
