@@ -4,23 +4,12 @@ import java.util.Date;
 
 public class Gathering {
 
+	
 	private long id;
 	private long commodityId;
-	private long contextId;
-	//市场价
-	private float marketPrice;
-	//最高价
-	private float maxPrice;
-	//促销价
-	private float promotionPrice;
-	//促销描述
-	private String promotionNote;
-	//销量描述
-	private String saledDesc;
-	//评价
-	private String assessment;
-	//url
-	private String url;
+	
+	private ItemData itemData = new ItemData();
+	
 	private Date dateTime;
 	
 	public long getId() {
@@ -36,58 +25,64 @@ public class Gathering {
 		this.commodityId = commodityId;
 	}
 	public long getContextId() {
-		return contextId;
+		return itemData.getContextId();
 	}
 	public void setContextId(long contextId) {
-		this.contextId = contextId;
+		this.itemData.setContextId(contextId);
 	}
 	public float getMarketPrice() {
-		return marketPrice;
+		return itemData.getMarketPrice();
 	}
 	public void setMarketPrice(float marketPrice) {
-		this.marketPrice = marketPrice;
+		this.itemData.setMarketPrice(marketPrice);
 	}
 	public float getMaxPrice() {
-		return maxPrice;
+		return itemData.getMaxPrice();
 	}
 	public void setMaxPrice(float maxPrice) {
-		this.maxPrice = maxPrice;
+		this.itemData.setMaxPrice(maxPrice);
 	}
 	public float getPromotionPrice() {
-		return promotionPrice;
+		return itemData.getPromotionPrice();
 	}
 	public void setPromotionPrice(float promotionPrice) {
-		this.promotionPrice = promotionPrice;
+		this.itemData.setPromotionPrice(promotionPrice);
 	}
 	public String getPromotionNote() {
-		return promotionNote;
+		return itemData.getPromotionNote();
 	}
 	public void setPromotionNote(String promotionNote) {
-		this.promotionNote = promotionNote;
+		this.itemData.setPromotionNote(promotionNote);
 	}
 	public String getSaledDesc() {
-		return saledDesc;
+		return itemData.getSaledDesc();
 	}
 	public void setSaledDesc(String saledDesc) {
-		this.saledDesc = saledDesc;
+		this.itemData.setSaledDesc(saledDesc);
 	}
 	public String getAssessment() {
-		return assessment;
+		return itemData.getAssessment();
 	}
 	public void setAssessment(String assessment) {
-		this.assessment = assessment;
+		this.itemData.setAssessment(assessment);
 	}
 	public String getUrl() {
-		return url;
+		return itemData.getUrl();
 	}
 	public void setUrl(String url) {
-		this.url = url;
+		this.itemData.setUrl(url);
 	}
 	public Date getDateTime() {
 		return dateTime;
 	}
 	public void setDateTime(Date dateTime) {
 		this.dateTime = dateTime;
+	}
+	public ItemData getItemData() {
+		return itemData;
+	}
+	public void setItemData(ItemData itemData) {
+		this.itemData = itemData;
 	}
 	
 }

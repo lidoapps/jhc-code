@@ -1,10 +1,14 @@
 package cn.jhc.heritrix.db;
 
+import java.util.Map;
+
 import cn.jhc.heritrix.bean.Commodity;
+import cn.jhc.heritrix.bean.Gathering;
 import cn.jhc.heritrix.bean.ItemPage;
 import cn.jhc.heritrix.bean.Shop;
 import cn.jhc.heritrix.db.dao.CommodityDAO;
 import cn.jhc.heritrix.db.dao.DAOFactory;
+import cn.jhc.heritrix.db.dao.GatheringDAO;
 
 public class FocusWriter {
 
@@ -28,8 +32,13 @@ public class FocusWriter {
 	 * @param commodityId
 	 */
 	protected static void writeGathering(ItemPage itemPage, long commodityId) {
-		// TODO Auto-generated method stub
-		
+		Gathering gathering = new Gathering();
+		gathering.setItemData(itemPage.getItemData());
+		gathering.setCommodityId(commodityId);
+		GatheringDAO dao = DAOFactory.getGatheringDAO();
+		long id = dao.insert(gathering);
+		Map<String,String> attributes = itemPage.getAttributes();
+		dao.insertMeta(id, attributes);
 	}
 
 	/**

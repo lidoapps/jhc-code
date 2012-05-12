@@ -18,6 +18,10 @@ public class DAOFactory {
 		return (CommodityDAO) createDAO(CommodityDAO.class);
 	}
 	
+	public static GatheringDAO getGatheringDAO() {
+		return (GatheringDAO) createDAO(GatheringDAO.class);
+	}
+	
 	private static Object createDAO(Class classObj) {
 		Object obj;
 		try {
