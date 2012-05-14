@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Map;
 
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
+import org.springframework.jdbc.core.ParameterizedPreparedStatementSetter;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -27,8 +29,8 @@ public class GatheringDAO extends FocusDaoSupport {
 			public PreparedStatement createPreparedStatement(Connection con)
 					throws SQLException {
 				String sql = "insert into gathering(commodity_id,context_id,market_price,max_price,"
-						+ "promotion_price,promotion_note,saled_desc,url,datetime) "
-						+ "values(?,?,?,?,?,?,?,?,?)";
+						+ "promotion_price,promotion_note,saled_desc,assessment,url,datetime) "
+						+ "values(?,?,?,?,?,?,?,?,?,?)";
 				PreparedStatement stat = con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 				stat.setLong(1, gathering.getCommodityId());
 				stat.setLong(2, gathering.getContextId());
@@ -37,8 +39,9 @@ public class GatheringDAO extends FocusDaoSupport {
 				stat.setFloat(5, gathering.getPromotionPrice());
 				stat.setString(6, gathering.getPromotionNote());
 				stat.setString(7, gathering.getSaledDesc());
-				stat.setString(8, gathering.getUrl());
-				stat.setString(9, getCurrentDate());
+				stat.setString(8, gathering.getAssessment());
+				stat.setString(9, gathering.getUrl());
+				stat.setString(10, getCurrentDate());
 				return stat;
 			}
 		}, holder);
@@ -50,9 +53,22 @@ public class GatheringDAO extends FocusDaoSupport {
 	 * @param id
 	 * @param attributes
 	 */
-	public void insertMeta(long id, Map<String, String> attributes) {
-		// TODO Auto-generated method stub
-		
+	public void insertMeta(final long id, Map<String, String> attributes) {
+		String sql = "insert into gather_meta(gather_id,meta_key,meta_value) values(?,?,?)";
+		final Object[] entries = attributes.entrySet().toArray();
+		getJdbcTemplate().batchUpdate(sql, new BatchPreparedStatementSetter() {
+			
+			public void setValues(PreparedStatement ps, int i) throws SQLException {
+				Map.Entry<String, String> entry = (Map.Entry<String, String>)entries[i];
+				ps.setLong(1, id);
+				ps.setString(2, entry.getKey());
+				ps.setString(3, entry.getValue());
+			}
+			
+			public int getBatchSize() {
+				return entries.length;
+			}
+		});
 	}
 
 }

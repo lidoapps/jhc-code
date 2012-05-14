@@ -78,7 +78,7 @@
   				<dataTypeFactoryName>org.dbunit.ext.mysql.MySqlDataTypeFactory</dataTypeFactoryName>
   				<metadataHandlerName>org.dbunit.ext.mysql.MySqlMetadataHandler</metadataHandlerName>
   				<format>flat</format>
-  				<dest>${project.build.testResources[0].directory}/dataset/commodity_dataset.xml</dest>
+  				<dest>${project.build.testResources[0].directory}/dataset/gathermeta_dataset.xml</dest>
   			
   				<queries>
   				<!-- 
@@ -91,12 +91,16 @@
   						<name>context_select</name>
   						<sql>select path,instance_id,context_level from context</sql>
   					</query>
-  				-->
+
   					<query>
   						<name>commodity_select</name>
   						<sql>select name,instance_id from commodity</sql>
   					</query>
-  					
+  				-->
+  					<query>
+  						<name>gather_meta</name>
+  						<sql>select gather_id,meta_key,meta_value from gather_meta order by 1,2</sql>
+  					</query>
   				</queries>
   				
   			</configuration>

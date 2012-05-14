@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <gathering_select commodity_id="1" context_id="1" market_price="4799"
+  	max_price="7899" promotion_price="0" promotion_note="NOT FOUND"
+  	saled_desc="NOT FOUND" assessment="NOT FOUND" 
+  	url="http://detail.tmall.com/item.htm?id=15179732651"></gathering_select>
+  <gathering_select commodity_id="2" context_id="2" market_price="50"
+  	max_price="60" promotion_price="40" promotion_note="promotion"
+  	saled_desc="500件" assessment="good" 
+  	url="http://none.item/"></gathering_select>
+</dataset>
