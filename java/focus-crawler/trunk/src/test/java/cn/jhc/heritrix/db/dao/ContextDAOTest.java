@@ -40,4 +40,16 @@ public class ContextDAOTest extends FocusDBTestCase {
 		long id1 = dao.findSiteContextID("http://www.taobao.com/");
 		assertEquals(3, id1);
 	}
+	
+	@Test
+	public void testFindContext() {
+		ContextDAO dao = DAOFactory.getContextDAO();
+		Context ctx = dao.findContext(4, 10);
+		assertEquals(4, ctx.getId());
+		assertEquals("4", ctx.getPath());
+		assertEquals(4, ctx.getInstanceID());
+		assertEquals(10, ctx.getContextLevel());
+		ctx = dao.findContext(5, 30);
+		assertNull(ctx);
+	}
 }

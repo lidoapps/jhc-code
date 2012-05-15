@@ -25,6 +25,14 @@ public class FocusDBTestCase extends DBTestCase {
 		System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_PASSWORD, "hpass");
 	}
 	@Override
+	protected void setUp() throws Exception {
+		super.setUp();
+	}
+	@Override
+	protected void tearDown() throws Exception {
+		super.tearDown();
+	}
+	@Override
 	protected IDataSet getDataSet() throws Exception {
 		
 		return new FlatXmlDataSetBuilder().build(FocusDBTestCase.class.getResourceAsStream("/dataset/initial_dataset.xml"));

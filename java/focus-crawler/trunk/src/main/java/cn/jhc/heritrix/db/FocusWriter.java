@@ -3,6 +3,7 @@ package cn.jhc.heritrix.db;
 import java.util.Map;
 
 import cn.jhc.heritrix.bean.Commodity;
+import cn.jhc.heritrix.bean.Context;
 import cn.jhc.heritrix.bean.Gathering;
 import cn.jhc.heritrix.bean.ItemPage;
 import cn.jhc.heritrix.bean.Shop;
@@ -79,14 +80,21 @@ public class FocusWriter {
 	 * 根据shopId查询相应的ContextID，如果该Context记录还没有，那就添加该Context记录。
 	 * @param shopId
 	 * @return
-	 * 		contex记录的ID。
+	 * 		context记录的ID。
 	 */
 	protected static long getShopContextId(long shopId) {
 		ContextDAO dao = DAOFactory.getContextDAO();
-		long cid = dao.findContextID(shopId, Constants.SHOP_LEVEL);
-		if(cid>0) return cid;
-		
-		return 0;
+		Context shopContext = dao.findContext(shopId, Constants.SHOP_LEVEL);
+		//如果能够找到相应的shopContext，则直接返回对应的id。
+		if( shopContext != null ) return shopContext.getId();
+		Shop shop = DAOFactory.getShopDAO().findShop(shopId);
+		Context siteContext = dao.findContext(shop.getSiteId(), Constants.SITE_LEVEL);
+		String path = siteContext.getPath() + "/" + shopContext.getId();
+		shopContext = new Context();
+		shopContext.setPath(path);
+		shopContext.setInstanceID(shopId);
+		shopContext.setContextLevel(Constants.SHOP_LEVEL);
+		return dao.insert(shopContext);
 	}
 
 	/**

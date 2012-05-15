@@ -32,4 +32,6 @@
   <site id="2" name="&#24403;&#24403;&#32593;" fullname="&#24403;&#24403;&#32593;" url="http://www.dangdang.com/" datetime="2012-04-28 16:07:35.0"/>
   <site id="3" name="&#28120;&#23453;&#32593;" fullname="&#28120;&#23453;&#32593;" url="http://www.taobao.com/" datetime="2012-04-28 16:07:35.0"/>
   <site id="4" name="&#22826;&#24179;&#27915;&#30005;&#33041;&#32593;" fullname="&#22826;&#24179;&#27915;&#30005;&#33041;&#32593;" url="http://www.pconline.com.cn/" datetime="2012-04-28 16:07:35.0"/>
+  <commodity_alias/>
+  <shop id="1" name="阿里巴巴" site_id="2" url="http://alibaba.com/" assessment="很好" amount="200" createdate="2012-01-01" datetime="2012-04-28 16:07:35.0"/>
 </dataset>

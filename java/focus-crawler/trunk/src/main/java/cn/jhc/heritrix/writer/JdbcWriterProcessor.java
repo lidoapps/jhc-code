@@ -14,6 +14,7 @@ import org.jsoup.nodes.Document;
 
 import cn.jhc.heritrix.bean.ItemPage;
 import cn.jhc.heritrix.bean.Shop;
+import cn.jhc.heritrix.db.FocusWriter;
 import cn.jhc.heritrix.writer.extractor.Extractor;
 import cn.jhc.heritrix.writer.extractor.ShopExtractor;
 
@@ -74,7 +75,7 @@ public abstract class JdbcWriterProcessor extends Processor implements
 			//当前网页的URL直接在这里设定，并未传递到extractItem方法中去。
 			page.setUrl(uri);
 			Shop shop = extractor.extractShop();
-			
+			FocusWriter.writeAll(page, shop);
 	
 		} catch (IOException e) {
 			curi.addLocalizedError(this.getName(), e,

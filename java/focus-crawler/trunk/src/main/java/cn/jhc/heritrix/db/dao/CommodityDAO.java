@@ -2,11 +2,14 @@ package cn.jhc.heritrix.db.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
@@ -38,7 +41,20 @@ public class CommodityDAO extends FocusDaoSupport {
 		if(instanceId == null)
 			return null;
 		String sql = "select id,name,instance_id,datetime from commodity where instance_id=?";
-		return getJdbcTemplate().queryForObject(sql, new CommodityRowMapper(), instanceId);
+		ResultSetExtractor<Commodity> rse = new ResultSetExtractor<Commodity>() {
+
+			public Commodity extractData(ResultSet rs) throws SQLException,
+					DataAccessException {
+				if(!rs.next())
+					return null;
+				Commodity commodity = new Commodity();
+				commodity.setId(rs.getLong(1));
+				commodity.setName(rs.getString(2));
+				commodity.setDateTime(new java.util.Date(rs.getTimestamp(3).getTime()));
+				return commodity;
+			}
+		};
+		return getJdbcTemplate().query(sql, new Object[] { instanceId }, rse);
 	}
 	/**
 	 * 根据商品的主键查找商品。

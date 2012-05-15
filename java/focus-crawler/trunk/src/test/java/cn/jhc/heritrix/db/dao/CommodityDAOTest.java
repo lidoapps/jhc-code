@@ -9,12 +9,19 @@ import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.util.fileloader.DataFileLoader;
 import org.dbunit.util.fileloader.FlatXmlDataFileLoader;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import cn.jhc.heritrix.bean.Commodity;
 import cn.jhc.heritrix.db.FocusDBTestCase;
 
 public class CommodityDAOTest extends FocusDBTestCase {
+
+	@Before
+	protected void setUp() throws Exception{
+		super.setUp();
+	}
 
 	@Test
 	public void testFindByName() {
@@ -27,8 +34,10 @@ public class CommodityDAOTest extends FocusDBTestCase {
 
 	@Test
 	public void testFindByInstanceId() {
-		Commodity c = DAOFactory.getCommodityDAO().findByInstanceId(null);
-		assertNull(c);
+		Commodity c1 = DAOFactory.getCommodityDAO().findByInstanceId(null);
+		assertNull(c1);
+		Commodity c2 = DAOFactory.getCommodityDAO().findByInstanceId("notexistid");
+		assertNull(c2);
 	}
 
 	@Test
