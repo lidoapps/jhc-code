@@ -36,6 +36,19 @@ public class ShopDAOTest extends FocusDBTestCase {
 	}
 
 	@Test
+	public void testFindShop() {
+		Shop shop1 = dao.findShop(10);
+		assertNull(shop1);
+		Shop shop2 = dao.findShop(1);
+		assertEquals("阿里巴巴", shop2.getName());
+		assertEquals(2, shop2.getSiteId());
+		assertEquals("http://alibaba.com/", shop2.getUrl());
+		assertEquals("很好", shop2.getAssessment());
+		assertEquals(200, shop2.getAmount());
+		assertEquals("2012-01-01", new SimpleDateFormat("yyyy-MM-dd").format(shop2.getCreateDate()));
+	}
+
+	@Test
 	public void testInsert() throws DataSetException, SQLException, Exception {
 		Shop shop = new Shop("阿里妈妈", "http://alimama.com/", 3, "不好",
 				300, DateFormat.getDateInstance().parse("2012-01-01"));
@@ -45,11 +58,6 @@ public class ShopDAOTest extends FocusDBTestCase {
 		ITable expectedTable = new FlatXmlDataFileLoader().load("/dataset/shop_dataset.xml")
 				.getTable("shop_select");
 		Assertion.assertEquals(expectedTable, actualTable);
-	}
-
-	@Test
-	public void testFindShop() {
-		fail("Not yet implemented");
 	}
 
 }
