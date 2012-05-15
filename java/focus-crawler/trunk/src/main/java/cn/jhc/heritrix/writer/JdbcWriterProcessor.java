@@ -73,7 +73,6 @@ public abstract class JdbcWriterProcessor extends Processor implements
 			ItemPage page = extractor.extractItem();
 			//当前网页的URL直接在这里设定，并未传递到extractItem方法中去。
 			page.setUrl(uri);
-			page.setContextId(getDefaultContextId());
 			Shop shop = extractor.extractShop();
 			
 	
@@ -91,14 +90,7 @@ public abstract class JdbcWriterProcessor extends Processor implements
 	 * @return 如果符合抽取条件，则返回true，否则返回false。
 	 */
 	public abstract boolean validateUri(String uri);
-	/**
-	 * 每个子类都必须实现此方法，返回在该网站下的商品的默认的Context ID。
-	 * 在Heritirx中选择不同的JdbcWriterProcessor，相应的默认Context ID也就随之确定。
-	 * @return
-	 * 		该网站商品的默认Context ID。
-	 */
-	public abstract long getDefaultContextId();
-
+	
 	/**
 	 * 每个子类都需实现此方法，提供具体的抽取商品信息的Extractor。
 	 * @return

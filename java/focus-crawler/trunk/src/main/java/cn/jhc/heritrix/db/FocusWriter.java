@@ -7,8 +7,11 @@ import cn.jhc.heritrix.bean.Gathering;
 import cn.jhc.heritrix.bean.ItemPage;
 import cn.jhc.heritrix.bean.Shop;
 import cn.jhc.heritrix.db.dao.CommodityDAO;
+import cn.jhc.heritrix.db.dao.Constants;
+import cn.jhc.heritrix.db.dao.ContextDAO;
 import cn.jhc.heritrix.db.dao.DAOFactory;
 import cn.jhc.heritrix.db.dao.GatheringDAO;
+import cn.jhc.heritrix.db.dao.ShopDAO;
 
 public class FocusWriter {
 
@@ -79,7 +82,10 @@ public class FocusWriter {
 	 * 		contex记录的ID。
 	 */
 	protected static long getShopContextId(long shopId) {
-		// TODO Auto-generated method stub
+		ContextDAO dao = DAOFactory.getContextDAO();
+		long cid = dao.findContextID(shopId, Constants.SHOP_LEVEL);
+		if(cid>0) return cid;
+		
 		return 0;
 	}
 
@@ -90,8 +96,11 @@ public class FocusWriter {
 	 * 		shop在表中的ID。
 	 */
 	protected static long checkShop(Shop shop) {
-		// TODO Auto-generated method stub
-		return 0;
+		ShopDAO dao = DAOFactory.getShopDAO();
+		long shopid = dao.findByUrl(shop.getUrl());
+		if(shopid==0)
+			shopid = dao.insert(shop);
+		return shopid;
 	}
 
 }

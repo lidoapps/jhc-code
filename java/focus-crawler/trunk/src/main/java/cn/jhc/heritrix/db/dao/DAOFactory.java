@@ -22,6 +22,10 @@ public class DAOFactory {
 		return (GatheringDAO) createDAO(GatheringDAO.class);
 	}
 	
+	public static ShopDAO getShopDAO() {
+		return (ShopDAO) createDAO(ShopDAO.class);
+	}
+	
 	private static Object createDAO(Class classObj) {
 		Object obj;
 		try {

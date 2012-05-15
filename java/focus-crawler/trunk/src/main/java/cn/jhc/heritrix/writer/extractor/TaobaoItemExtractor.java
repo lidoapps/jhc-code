@@ -7,12 +7,20 @@ import java.util.Map;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
+import cn.jhc.heritrix.db.dao.DAOFactory;
 /**
  * 淘宝网商品信息网页的促销信息、顾客评价等信息在爬取时还未生成，页面使用的是Ajax请求。这些数据的获取留待将来解决。
  * @author luyanfei
  *
  */
 public class TaobaoItemExtractor implements ItemExtractor {
+	
+	private final static long DEFAULT_CONTEXT_ID;
+	
+	static {
+		DEFAULT_CONTEXT_ID = DAOFactory.getContextDAO().findSiteContextID(SiteURL.TAOBAO_URL);
+	}
 	
 	private Document doc;
 
@@ -79,5 +87,9 @@ public class TaobaoItemExtractor implements ItemExtractor {
 			map.put(s[0].replaceAll(" ", ""), s[1].trim());
 		}
 		return map;
+	}
+
+	public long extractContextId() {
+		return DEFAULT_CONTEXT_ID;
 	}
 }

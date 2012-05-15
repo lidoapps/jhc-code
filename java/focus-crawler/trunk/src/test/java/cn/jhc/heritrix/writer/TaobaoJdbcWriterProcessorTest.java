@@ -27,9 +27,4 @@ public class TaobaoJdbcWriterProcessorTest {
 		assertFalse(processor.validateUri(uri2));
 	}
 
-	@Test
-	public void testGetDefaultContextId() {
-		assertEquals(3, processor.getDefaultContextId());
-	}
-
 }

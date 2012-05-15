@@ -9,6 +9,8 @@ import java.util.regex.Pattern;
 
 import org.jsoup.nodes.Document;
 
+import cn.jhc.heritrix.db.dao.DAOFactory;
+
 public class TaobaoShopExtractor implements ShopExtractor {
 
 	private Document doc;
@@ -16,6 +18,11 @@ public class TaobaoShopExtractor implements ShopExtractor {
 	private static final Pattern GIF_PATTERN = Pattern.compile("[a-z0-9_]+\\.gif$");
 	private static final SimpleDateFormat DATEFORMAT = new SimpleDateFormat("yyyy-MM-dd");
 	private static final Logger logger = Logger.getLogger(TaobaoShopExtractor.class.getName());
+	private static final int SITEID;
+	
+	static {
+		SITEID = DAOFactory.getSiteDAO().findSite(SiteURL.TAOBAO_URL).getId();
+	}
 	
 	public TaobaoShopExtractor(Document doc) {
 		this.doc = doc;
@@ -61,6 +68,10 @@ public class TaobaoShopExtractor implements ShopExtractor {
 			date = new Date(0);
 		}
 		return date;
+	}
+
+	public int extractSiteId() {
+		return SITEID;
 	}
 
 }

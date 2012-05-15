@@ -10,7 +10,7 @@ public interface ItemExtractor {
 	 * 		商品名称。
 	 */
 	public String extractCommodityName();
-
+	public long extractContextId();
 	public float extractMarketPrice();
 	public float extractMaxPrice();
 	public float extractPromotionPrice();

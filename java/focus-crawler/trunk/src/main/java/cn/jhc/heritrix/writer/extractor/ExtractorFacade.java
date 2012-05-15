@@ -16,6 +16,7 @@ public class ExtractorFacade implements Extractor {
 
 	public ItemPage extractItem() {
 		ItemPage itemPage = new ItemPage();
+		itemPage.setContextId(itemExtractor.extractContextId());
 		itemPage.setName(itemExtractor.extractCommodityName());
 		itemPage.setMarketPrice(itemExtractor.extractMarketPrice());
 		itemPage.setMarketPrice(itemExtractor.extractMaxPrice());
@@ -32,6 +33,7 @@ public class ExtractorFacade implements Extractor {
 		Shop shop = new Shop();
 		shop.setName(shopExtractor.extractName());
 		shop.setUrl(shopExtractor.extractUrl());
+		shop.setSiteId(shopExtractor.extractSiteId());
 		shop.setAmount(shopExtractor.extractAmount());
 		shop.setAssessment(shopExtractor.extractAssessment());
 		shop.setCreateDate(shopExtractor.extractCreateDate());

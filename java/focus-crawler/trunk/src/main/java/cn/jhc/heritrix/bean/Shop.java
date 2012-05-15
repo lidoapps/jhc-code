@@ -5,6 +5,7 @@ import java.util.Date;
 public class Shop {
 	private String name;
 	private String url;
+	private int siteId;
 	private String assessment;
 	private int amount;
 	private Date createDate;
@@ -50,6 +51,14 @@ public class Shop {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+
+	public int getSiteId() {
+		return siteId;
+	}
+
+	public void setSiteId(int siteId) {
+		this.siteId = siteId;
 	}
 
 }
