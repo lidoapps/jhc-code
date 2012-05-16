@@ -31,11 +31,6 @@ public abstract class JdbcWriterProcessor extends Processor implements
 	}
 
 	@Override
-	protected void initialTasks() {
-
-	}
-
-	@Override
 	protected void innerProcess(CrawlURI curi) throws InterruptedException {
 		if (!curi.isSuccess())
 			return;
@@ -48,7 +43,7 @@ public abstract class JdbcWriterProcessor extends Processor implements
 		}
 
 		String uri = uuri.toString();
-		logger.finest("UURI.toString() output is: " + uri);
+		logger.fine("UURI.toString() output is: " + uri);
 		// 用子类的方法再次确认URI符合提取要求。
 		if (!validateUri(uuri.toString())) {
 			logger.fine("validateUri returns false. This should not be happen. Please check Heritrix configuration. "
@@ -57,24 +52,30 @@ public abstract class JdbcWriterProcessor extends Processor implements
 		}
 
 		// Only text/html file will be parsed and store in database
-		String contenttype = curi.getContentType();
-		if (null == contenttype || !"text/html".equalsIgnoreCase(contenttype)) {
-			return;
-		}
+//		String contenttype = curi.getContentType();
+//		if (null == contenttype || !"text/html".equalsIgnoreCase(contenttype)) {
+//			logger.fine("contenttype is not text/html.");
+//			return;
+//		}
 
 		RecordingInputStream recis = curi.getHttpRecorder().getRecordedInput();
 		if (0L == recis.getResponseContentLength()) {
+			logger.fine("content length is zero size.");
 			return;
 		}
 
 		try {
+			logger.fine("begin to get inputstream.");
 			InputStream input = (InputStream) recis.getContentReplayInputStream();
+			logger.fine("begin Jsoup parse.");
 			Document doc = Jsoup.parse(input, null, curi.getBaseURI().toString());
+			logger.fine("begin create extractor");
 			Extractor extractor = createExtractor(doc);
 			ItemPage page = extractor.extractItem();
 			//当前网页的URL直接在这里设定，并未传递到extractItem方法中去。
 			page.setUrl(uri);
 			Shop shop = extractor.extractShop();
+			logger.fine("begin FocusWriter.writeAll.");
 			FocusWriter.writeAll(page, shop);
 	
 		} catch (IOException e) {

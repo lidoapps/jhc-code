@@ -89,4 +89,14 @@ public class ContextDAO extends FocusDaoSupport {
 				+ " where c.context_level=10 and s.url=?";
 		return getJdbcTemplate().queryForLong(sql, url);
 	}
+
+	/**
+	 * 更新指定的context记录的path值
+	 * @param shopContextId
+	 * @param path
+	 */
+	public void updatePath(long shopContextId, String path) {
+		String sql = "update context set path=? where id=?";
+		getJdbcTemplate().update(sql, path, shopContextId);
+	}
 }

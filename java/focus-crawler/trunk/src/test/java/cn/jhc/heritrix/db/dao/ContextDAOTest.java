@@ -1,6 +1,9 @@
 package cn.jhc.heritrix.db.dao;
 
+import java.sql.SQLException;
+
 import org.dbunit.Assertion;
+import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.ITable;
 import org.dbunit.util.fileloader.DataFileLoader;
 import org.dbunit.util.fileloader.FlatXmlDataFileLoader;
@@ -51,5 +54,16 @@ public class ContextDAOTest extends FocusDBTestCase {
 		assertEquals(10, ctx.getContextLevel());
 		ctx = dao.findContext(5, 30);
 		assertNull(ctx);
+	}
+	
+	@Test
+	public void testUpdatePath() throws DataSetException, SQLException, Exception {
+		ContextDAO dao = DAOFactory.getContextDAO();
+		dao.updatePath(1, "1/2/3");
+		ITable actualTable = getConnection().createQueryTable("ctx_path", 
+				"select path from context where id=1");
+		ITable expectedTable = new FlatXmlDataFileLoader().load("/dataset/context_dataset.xml")
+				.getTable("context_path");
+		Assertion.assertEquals(expectedTable, actualTable);
 	}
 }

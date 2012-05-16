@@ -52,7 +52,6 @@ public class FocusWriter {
 	 * 		该商品的ID。
 	 */
 	protected static long checkCommodity(Commodity commodity) {
-		long id = 0;
 		CommodityDAO dao = DAOFactory.getCommodityDAO();
 		if(null == commodity.getInstanceId()) {
 			return dao.insert(commodity);
@@ -89,12 +88,15 @@ public class FocusWriter {
 		if( shopContext != null ) return shopContext.getId();
 		Shop shop = DAOFactory.getShopDAO().findShop(shopId);
 		Context siteContext = dao.findContext(shop.getSiteId(), Constants.SITE_LEVEL);
-		String path = siteContext.getPath() + "/" + shopContext.getId();
+
 		shopContext = new Context();
-		shopContext.setPath(path);
+		shopContext.setPath("NOPATH");
 		shopContext.setInstanceID(shopId);
 		shopContext.setContextLevel(Constants.SHOP_LEVEL);
-		return dao.insert(shopContext);
+		long shopContextId = dao.insert(shopContext);
+		String path = siteContext.getPath() + "/" + shopContextId;
+		dao.updatePath(shopContextId, path);
+		return shopContextId;
 	}
 
 	/**

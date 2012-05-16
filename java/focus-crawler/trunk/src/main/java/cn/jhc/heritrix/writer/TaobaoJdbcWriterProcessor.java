@@ -4,10 +4,8 @@ import java.util.regex.Pattern;
 
 import org.jsoup.nodes.Document;
 
-import cn.jhc.heritrix.db.dao.DAOFactory;
 import cn.jhc.heritrix.writer.extractor.Extractor;
 import cn.jhc.heritrix.writer.extractor.ExtractorFacade;
-import cn.jhc.heritrix.writer.extractor.ShopExtractor;
 import cn.jhc.heritrix.writer.extractor.TaobaoItemExtractor;
 import cn.jhc.heritrix.writer.extractor.TaobaoShopExtractor;
 

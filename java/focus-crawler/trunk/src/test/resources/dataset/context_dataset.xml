@@ -5,4 +5,5 @@
   <context_select path="3" instance_id="3" context_level="10"/>
   <context_select path="4" instance_id="4" context_level="10"/>
   <context_select path="5" instance_id="5" context_level="10"/>
+  <context_path path="1/2/3"/>
 </dataset>
