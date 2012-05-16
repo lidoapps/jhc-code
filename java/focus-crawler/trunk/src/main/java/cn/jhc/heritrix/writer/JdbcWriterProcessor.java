@@ -65,17 +65,13 @@ public abstract class JdbcWriterProcessor extends Processor implements
 		}
 
 		try {
-			logger.fine("begin to get inputstream.");
 			InputStream input = (InputStream) recis.getContentReplayInputStream();
-			logger.fine("begin Jsoup parse.");
 			Document doc = Jsoup.parse(input, null, curi.getBaseURI().toString());
-			logger.fine("begin create extractor");
 			Extractor extractor = createExtractor(doc);
 			ItemPage page = extractor.extractItem();
 			//当前网页的URL直接在这里设定，并未传递到extractItem方法中去。
 			page.setUrl(uri);
 			Shop shop = extractor.extractShop();
-			logger.fine("begin FocusWriter.writeAll.");
 			FocusWriter.writeAll(page, shop);
 	
 		} catch (IOException e) {
