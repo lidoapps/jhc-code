@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <shop_select name="阿里巴巴" site_id="2" url="http://alibaba.com/" assessment="很好" amount="200" createdate="2012-01-01" />
+  <shop_select name="阿里妈妈" site_id="3" url="http://alimama.com/" assessment="不好" amount="300" createdate="2012-01-01" />
+</dataset>

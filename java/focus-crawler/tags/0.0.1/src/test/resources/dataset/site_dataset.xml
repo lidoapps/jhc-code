@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <site_select name="&#22825;&#29483;&#32593;" fullname="&#22825;&#29483;&#32593;" url="http://www.tmall.com/"/>
+  <site_select name="&#24403;&#24403;&#32593;" fullname="&#24403;&#24403;&#32593;" url="http://www.dangdang.com/"/>
+  <site_select name="&#28120;&#23453;&#32593;" fullname="&#28120;&#23453;&#32593;" url="http://www.taobao.com/"/>
+  <site_select name="&#22826;&#24179;&#27915;&#30005;&#33041;&#32593;" fullname="&#22826;&#24179;&#27915;&#30005;&#33041;&#32593;" url="http://www.pconline.com.cn/"/>
+  <site_select name="&#20114;&#21160;&#20986;&#29256;&#32593;" fullname="&#20114;&#21160;&#20986;&#29256;&#32593;" url="http://www.china-pub.com/"/>
+</dataset>
