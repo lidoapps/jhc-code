@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>cn.jhc.heritrix</groupId>
   <artifactId>focus-crawler</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <name>Focus Crawler</name>
   <description>Extract information in the page, and write to MySQL database.</description>
   <properties>
