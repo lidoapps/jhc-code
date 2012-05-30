@@ -29,7 +29,9 @@ public class PriorityBlockingQueueTest {
 		assertEquals("01shop00003", queue.poll(1000, TimeUnit.MILLISECONDS));
 		queue.put("02abcshop");
 		assertEquals("02abcshop", queue.poll(1000, TimeUnit.MILLISECONDS));
+		queue.put("tq.taobao.com");
 		assertEquals("13xxxx", queue.poll(1000, TimeUnit.MILLISECONDS));
 		assertEquals("25minah", queue.poll(1000, TimeUnit.MILLISECONDS));
+		assertEquals("tq.taobao.com", queue.poll(1000, TimeUnit.MILLISECONDS));
 	}
 }
