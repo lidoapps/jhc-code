@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>cn.jhc</groupId>
+  <artifactId>webflowcart</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <name>Spring WebFlow购物车</name>
+  <description>用Spring WebFlow实现购物车，教程网址为：http://www.ibm.com/developerworks/cn/education/java/j-spring-webflow/index.html。部分功能还不完整。</description>
+
+  <dependencies>
+  	<dependency>
+  		<groupId>javax.servlet</groupId>
+  		<artifactId>jstl</artifactId>
+  		<version>1.2</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.springframework.webflow</groupId>
+  		<artifactId>spring-webflow</artifactId>
+  		<version>2.3.0.RELEASE</version>
+  	</dependency>
+  </dependencies>
+  <build>
+  	<sourceDirectory>${basedir}/src/</sourceDirectory>
+  	<plugins>
+  		<plugin>
+  			<groupId>org.apache.maven.plugins</groupId>
+  			<artifactId>maven-war-plugin</artifactId>
+  			<version>2.2</version>
+  			<configuration>
+  				<warSourceDirectory>${basedir}/WebRoot/</warSourceDirectory>
+  			</configuration>
+  		</plugin>
+  		<plugin>
+  			<groupId>org.apache.maven.plugins</groupId>
+  			<artifactId>maven-surefire-plugin</artifactId>
+  			<version>2.12</version>
+  			<configuration>
+  				<skipTests>true</skipTests>
+  			</configuration>
+  		</plugin>
+  	</plugins>
+  </build>
+</project>
