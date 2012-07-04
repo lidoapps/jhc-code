@@ -1,4 +1,4 @@
-package com.cwq.emp.dao;
+package cn.jhc.dao;
 
 import java.sql.Connection;
 
@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import com.cwq.emp.dto.EmpDTO;
-import com.cwq.emp.dto.Page;
+import cn.jhc.dto.EmpDTO;
+import cn.jhc.dto.Page;
 
 
 public class EmpDao {

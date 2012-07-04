@@ -1,4 +1,4 @@
-package com.cwq.emp.dto;
+package cn.jhc.dto;
 
 import java.util.Date;
 

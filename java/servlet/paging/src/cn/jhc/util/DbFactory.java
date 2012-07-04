@@ -1,4 +1,4 @@
-package com.cwq.emp.util;
+package cn.jhc.util;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -8,7 +8,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import com.cwq.emp.util.Constants;
+import cn.jhc.util.Constants;
 
 public class DbFactory {
 public static Connection getConnection(){		

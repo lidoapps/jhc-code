@@ -1,4 +1,4 @@
-package com.cwq.emp.servlet;
+package cn.jhc.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,10 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.cwq.emp.dto.EmpDTO;
-import com.cwq.emp.dto.Page;
-import com.cwq.emp.util.*;
-import com.cwq.emp.dao.*;
+import cn.jhc.dao.*;
+import cn.jhc.dto.EmpDTO;
+import cn.jhc.dto.Page;
+import cn.jhc.util.*;
 
 @WebServlet(name="empservlet",urlPatterns= {"/EmpPaging"},initParams={@WebInitParam(name="pagesize",value="5")})
 public class EmpPagingServlet extends HttpServlet {
