@@ -9,7 +9,7 @@
 </head>
 <body>
 	<c:forEach items="${requestScope.users}" var="u">
-		用户名：${u.name},密码：${u.password}
+		用户名：${u.name},密码：${u.password}<br/>
 	</c:forEach>
 </body>
 </html>
