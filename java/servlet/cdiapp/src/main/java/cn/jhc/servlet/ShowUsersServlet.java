@@ -27,6 +27,7 @@ public class ShowUsersServlet extends HttpServlet {
 		request.setAttribute("users", users);
 		request.getRequestDispatcher("/showusers.jsp").forward(request,
 				response);
+		request.getSession().invalidate();
 	}
 
 }
