@@ -18,16 +18,15 @@ public class ShowEmployeesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private EmployeeManager userManager;
+	private EmployeeManager empManager;
 	
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		List<Employee> emps = userManager.getEmployees();
+		List<Employee> emps = empManager.getEmployees();
 
 		request.setAttribute("emps", emps);
 		request.getRequestDispatcher("/showemps.jsp").forward(request,
 				response);
-		request.getSession().invalidate();
 	}
 
 }
