@@ -9,7 +9,7 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 
 import cn.jhc.annotations.Transactional;
-import cn.jhc.bean.User;
+import cn.jhc.bean.Employee;
 
 @SessionScoped
 @Named
@@ -21,8 +21,8 @@ public class UserManager implements Serializable, Manager {
 	private EntityManager entityManager;
 
 	@Transactional
-	public List<User> getUsers() {
-		return getEntityManager().createQuery("select u from User u", User.class)
+	public List<Employee> getUsers() {
+		return getEntityManager().createQuery("select u from Employee u", Employee.class)
 				.getResultList();
 	}
 

@@ -10,12 +10,11 @@ import cn.jhc.resource.Resources;
 public class CloseEntityManagerFactoryListener implements
 		ServletContextListener {
 
-	public void contextDestroyed(ServletContextEvent arg0) {
+	public void contextDestroyed(ServletContextEvent e) {
 		Resources.closeFactory();
 	}
 
-	public void contextInitialized(ServletContextEvent arg0) {
-		// TODO Auto-generated method stub
+	public void contextInitialized(ServletContextEvent e) {
 
 	}
 

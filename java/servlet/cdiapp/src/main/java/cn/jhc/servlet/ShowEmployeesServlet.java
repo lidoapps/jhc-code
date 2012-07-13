@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cn.jhc.bean.User;
+import cn.jhc.bean.Employee;
 import cn.jhc.manager.UserManager;
 
-@WebServlet(name = "showuser", urlPatterns = { "/showUsers.do" })
-public class ShowUsersServlet extends HttpServlet {
+@WebServlet(name = "show employees", urlPatterns = { "/showEmps.do" })
+public class ShowEmployeesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
@@ -22,10 +22,10 @@ public class ShowUsersServlet extends HttpServlet {
 	
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		List<User> users = userManager.getUsers();
+		List<Employee> emps = userManager.getUsers();
 
-		request.setAttribute("users", users);
-		request.getRequestDispatcher("/showusers.jsp").forward(request,
+		request.setAttribute("emps", emps);
+		request.getRequestDispatcher("/showemps.jsp").forward(request,
 				response);
 		request.getSession().invalidate();
 	}
