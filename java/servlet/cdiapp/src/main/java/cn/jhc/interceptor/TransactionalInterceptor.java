@@ -3,7 +3,6 @@ package cn.jhc.interceptor;
 import java.io.Serializable;
 import java.util.logging.Logger;
 
-import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
@@ -18,8 +17,8 @@ public class TransactionalInterceptor implements Serializable {
 
 	private static final long serialVersionUID = -4005485633217198958L;
 
-	@Inject
-	private Logger logger;
+	private static final Logger logger 
+			= Logger.getLogger(TransactionalInterceptor.class.getName());
 
 	@AroundInvoke
 	public Object manageTransaction(InvocationContext ctx) throws Exception {

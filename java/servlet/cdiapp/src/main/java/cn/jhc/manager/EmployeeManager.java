@@ -13,7 +13,7 @@ import cn.jhc.bean.Employee;
 
 @SessionScoped
 @Named
-public class UserManager implements Serializable, Manager {
+public class EmployeeManager implements Serializable, Manager {
 
 	private static final long serialVersionUID = -3842248385950368874L;
 
@@ -21,7 +21,7 @@ public class UserManager implements Serializable, Manager {
 	private EntityManager entityManager;
 
 	@Transactional
-	public List<Employee> getUsers() {
+	public List<Employee> getEmployees() {
 		return getEntityManager().createQuery("select u from Employee u", Employee.class)
 				.getResultList();
 	}
