@@ -22,7 +22,10 @@ public class TransactionalInterceptor implements Serializable {
 
 	@AroundInvoke
 	public Object manageTransaction(InvocationContext ctx) throws Exception {
-		Manager manager = (Manager) ctx.getTarget();
+		Object target = ctx.getTarget();
+		if(!(target instanceof Manager))
+			throw new RuntimeException("Transactional annotation can only apply to Manager.");
+		Manager manager = (Manager) target;
 		EntityManager em = manager.getEntityManager();
 		Object obj = null;
 		try {
