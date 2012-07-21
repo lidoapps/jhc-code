@@ -1,20 +1,23 @@
 package cn.jhc.resource;
 
-import java.util.logging.Logger;
-
 import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
+import org.slf4j.Logger;
+
+import cn.jhc.annotations.PersistenceLog;
 
 public class EntityManagerProvider {
 
 	private static final EntityManagerFactory factory = 
 			Persistence.createEntityManagerFactory("users");
 	
-	private static final Logger logger = 
-			Logger.getLogger(EntityManagerProvider.class.getName());
+	@Inject @PersistenceLog
+	private Logger logger;
 	
 	@Produces
 	EntityManager createEntityManager() {
@@ -26,9 +29,8 @@ public class EntityManagerProvider {
 		logger.info("EntityManager is diposed.");
 	}
 	
-	public static void closeFactory() {
-		if(factory.isOpen()) factory.close();
-		logger.info("EntityManagerFactory is closed.");
+	public static EntityManagerFactory getFactory() {
+		return factory;
 	}
     
 }
