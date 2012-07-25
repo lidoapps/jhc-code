@@ -1,4 +1,4 @@
-package cn.jhc;
+package cn.jhc.reflection;
 
 import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.Method;

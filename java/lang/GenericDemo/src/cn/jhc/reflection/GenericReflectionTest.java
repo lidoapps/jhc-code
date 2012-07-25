@@ -1,4 +1,4 @@
-package cn.jhc;
+package cn.jhc.reflection;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
@@ -17,7 +17,7 @@ public class GenericReflectionTest {
 	@Parameters
 	public static Collection<String[]> getParameters(){
 		return Arrays.asList(new String[][] {
-				{"cn.jhc.GenericReflectionTest"},
+				{"cn.jhc.reflection.GenericReflectionTest"},
 				{"java.util.ArrayList"}
 		});
 	}
