@@ -3,7 +3,7 @@ package cn.jhc.manager;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -11,7 +11,7 @@ import javax.persistence.EntityManager;
 import cn.jhc.annotations.Transactional;
 import cn.jhc.bean.Employee;
 
-@ApplicationScoped
+@SessionScoped
 @Named
 public class EmployeeManager implements Serializable, Manager {
 

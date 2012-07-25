@@ -21,12 +21,14 @@ public class EntityManagerProvider {
 	
 	@Produces
 	EntityManager createEntityManager() {
-		return factory.createEntityManager();
+		EntityManager entityManager = factory.createEntityManager();
+		logger.info("{} is produced.", entityManager);
+		return entityManager;
 	}
 	
 	public void close(@Disposes EntityManager em) {
 		if(em.isOpen()) em.close();
-		logger.info("EntityManager is diposed.");
+		logger.info("{} is diposed.", em);
 	}
 	
 	public static EntityManagerFactory getFactory() {
