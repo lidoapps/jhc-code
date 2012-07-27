@@ -1,5 +1,6 @@
 运行时切换到bin目录，参数配置如下：
-java -Djava.security.auth.login.config==../conf/mylogin.conf \
+java -Djava.security.manager \
+ -Djava.security.auth.login.config==../conf/mylogin.conf \
  -Djava.security.policy==../conf/mylogin.policy cn.jhc.client.MyLogin
 
 下面的参数是提供LoginModule的配置：
