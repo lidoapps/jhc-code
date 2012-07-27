@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     2012-7-26 下午2:44:03                                                        
+
+     jaasdemo    
+     演示JAAS。
+                   
+     luyanfei                                                                
+     ====================================================================== -->
+<project name="jaasdemo" default="login">
+    <description>
+            演示JAAS。
+    </description>
+	<property name="src" location="src"/>
+	<property name="conf" location="conf"/>
+
+    <!-- ================================= 
+          target: login              
+         ================================= -->
+    <target name="login" depends="compile" description="演示JAAS。">
+        <java classname="">
+        	<env key="login.configuration.provider" value="cn.jhc.MyProvider"/>
+        	<env key="login.config.url.1" value="${conf}/mylogin.conf"/>
+        </java>
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: compile                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="compile">
+    	<javac srcdir="src"
+         destdir="bin"
+         classpath="jarfile"
+         debug="on"
+		/>
+    </target>
+
+</project>

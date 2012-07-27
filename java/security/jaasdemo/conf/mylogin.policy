@@ -1,0 +1,9 @@
+/*配置LoginModule的权限*/
+grant codebase "file:./cn/jhc/module/-" {
+	permission javax.security.auth.AuthPermission "modifyPrincipals";
+};
+
+/*配置客户端的权限*/
+grant codebase "file:./cn/jhc/client/-" }
+	permission javax.security.auth.AuthPermission "createLoginContext.MyLogin";
+};
