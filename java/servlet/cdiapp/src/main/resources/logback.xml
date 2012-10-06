@@ -15,13 +15,14 @@
 			</pattern>
 		</encoder>
 	</appender>
-	<logger name="org.hibernate" level="warn" />
+	<logger name="org.hibernate" level="info" />
+<!-- 	<logger name="org.hibernate.cache" level="debug" /> -->
 <!-- 	<logger name="org.hibernate.type" level="info" /> -->
 <!-- 	<logger name="org.hibernate.transaction" level="info" /> -->
 <!-- 	<logger name="org.hibernate.tool.hbm2ddl" level="info" /> -->
 	
 	<logger name="org.jboss.weld" level="info"/>
-	<logger name="org.jboss.weld.Bootstrap" level="debug" />
+	<logger name="org.jboss.weld.Bootstrap" level="info" />
 	<logger name="cn.jhc.persistence" level="info" />
 	<logger name="cn.jhc.controller" level="info"/>
 	<root level="warn">
