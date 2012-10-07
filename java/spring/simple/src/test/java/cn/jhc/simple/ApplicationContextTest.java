@@ -58,4 +58,10 @@ public class ApplicationContextTest {
 		Performer oneManBand = ctx.getBean("oneManBand", Performer.class);
 		oneManBand.perform();
 	}
+	
+	@Test
+	public void testPoeticJugglerAround() throws PerformanceException {
+		Performer pjuggler = ctx.getBean("poeticDuke", Performer.class);
+		pjuggler.perform();
+	}
 }
