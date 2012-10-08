@@ -6,15 +6,27 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
 
 	<bean id="magician" class="cn.jhc.simple.mindreader.Magician"></bean>
-	
 	<bean id="volunteer" class="cn.jhc.simple.thinker.Volunteer"></bean>
+	<bean id="juggler" class="cn.jhc.simple.Juggler"></bean>
+	<bean id="delegate" class="cn.jhc.simple.contestant.DelegateContestant"></bean>
 	
 	<aop:config>
 		<aop:aspect ref="magician">
 			<aop:pointcut id="thinking" 
-				expression="execution(* cn.jhc.simple.thinker.Thinker.thinkOfSomething(String))
-					and args(thoughts)" />
+				expression="execution(* cn.jhc.simple.thinker.Thinker.thinkOfSomething(String)) and args(thoughts)" />
 			<aop:before method="interceptThoughts" pointcut-ref="thinking" arg-names="thoughts"/>
 		</aop:aspect>
+		<aop:aspect>
+			<aop:declare-parents
+				types-matching="cn.jhc.simple.Performer+"
+				implement-interface="cn.jhc.simple.contestant.Contestant"
+				default-impl="cn.jhc.simple.contestant.GraciousContestant" />
+		</aop:aspect>
+<!-- 		<aop:aspect> -->
+<!-- 			<aop:declare-parents  -->
+<!-- 				types-matching="cn.jhc.simple.Performer+"  -->
+<!-- 				implement-interface="cn.jhc.simple.contestant.Contestant" -->
+<!-- 				delegate-ref="delegate"/> -->
+<!-- 		</aop:aspect> -->
 	</aop:config>
 </beans>

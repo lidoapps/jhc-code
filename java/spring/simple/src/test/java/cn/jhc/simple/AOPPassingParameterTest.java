@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import cn.jhc.simple.contestant.Contestant;
 import cn.jhc.simple.mindreader.MindReader;
 import cn.jhc.simple.thinker.Thinker;
 
@@ -26,6 +27,14 @@ public class AOPPassingParameterTest {
 		
 		volunteer.thinkOfSomething("Queen of Hearts.");
 		assertEquals("Queen of Hearts.", magician.getThoughts());
+		
+	}
+	
+	@Test
+	public void testIntroduction() {
+		Contestant juggler = context.getBean("juggler", Contestant.class);
+		juggler.reviewAward();
+		
 		
 	}
 }
