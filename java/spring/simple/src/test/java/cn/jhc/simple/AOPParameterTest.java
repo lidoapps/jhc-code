@@ -11,13 +11,13 @@ import cn.jhc.simple.contestant.Contestant;
 import cn.jhc.simple.mindreader.MindReader;
 import cn.jhc.simple.thinker.Thinker;
 
-public class AOPPassingParameterTest {
+public class AOPParameterTest {
 
 	private ApplicationContext context; 
 	
 	@Before
 	public void setUp() {
-		context = new ClassPathXmlApplicationContext("classpath:META-INF/spring/aop-passing-parameters.xml");
+		context = new ClassPathXmlApplicationContext("classpath:META-INF/spring/aop-parameters.xml");
 	}
 	
 	@Test

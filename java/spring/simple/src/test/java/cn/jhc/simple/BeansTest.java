@@ -1,6 +1,7 @@
 package cn.jhc.simple;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -8,13 +9,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.jhc.simple.performer.Performer;
 
-public class ApplicationContextTest {
+public class BeansTest {
 
 	private ApplicationContext ctx;
 
 	@Before
 	public void setUp() throws Exception {
-		ctx = new ClassPathXmlApplicationContext("cn/jhc/simple/test-context.xml");
+		ctx = new ClassPathXmlApplicationContext("classpath:META-INF/spring/beans.xml");
 	}
 
 	@Test
@@ -42,11 +43,6 @@ public class ApplicationContextTest {
 	}
 	
 	@Test
-	public void testAuditorium() {
-		
-	}
-	
-	@Test
 	public void testInstrumentalist() throws PerformanceException {
 		Performer kenny = ctx.getBean("kenny", Performer.class);
 		kenny.perform();
@@ -59,11 +55,5 @@ public class ApplicationContextTest {
 	public void testOneManBand() throws PerformanceException{
 		Performer oneManBand = ctx.getBean("oneManBand", Performer.class);
 		oneManBand.perform();
-	}
-	
-	@Test
-	public void testPoeticJugglerAround() throws PerformanceException {
-		Performer pjuggler = ctx.getBean("poeticDuke", Performer.class);
-		pjuggler.perform();
 	}
 }

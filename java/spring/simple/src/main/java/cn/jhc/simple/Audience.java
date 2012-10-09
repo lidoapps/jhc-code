@@ -28,7 +28,7 @@ public class Audience {
 	public void watchPerformance(ProceedingJoinPoint joinPoint) {
 		try {
 			System.out.println("The audience is taking their seats.");
-			System.out.println("The audience is turning off their cellphone.");
+			System.out.println("The audience is turning off their cellphones.");
 			long start = System.currentTimeMillis();
 			
 			joinPoint.proceed();
