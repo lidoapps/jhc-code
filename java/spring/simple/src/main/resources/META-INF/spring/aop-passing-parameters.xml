@@ -7,7 +7,7 @@
 
 	<bean id="magician" class="cn.jhc.simple.mindreader.Magician"></bean>
 	<bean id="volunteer" class="cn.jhc.simple.thinker.Volunteer"></bean>
-	<bean id="juggler" class="cn.jhc.simple.Juggler"></bean>
+	<bean id="juggler" class="cn.jhc.simple.performer.Juggler"></bean>
 	<bean id="delegate" class="cn.jhc.simple.contestant.DelegateContestant"></bean>
 	
 	<aop:config>
@@ -18,13 +18,13 @@
 		</aop:aspect>
 		<aop:aspect>
 			<aop:declare-parents
-				types-matching="cn.jhc.simple.Performer+"
+				types-matching="cn.jhc.simple.performer.Performer+"
 				implement-interface="cn.jhc.simple.contestant.Contestant"
 				default-impl="cn.jhc.simple.contestant.GraciousContestant" />
 		</aop:aspect>
 <!-- 		<aop:aspect> -->
 <!-- 			<aop:declare-parents  -->
-<!-- 				types-matching="cn.jhc.simple.Performer+"  -->
+<!-- 				types-matching="cn.jhc.simple.performer.Performer+"  -->
 <!-- 				implement-interface="cn.jhc.simple.contestant.Contestant" -->
 <!-- 				delegate-ref="delegate"/> -->
 <!-- 		</aop:aspect> -->

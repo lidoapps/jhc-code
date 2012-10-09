@@ -1,4 +1,5 @@
-package cn.jhc.simple;
+package cn.jhc.simple.poem;
+
 
 public class Sonnet29 implements Poem {
 	private static String[] LINES = {

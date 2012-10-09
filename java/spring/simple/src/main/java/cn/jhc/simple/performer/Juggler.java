@@ -1,4 +1,6 @@
-package cn.jhc.simple;
+package cn.jhc.simple.performer;
+
+import cn.jhc.simple.PerformanceException;
 
 public class Juggler implements Performer {
 

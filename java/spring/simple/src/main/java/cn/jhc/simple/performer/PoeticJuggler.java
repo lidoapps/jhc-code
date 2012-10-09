@@ -1,4 +1,7 @@
-package cn.jhc.simple;
+package cn.jhc.simple.performer;
+
+import cn.jhc.simple.PerformanceException;
+import cn.jhc.simple.poem.Poem;
 
 public class PoeticJuggler extends Juggler {
 

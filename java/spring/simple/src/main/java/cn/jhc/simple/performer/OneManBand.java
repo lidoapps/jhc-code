@@ -1,6 +1,9 @@
-package cn.jhc.simple;
+package cn.jhc.simple.performer;
 
 import java.util.Collection;
+
+import cn.jhc.simple.PerformanceException;
+import cn.jhc.simple.instrument.Instrument;
 
 public class OneManBand implements Performer {
 

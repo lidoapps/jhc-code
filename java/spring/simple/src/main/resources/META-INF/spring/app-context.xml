@@ -9,15 +9,15 @@
 
 	<description>Spring 3 入门实例</description>
 
-	<bean id="duke" class="cn.jhc.simple.Juggler"></bean>
+	<bean id="duke" class="cn.jhc.simple.performer.Juggler"></bean>
 	
-	<bean id="duke2" class="cn.jhc.simple.Juggler">
+	<bean id="duke2" class="cn.jhc.simple.performer.Juggler">
 		<constructor-arg value="15"></constructor-arg>
 	</bean>
 	
-	<bean id="sonnet29" class="cn.jhc.simple.Sonnet29"></bean>
+	<bean id="sonnet29" class="cn.jhc.simple.poem.Sonnet29"></bean>
 	
-	<bean id="poeticDuke" class="cn.jhc.simple.PoeticJuggler">
+	<bean id="poeticDuke" class="cn.jhc.simple.performer.PoeticJuggler">
 		<constructor-arg value="15"></constructor-arg>
 		<constructor-arg ref="sonnet29"></constructor-arg>
 	</bean>
@@ -28,25 +28,25 @@
 		init-method="turnOnLights" destroy-method="turnOffLights">
 	</bean>
 	
-	<bean id="kenny" class="cn.jhc.simple.Instrumentalist">
+	<bean id="kenny" class="cn.jhc.simple.performer.Instrumentalist">
 		<property name="song" value="Jingle Bells"></property>
 		<property name="instrument" ref="saxophone"></property>
 	</bean>
 	
-	<bean id="saxophone" class="cn.jhc.simple.Saxophone"></bean>
+	<bean id="saxophone" class="cn.jhc.simple.instrument.Saxophone"></bean>
 	
-	<bean id="kenny2" class="cn.jhc.simple.Instrumentalist">
+	<bean id="kenny2" class="cn.jhc.simple.performer.Instrumentalist">
 		<property name="song" value="Jingle Bells"></property>
 		<property name="instrument">
-			<bean class="cn.jhc.simple.Piano"></bean>
+			<bean class="cn.jhc.simple.instrument.Piano"></bean>
 		</property>
 	</bean>
 	
-	<bean id="oneManBand" class="cn.jhc.simple.OneManBand">
+	<bean id="oneManBand" class="cn.jhc.simple.performer.OneManBand">
 		<property name="instruments">
 			<list>
-				<bean class="cn.jhc.simple.Piano"></bean>
-				<bean class="cn.jhc.simple.Saxophone"></bean>
+				<bean class="cn.jhc.simple.instrument.Piano"></bean>
+				<bean class="cn.jhc.simple.instrument.Saxophone"></bean>
 			</list>
 		</property>
 	</bean>

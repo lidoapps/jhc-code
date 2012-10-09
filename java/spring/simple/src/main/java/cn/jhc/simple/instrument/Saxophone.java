@@ -1,4 +1,5 @@
-package cn.jhc.simple;
+package cn.jhc.simple.instrument;
+
 
 public class Saxophone implements Instrument {
 

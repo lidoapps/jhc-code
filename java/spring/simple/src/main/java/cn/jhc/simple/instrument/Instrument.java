@@ -1,4 +1,4 @@
-package cn.jhc.simple;
+package cn.jhc.simple.instrument;
 
 public interface Instrument {
 	void play();

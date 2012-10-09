@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import cn.jhc.simple.performer.Performer;
+
 public class ApplicationContextTest {
 
 	private ApplicationContext ctx;
