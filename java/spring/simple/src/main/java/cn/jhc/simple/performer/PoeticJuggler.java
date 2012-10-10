@@ -7,6 +7,8 @@ public class PoeticJuggler extends Juggler {
 
 	private Poem poem;
 
+	public PoeticJuggler() {}
+	
 	public PoeticJuggler(Poem poem) {
 		super();
 		this.poem = poem;
