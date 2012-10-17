@@ -1,5 +1,8 @@
 package cn.jhc.resource;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
 import javax.inject.Inject;
@@ -21,7 +24,9 @@ public class EntityManagerProvider {
 	
 	@Produces
 	EntityManager createEntityManager() {
-		EntityManager entityManager = factory.createEntityManager();
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("org.hibernate.flushMode", "MANUAL");
+		EntityManager entityManager = factory.createEntityManager(map);
 		logger.info("{} is produced.", entityManager);
 		return entityManager;
 	}

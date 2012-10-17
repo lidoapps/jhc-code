@@ -21,6 +21,7 @@ public class EmployeeManager implements Serializable, Manager {
 	@Inject
 	private EntityManager entityManager;
 
+	@Transactional
 	public List<Employee> getEmployees() {
 		TypedQuery<Employee> q = entityManager.createQuery("select u from Employee u", Employee.class);
 		return q.getResultList();
@@ -30,6 +31,7 @@ public class EmployeeManager implements Serializable, Manager {
 		return this.entityManager;
 	}
 
+	@Transactional
 	public Employee find(int id) {
 		return entityManager.find(Employee.class, id);
 	}
@@ -39,4 +41,8 @@ public class EmployeeManager implements Serializable, Manager {
 		entityManager.merge(e);
 	}
 
+	@Transactional
+	public void flush() {
+		entityManager.flush();
+	}
 }
