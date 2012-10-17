@@ -26,11 +26,17 @@ public class EmpTest {
 		Department dep = new Department("软件开发部");
 		dep.addEmployee(e);
 		
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		em.persist(dep);
-//		em.persist(e);
-		tx.commit();
+		EntityTransaction tx = null;
+		try {
+			tx = em.getTransaction();
+			tx.begin();
+			em.persist(dep);
+			//		em.persist(e);
+			tx.commit();
+		} catch (RuntimeException re) {
+			tx.rollback();
+			throw re;
+		}
 	}
 	
 	@After
