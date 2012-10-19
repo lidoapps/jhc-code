@@ -16,7 +16,7 @@ import javax.persistence.TableGenerator;
 @Table(name="department")
 public class Department {
 
-	@TableGenerator(name="dep_gen",table="id_gen")
+	@TableGenerator(name="dep_gen",table="id_gen",allocationSize=5)
 	@Id @GeneratedValue(strategy=GenerationType.TABLE,generator="dep_gen")
 	private int id;
 	

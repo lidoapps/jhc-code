@@ -6,6 +6,11 @@
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>cn.jhc.Employee</class>
 		<class>cn.jhc.Department</class>
+		<class>cn.jhc.ParkingSpace</class>
+		<class>cn.jhc.Project</class>
+		<class>cn.jhc.Phone</class>
+		<class>cn.jhc.Address</class>
+		<class>cn.jhc.Company</class>
 		<properties>
 <!--             <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" /> -->
 <!--             <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" /> -->
@@ -20,7 +25,7 @@
             <property name="hibernate.default_schema" value="test"></property>
             <property name="hibernate.hbm2ddl.auto" value="create" />
             <property name="hibernate.show_sql" value="true" />
-            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.format_sql" value="false"/>
         </properties>
 	</persistence-unit>
 </persistence>
