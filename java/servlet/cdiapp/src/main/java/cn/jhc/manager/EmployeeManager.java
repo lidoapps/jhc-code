@@ -37,11 +37,6 @@ public class EmployeeManager implements Serializable, Manager {
 	}
 
 	@Transactional
-	public void merge(Employee e) {
-		entityManager.merge(e);
-	}
-
-	@Transactional
 	public void flush() {
 		entityManager.flush();
 	}

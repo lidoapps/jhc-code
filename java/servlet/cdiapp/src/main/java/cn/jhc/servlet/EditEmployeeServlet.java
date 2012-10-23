@@ -33,7 +33,6 @@ public class EditEmployeeServlet extends HttpServlet {
 			resp.sendRedirect("index.html");
 			return;
 		} 
-		empManager.merge(e);
 		resp.sendRedirect("index.html");
 	}
 }
