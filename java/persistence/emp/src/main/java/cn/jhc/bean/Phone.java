@@ -1,4 +1,4 @@
-package cn.jhc;
+package cn.jhc.bean;
 
 import java.io.Serializable;
 import javax.persistence.*;

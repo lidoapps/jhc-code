@@ -1,4 +1,4 @@
-package cn.jhc;
+package cn.jhc.bean;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;

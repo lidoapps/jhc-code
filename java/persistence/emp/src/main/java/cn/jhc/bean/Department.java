@@ -1,4 +1,4 @@
-package cn.jhc;
+package cn.jhc.bean;
 
 import java.util.ArrayList;
 import java.util.Collection;

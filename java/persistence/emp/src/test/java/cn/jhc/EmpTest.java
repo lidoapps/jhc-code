@@ -14,6 +14,14 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import cn.jhc.bean.Address;
+import cn.jhc.bean.Company;
+import cn.jhc.bean.Department;
+import cn.jhc.bean.Employee;
+import cn.jhc.bean.ParkingSpace;
+import cn.jhc.bean.Phone;
+import cn.jhc.bean.Project;
+
 public class EmpTest {
 
 	private EntityManagerFactory factory;

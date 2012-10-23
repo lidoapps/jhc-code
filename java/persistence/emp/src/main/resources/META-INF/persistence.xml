@@ -4,13 +4,13 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="emp">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>cn.jhc.Employee</class>
-		<class>cn.jhc.Department</class>
-		<class>cn.jhc.ParkingSpace</class>
-		<class>cn.jhc.Project</class>
-		<class>cn.jhc.Phone</class>
-		<class>cn.jhc.Address</class>
-		<class>cn.jhc.Company</class>
+		<class>cn.jhc.bean.Employee</class>
+		<class>cn.jhc.bean.Department</class>
+		<class>cn.jhc.bean.ParkingSpace</class>
+		<class>cn.jhc.bean.Project</class>
+		<class>cn.jhc.bean.Phone</class>
+		<class>cn.jhc.bean.Address</class>
+		<class>cn.jhc.bean.Company</class>
 		<properties>
 <!--             <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" /> -->
 <!--             <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" /> -->
