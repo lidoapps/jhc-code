@@ -38,14 +38,12 @@ public class ParkingSpace implements Serializable {
 
 	public void setLot(int lot) {
 		this.lot = lot;
-	}   
+	}  
+	
 	public int getId() {
 		return this.id;
 	}
-
-	public void setId(int id) {
-		this.id = id;
-	}   
+ 
 	public String getLocation() {
 		return this.location;
 	}

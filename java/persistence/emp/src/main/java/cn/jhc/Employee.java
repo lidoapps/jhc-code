@@ -88,10 +88,6 @@ public class Employee {
 		return id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
-
 	public void addProject(Project proj) {
 		if(!this.getProjects().contains(proj))
 			this.getProjects().add(proj);
