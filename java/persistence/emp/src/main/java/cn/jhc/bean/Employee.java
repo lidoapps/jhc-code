@@ -27,7 +27,7 @@ import javax.persistence.UniqueConstraint;
 )
 public class Employee {
 
-	@TableGenerator(name="emp_gen",table="id_gen",allocationSize=10)
+	@TableGenerator(name="emp_gen",table="id_gen")
 	@Id @GeneratedValue(strategy=GenerationType.TABLE,generator="emp_gen")
 	private long id;
 	
@@ -44,7 +44,7 @@ public class Employee {
 		this.salary = salary;
 	}
 
-	@ManyToOne
+	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinColumn(name="dept_id")
 	private Department department;
 	

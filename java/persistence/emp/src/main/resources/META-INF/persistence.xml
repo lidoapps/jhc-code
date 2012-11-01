@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="emp">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
@@ -12,20 +12,21 @@
 		<class>cn.jhc.bean.Address</class>
 		<class>cn.jhc.bean.Company</class>
 		<properties>
-<!--             <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" /> -->
-<!--             <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" /> -->
-<!--             <property name="hibernate.connection.url" value="jdbc:hsqldb:file:testdb" /> -->
-<!--             <property name="hibernate.connection.password" value=""></property> -->
-<!--             <property name="hibernate.connection.username" value="sa"></property> -->
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
-            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost/test" />
-            <property name="hibernate.connection.password" value="testpass"></property>
-            <property name="hibernate.connection.username" value="testuser"></property>
-            <property name="hibernate.default_schema" value="test"></property>
-            <property name="hibernate.hbm2ddl.auto" value="create" />
-            <property name="hibernate.show_sql" value="true" />
-            <property name="hibernate.format_sql" value="false"/>
-        </properties>
+<!-- 			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" /> -->
+<!-- 			<property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" /> -->
+<!-- 			<property name="hibernate.connection.url" value="jdbc:hsqldb:file:testdb" /> -->
+<!-- 			<property name="hibernate.connection.password" value=""></property> -->
+<!-- 			<property name="hibernate.connection.username" value="sa"></property> -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.connection.url" value="jdbc:mysql://localhost/test" />
+			<property name="hibernate.connection.password" value="testpass"></property>
+			<property name="hibernate.connection.username" value="testuser"></property>
+			<property name="hibernate.default_schema" value="test"></property>
+			<property name="hibernate.hbm2ddl.auto" value="create" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.id.new_generator_mappings" value="true"/>
+		</properties>
 	</persistence-unit>
 </persistence>

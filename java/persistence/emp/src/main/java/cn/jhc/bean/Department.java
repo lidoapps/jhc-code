@@ -16,13 +16,14 @@ import javax.persistence.TableGenerator;
 @Table(name="department")
 public class Department {
 
-	@TableGenerator(name="dep_gen",table="id_gen",allocationSize=5)
+	@TableGenerator(name="dep_gen",table="id_gen",
+			allocationSize=50,initialValue=100)
 	@Id @GeneratedValue(strategy=GenerationType.TABLE,generator="dep_gen")
 	private int id;
 	
 	private String name;
 	
-	@OneToMany(mappedBy="department",cascade= {CascadeType.PERSIST, CascadeType.MERGE})
+	@OneToMany(mappedBy="department")
 	private Collection<Employee> employees = new ArrayList<Employee>();
 
 	
