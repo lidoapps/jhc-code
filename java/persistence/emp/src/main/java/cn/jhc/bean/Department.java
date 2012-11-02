@@ -23,7 +23,7 @@ public class Department {
 	
 	private String name;
 	
-	@OneToMany(mappedBy="department")
+	@OneToMany(mappedBy="department", cascade= {CascadeType.PERSIST, CascadeType.MERGE})
 	private Collection<Employee> employees = new ArrayList<Employee>();
 
 	
@@ -82,6 +82,11 @@ public class Department {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Department [id=" + id + ", name=" + name + "]";
 	}
 
 	

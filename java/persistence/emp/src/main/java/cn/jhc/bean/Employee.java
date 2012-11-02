@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,11 +26,10 @@ import javax.persistence.UniqueConstraint;
 )
 public class Employee {
 
-	@TableGenerator(name="emp_gen",table="id_gen")
+	@TableGenerator(name="emp_gen",table="id_gen",initialValue=100)
 	@Id @GeneratedValue(strategy=GenerationType.TABLE,generator="emp_gen")
 	private long id;
-	
-	@Column(name="name")
+
 	private String name;
 	
 	private long salary;
@@ -44,7 +42,7 @@ public class Employee {
 		this.salary = salary;
 	}
 
-	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToOne
 	@JoinColumn(name="dept_id")
 	private Department department;
 	
@@ -157,6 +155,12 @@ public class Employee {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary
+				+ "]";
 	}
 
 }

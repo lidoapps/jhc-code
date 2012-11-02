@@ -1,5 +1,7 @@
 package cn.jhc;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -8,8 +10,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import cn.jhc.bean.Department;
 import cn.jhc.bean.Employee;
 import cn.jhc.dao.DepartmentDao;
-import cn.jhc.dao.DepartmentService;
-import cn.jhc.dao.EmployeeDao;
+import cn.jhc.dao.JoinDao;
+import cn.jhc.dao.JoinService;
 
 public class SpringTest {
 
@@ -26,15 +28,34 @@ public class SpringTest {
 		Department d = new Department("软件开发部");
 		Department d2 = new Department("人力资源部");
 		d.addEmployee(e);
-		EmployeeDao dao = context.getBean("employeeDAO", EmployeeDao.class);
-		dao.save(e);
 		
 		DepartmentDao deptDao = context.getBean("deptService", DepartmentDao.class);
+		deptDao.save(d);
 		deptDao.save(d2);
-//		
-//		for(int i=0;i<101;i++) {
-//			Employee t = new Employee("name"+i, 2000+i);
-//			dao.save(t);
-//		}
+
+	}
+	
+	@Test
+	public void testFindWithNoJoin() {
+		JoinDao dao = context.getBean("joinService", JoinDao.class);
+		List<Employee> list = dao.findWithNoJoin("销售部");
+		for(Employee e : list)
+			System.out.println(e);
+	}
+	
+	@Test
+	public void testFindWithJoin() {
+		JoinDao dao = context.getBean("joinService", JoinDao.class);
+		List<Department> list = dao.findWithJoin("赵三");
+		for(Department d : list)
+			System.out.println(d);
+	}
+	
+	@Test
+	public void testFindWithFetchJoin() {
+		JoinDao dao = context.getBean("joinService", JoinDao.class);
+		List<Department> list = dao.findWithFetchJoin("赵三");
+		for(Department d : list)
+			System.out.println(d);
 	}
 }
