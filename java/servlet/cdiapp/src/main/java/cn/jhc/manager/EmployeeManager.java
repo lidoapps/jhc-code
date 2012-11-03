@@ -7,6 +7,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.persistence.FlushModeType;
 import javax.persistence.TypedQuery;
 
 import cn.jhc.annotations.Transactional;
@@ -23,7 +24,8 @@ public class EmployeeManager implements Serializable, Manager {
 
 	@Transactional
 	public List<Employee> getEmployees() {
-		TypedQuery<Employee> q = entityManager.createQuery("select u from Employee u", Employee.class);
+		TypedQuery<Employee> q = entityManager
+				.createQuery("select u from Employee u", Employee.class);
 		return q.getResultList();
 	}
 

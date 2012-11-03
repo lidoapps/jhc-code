@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.persistence.Version;
 
 @Entity
 @Table(
@@ -22,6 +23,8 @@ public class Employee {
 	private String name;
 	private long salary;
 	private Date hireDate;
+	@Version
+	private int version;
 
 	public String getName() {
 		return name;
