@@ -1,6 +1,9 @@
 package cn.jhc.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.*;
 
 /**
@@ -8,19 +11,27 @@ import javax.persistence.*;
  *
  */
 @Entity
-@Table(name="spitter")
+@Table(name="spitter",uniqueConstraints= {@UniqueConstraint(columnNames="username")})
 public class Spitter implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
-	
-	@Id 
+	@TableGenerator(
+			name="spitter_gen",
+			valueColumnName="spitter_id",
+			initialValue=50
+			)
+	@Id @GeneratedValue(strategy=GenerationType.TABLE, generator="spitter_gen")
 	private long id;
 	
 	private String username;
 	private String password;
+	private String fullname;
 	private String email;
 	private boolean updatedByEmail;
+	
+	@OneToMany(mappedBy="spitter")
+	private Collection<Spittle> spittles = new ArrayList<Spittle>();
 	
 	public Spitter() {
 		super();
@@ -60,6 +71,14 @@ public class Spitter implements Serializable {
 
 	public long getId() {
 		return id;
+	}
+
+	public String getFullname() {
+		return fullname;
+	}
+
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
 	}
    
 }

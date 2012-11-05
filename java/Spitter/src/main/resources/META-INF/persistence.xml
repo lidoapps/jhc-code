@@ -5,6 +5,7 @@
 	<persistence-unit name="spitter">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>cn.jhc.domain.Spitter</class>
+		<class>cn.jhc.domain.Spittle</class>
 
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
@@ -20,6 +21,7 @@
 			<property name="hibernate.id.new_generator_mappings" value="true"/>
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.hbm2ddl.import_files" value="/sql/init.sql"/>
 		</properties>
 	</persistence-unit>
 </persistence>
