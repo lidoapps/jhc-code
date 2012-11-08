@@ -7,7 +7,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
-import javax.persistence.FlushModeType;
 import javax.persistence.TypedQuery;
 
 import cn.jhc.annotations.Transactional;
