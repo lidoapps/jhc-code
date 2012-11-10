@@ -44,7 +44,7 @@ public class SpitterController {
 	@RequestMapping(method=RequestMethod.POST)
 	public String addSpitterFromForm(@Valid Spitter spitter, BindingResult bindingResult) {
 		if(bindingResult.hasErrors())
-			return "/spitters/edit";
+			return "spitters/edit";
 		spitterService.saveSpitter(spitter);
 		return "redirect:/spitter/" + spitter.getUsername();
 	}

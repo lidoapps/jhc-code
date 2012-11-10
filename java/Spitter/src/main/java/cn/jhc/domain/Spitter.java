@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  * Entity implementation class for Entity: Spitter
@@ -24,9 +26,20 @@ public class Spitter implements Serializable {
 	@Id @GeneratedValue(strategy=GenerationType.TABLE, generator="spitter_gen")
 	private long id;
 	
+	@Size(min=3,max=20,message="用户名的长度必须在3至20个字符之间。")
+	@Pattern(regexp="^[a-zA-Z0-9]+$",message="用户名只能使用数字和字母。")
 	private String username;
+	
+	@Size(min=6, max=20,
+			message="The password must be at least 6 characters long.")
 	private String password;
+	
+	@Size(min=3, max=50, message=
+			"Your full name must be between 3 and 50 characters long.")
 	private String fullName;
+	
+	@Pattern(regexp="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}",
+			message="Invalid email address.")
 	private String email;
 	private boolean updateByEmail;
 	
