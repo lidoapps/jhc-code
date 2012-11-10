@@ -18,7 +18,7 @@ public class Spitter implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@TableGenerator(
 			name="spitter_gen",
-			valueColumnName="spitter_id",
+			pkColumnValue="spitter_seq",
 			initialValue=50
 			)
 	@Id @GeneratedValue(strategy=GenerationType.TABLE, generator="spitter_gen")
@@ -26,9 +26,9 @@ public class Spitter implements Serializable {
 	
 	private String username;
 	private String password;
-	private String fullname;
+	private String fullName;
 	private String email;
-	private boolean updatedByEmail;
+	private boolean updateByEmail;
 	
 	@OneToMany(mappedBy="spitter")
 	private Collection<Spittle> spittles = new ArrayList<Spittle>();
@@ -61,24 +61,24 @@ public class Spitter implements Serializable {
 		this.email = email;
 	}
 
-	public boolean isUpdatedByEmail() {
-		return updatedByEmail;
-	}
-
-	public void setUpdatedByEmail(boolean updatedByEmail) {
-		this.updatedByEmail = updatedByEmail;
-	}
-
 	public long getId() {
 		return id;
 	}
 
-	public String getFullname() {
-		return fullname;
+	public String getFullName() {
+		return fullName;
 	}
 
-	public void setFullname(String fullname) {
-		this.fullname = fullname;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public boolean isUpdateByEmail() {
+		return updateByEmail;
+	}
+
+	public void setUpdateByEmail(boolean updateByEmail) {
+		this.updateByEmail = updateByEmail;
 	}
    
 }

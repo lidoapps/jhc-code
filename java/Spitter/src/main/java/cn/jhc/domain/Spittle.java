@@ -18,7 +18,7 @@ public class Spittle implements Serializable {
 
 	@TableGenerator(
 			name="spittle_gen",
-			valueColumnName="spittle_id",
+			pkColumnValue="spittle_seq",
 			initialValue=50
 			)
 	@Id @GeneratedValue(strategy=GenerationType.TABLE, generator="spittle_gen")

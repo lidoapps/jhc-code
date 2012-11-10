@@ -6,4 +6,5 @@ import cn.jhc.domain.Spitter;
 
 public interface SpitterDao extends JpaRepository<Spitter, Long> {
 
+	Spitter findByUsername(String username);
 }

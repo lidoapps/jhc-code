@@ -12,4 +12,13 @@
 	<definition name="home" extends="template">
 		<put-attribute name="content" value="/WEB-INF/views/home.jsp"></put-attribute>
 	</definition>
+	<definition name="spittles/list" extends="template">
+		<put-attribute name="content" value="/WEB-INF/views/spittles/list.jsp"></put-attribute>
+	</definition>
+	<definition name="spitters/edit" extends="template">
+		<put-attribute name="content" value="/WEB-INF/views/spitters/edit.jsp"></put-attribute>
+	</definition>
+	<definition name="spitters/view" extends="template">
+		<put-attribute name="content" value="/WEB-INF/views/spitters/view.jsp"></put-attribute>
+	</definition>
 </tiles-definitions>
