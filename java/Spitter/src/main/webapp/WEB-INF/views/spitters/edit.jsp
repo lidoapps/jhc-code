@@ -1,7 +1,7 @@
 <%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <div>
 	<h2>Create a free Spitter account</h2>
-	<sf:form method="POST" modelAttribute="spitter">
+	<sf:form method="POST" modelAttribute="spitter" enctype="multipart/form-data">
 		<fieldset>
 			<table cellspacing="0">
 				<tr>
@@ -34,6 +34,10 @@
 						<small>In case you forget something</small><br/>
 						<sf:errors path="email" cssClass="error" />
 					</td>
+				</tr>
+				<tr>
+					<th><label for="image">Profile image:</label></th>
+					<td><input name="image" type="file"/>
 				</tr>
 				<tr>
 					<th></th>
