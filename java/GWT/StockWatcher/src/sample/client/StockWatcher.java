@@ -10,10 +10,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.event.dom.client.KeyPressHandler;
-import com.google.gwt.i18n.client.DateTimeFormat;
-import com.google.gwt.i18n.client.DateTimeFormat.PredefinedFormat;
 import com.google.gwt.i18n.client.NumberFormat;
-import com.google.gwt.user.client.Random;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -31,25 +28,30 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 public class StockWatcher implements EntryPoint {
 
 	private static final int REFRESH_INTERVAL = 5000;
+
+	private StockPriceServiceAsync stockPriceSvc = GWT.create(StockPriceService.class);
+	private StockWatcherConstants constants = GWT.create(StockWatcherConstants.class);
+	private StockWatcherMessages messages = GWT.create(StockWatcherMessages.class);
+	private Button addStockButton = new Button(constants.add());	
 	private VerticalPanel mainPanel = new VerticalPanel();
 	private FlexTable stocksFlexTable = new FlexTable();
 	private HorizontalPanel addPanel = new HorizontalPanel();
 	private TextBox newSymbolTextBox = new TextBox();
-	private Button addStockButton = new Button("Add");
 	private Label lastUpdatedLabel = new Label();
 	private Label errorMsgLabel = new Label();
 	private ArrayList<String> stocks = new ArrayList<String>();
-	private StockPriceServiceAsync stockPriceSvc = GWT.create(StockPriceService.class);
-	
 	/**
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
+		Window.setTitle(constants.stockWatcher());
+		RootPanel.get("appTitle").add(new Label(constants.stockWatcher()));
+		
 		//Create table for stock data.
-		stocksFlexTable.setText(0, 0, "Symbol");
-		stocksFlexTable.setText(0, 1, "Price");
-		stocksFlexTable.setText(0, 2, "Change");
-		stocksFlexTable.setText(0, 3, "Remove");
+		stocksFlexTable.setText(0, 0, constants.symbol());
+		stocksFlexTable.setText(0, 1, constants.price());
+		stocksFlexTable.setText(0, 2, constants.change());
+		stocksFlexTable.setText(0, 3, constants.remove());
 		
 		stocksFlexTable.getRowFormatter().addStyleName(0, "watchListHeader");
 		stocksFlexTable.addStyleName("watchList");
@@ -134,8 +136,7 @@ public class StockWatcher implements EntryPoint {
 			updateTable(prices[i]);
 		}
 		
-		lastUpdatedLabel.setText("Last updated: "
-				+ DateTimeFormat.getFormat(PredefinedFormat.DATE_TIME_MEDIUM).format(new Date()));
+		lastUpdatedLabel.setText(messages.lastUpdate(new Date()));
 		
 		errorMsgLabel.setVisible(false);
 	}
@@ -166,7 +167,7 @@ public class StockWatcher implements EntryPoint {
 		final String symbol = newSymbolTextBox.getText().toUpperCase().trim();
 		newSymbolTextBox.setFocus(true);
 		if(!symbol.matches("^[0-9A-Z\\.]{1,10}$")) {
-			Window.alert("'" + symbol + "' is not a valid symbol." );
+			Window.alert(messages.invalidSymbol(symbol));
 			newSymbolTextBox.selectAll();
 			return;
 		}
