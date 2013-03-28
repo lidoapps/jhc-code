@@ -10,9 +10,9 @@ import javax.persistence.TableGenerator;
 @Entity
 @Table(name="emp3")
 public class Employee3 {
+	
 	@TableGenerator(name="id_gen",table="id_gen",initialValue=10)
-	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE,generator="id_gen")
+	@Id	@GeneratedValue(strategy=GenerationType.TABLE,generator="id_gen")
 	private long id;
 	
 	private String firstName;

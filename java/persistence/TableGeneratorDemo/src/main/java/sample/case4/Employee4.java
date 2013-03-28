@@ -3,6 +3,7 @@ package sample.case4;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -30,6 +31,9 @@ public class Employee4 {
 	private String firstName;
 	private String lastName;
 	
+	@ManyToOne
+	private Department department = null;
+	
 	public Employee4() {}
 	
 	public Employee4(String firstName, String lastName) {
@@ -56,6 +60,14 @@ public class Employee4 {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	public Department getDepartment() {
+		return department;
 	}
 
 }

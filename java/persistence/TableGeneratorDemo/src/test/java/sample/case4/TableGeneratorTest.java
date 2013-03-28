@@ -23,11 +23,14 @@ public class TableGeneratorTest extends JpaTestCase {
 	
 	@Test
 	public void testTableGenerator() {
+		Department dept = new Department("Test Department");
 		List<Employee4> emps = generateRandomEmployees(12);
+		for(Employee4 e : emps) {
+			dept.addEmployee(e);
+		}
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		for(Employee4 e : emps)
-			em.persist(e);
+		em.persist(dept);
 		tx.commit();
 		printTable("enhanced_gen");
 		printTable("emp4");
