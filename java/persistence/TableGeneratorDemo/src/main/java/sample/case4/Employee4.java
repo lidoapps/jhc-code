@@ -22,7 +22,7 @@ public class Employee4 {
 					@Parameter( name = "segment_column_name", value = "segment_name"),
 					@Parameter( name = "segment_value", value = "emp_seq"),
 					@Parameter( name = "increment_size", value = "10"),
-					@Parameter( name = "optimizer", value = "pooled")
+					@Parameter( name = "optimizer", value = "pooled-lo")
 			})
 	@Id
 	@GeneratedValue(generator="id_gen")

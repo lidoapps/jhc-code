@@ -24,7 +24,7 @@ public class TableGeneratorTest extends JpaTestCase {
 	@Test
 	public void testTableGenerator() {
 		Department dept = new Department("Test Department");
-		List<Employee4> emps = generateRandomEmployees(12);
+		List<Employee4> emps = generateRandomEmployees(5);
 		for(Employee4 e : emps) {
 			dept.addEmployee(e);
 		}
