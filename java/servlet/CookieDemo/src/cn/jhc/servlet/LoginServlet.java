@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		Cookie cookie = new Cookie("username","zhangshang");
-//		cookie.setMaxAge(120);
-//		resp.addCookie(cookie);
+		Cookie cookie = new Cookie("username","zhangshang");
+		resp.addCookie(cookie);
+		req.getSession();
 		resp.sendRedirect("admin.do");
 	}
 
